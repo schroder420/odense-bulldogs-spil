@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b241a">
+  <meta name="description" content="Administrér deltagere og følg resultater i Odense Bulldogs Kampkontrol.">
+
+  <title>Deltagere | Bulldogs Kampkontrol</title>
+
+  <link rel="icon" type="image/png" href="assets/bulldogs-logo.png">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- CSS til deltagersiden -->
+  <link rel="stylesheet" href="css/deltagere.css">
+</head>
+
+<body data-page="participants">
+
+  <a class="skip-link" href="#main">Spring til indhold</a>
+
+  <div class="app-shell">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Hovednavigation">
+
+      <a class="brand" href="vaelg-spil.html">
+        <img
+          src="assets/bulldogs-logo.png"
+          width="44"
+          height="51"
+          alt="Odense Bulldogs">
+
+        <span>
+          <strong>ODENSE BULLDOGS</strong>
+          <span>KAMPKONTROL</span>
+        </span>
+      </a>
+
+      <div class="sidebar-label">PERSONALE</div>
+
+      <nav class="nav-list">
+
+        <button class="nav-link" type="button">
+          <svg class="icon" aria-hidden="true">
+            <use href="assets/icons.svg#grid"></use>
+          </svg>
+          <span>Overblik</span>
+        </button>
+
+        <a class="nav-link is-active" href="vaelg-spil.html">
+          <svg class="icon" aria-hidden="true">
+            <use href="assets/icons.svg#trophy"></use>
+          </svg>
+          <span>Konkurrencer</span>
+          <span class="nav-indicator"></span>
+        </a>
+
+        <button class="nav-link" type="button">
+          <svg class="icon" aria-hidden="true">
+            <use href="assets/icons.svg#flag"></use>
+          </svg>
+          <span>Præmier</span>
+        </button>
+
+        <button class="nav-link" type="button">
+          <svg class="icon" aria-hidden="true">
+            <use href="assets/icons.svg#chart"></use>
+          </svg>
+          <span>Statistik</span>
+        </button>
+
+        <button class="nav-link" type="button">
+          <svg class="icon" aria-hidden="true">
+            <use href="assets/icons.svg#settings"></use>
+          </svg>
+          <span>Indstillinger</span>
+        </button>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <div class="arena-note">
+          <span class="arena-dot"></span>
+          <span>Sparekassen Danmark Arena</span>
+        </div>
+
+        <div class="staff-profile">
+          <span class="staff-avatar">OB</span>
+
+          <span>
+            <strong>Kampafvikler</strong>
+            <small>Personaleadgang</small>
+          </span>
+
+          <button
+            type="button"
+            class="icon-button"
+            aria-label="Log ud">
+
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#logout"></use>
+            </svg>
+          </button>
+        </div>
+
+        <p class="sidebar-motto">ÉT HOLD. ÉN BY. ODENSE.</p>
+
+      </div>
+    </aside>
+
+
+    <!-- HOVEDOMRÅDE -->
+    <div class="workspace">
+
+      <!-- TOPBAR -->
+      <header class="topbar">
+
+        <div class="topbar-start">
+
+          <button
+            id="menu-toggle"
+            class="icon-button menu-toggle"
+            type="button"
+            aria-label="Åbn navigation"
+            aria-expanded="false">
+
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#menu"></use>
+            </svg>
+
+          </button>
+
+          <nav class="breadcrumb" aria-label="Brødkrumme">
+
+            <a href="vaelg-spil.html">Konkurrencer</a>
+
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#chevron-right"></use>
+            </svg>
+
+            <span aria-current="page">Deltagere</span>
+
+          </nav>
+
+        </div>
+
+        <span class="environment-badge">
+          <span></span>
+          Eksempeldata
+        </span>
+
+      </header>
+
+
+      <!-- SIDEINDHOLD -->
+      <main id="main" class="page-content participants-page" tabindex="-1">
+
+        <!-- SIDEOVERSKRIFT -->
+        <header class="page-heading run-heading participants-heading">
+
+          <div>
+
+            <p class="eyebrow">KAMPKONTROL · DELTAGERE</p>
+
+            <h1>Deltagere</h1>
+
+            <p class="lead">
+              Følg deltagernes resultater og administrér navnene på storskærmen.
+            </p>
+
+          </div>
+
+          <span class="badge badge-neutral">
+            Eksempelvisning
+          </span>
+
+        </header>
+
+
+        <!-- KONKURRENCEFANER -->
+        <nav class="competition-tabs" aria-label="Konkurrence">
+
+          <a href="afvikling.html">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#monitor"></use>
+            </svg>
+            Afvikling
+          </a>
+
+          <a
+            href="deltagere.html"
+            class="is-active"
+            aria-current="page">
+
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#users"></use>
+            </svg>
+            Deltagere
+          </a>
+
+          <a href="resultat.html">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#trophy"></use>
+            </svg>
+            Resultat
+          </a>
+
+        </nav>
+
+
+        <!-- KONKURRENCENS OVERSIGT -->
+        <section class="participants-overview">
+
+          <div class="panel participants-summary">
+
+            <div class="participants-summary-icon">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons.svg#users"></use>
+              </svg>
+            </div>
+
+            <div>
+              <p class="summary-label">Samlet antal deltagere</p>
+              <p class="summary-number">24</p>
+              <p class="summary-description">
+                Registrerede deltagere i konkurrencen
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="panel participants-competition">
+
+            <div class="panel-heading">
+
+              <div>
+                <p class="eyebrow">AKTIV KONKURRENCE</p>
+                <h2>Hold pucken i live</h2>
+              </div>
+
+              <span class="badge badge-neutral">I gang</span>
+
+            </div>
+
+            <div class="competition-info">
+
+              <div>
+                <span class="info-label">Kamp</span>
+                <strong>Odense Bulldogs mod Herning Blue Fox</strong>
+              </div>
+
+              <div>
+                <span class="info-label">Periode</span>
+                <strong>1. pause</strong>
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- DELTAGERLISTE -->
+        <section class="panel participants-list-panel">
+
+          <div class="panel-heading participants-list-heading">
+
+            <div>
+              <p class="eyebrow">OVERSIGT</p>
+              <h2 class="section-title">Alle deltagere</h2>
+              <p class="participants-subtitle">
+                Administrér deltagernes synlighed og følg deres resultater.
+              </p>
+            </div>
+
+            <span class="participant-count">
+              24 deltagere
+            </span>
+
+          </div>
+
+
+          <!-- SØGNING OG FILTRE -->
+          <div class="participant-toolbar">
+
+            <div class="participant-search">
+
+              <label for="participant-search">
+                Søg efter deltager
+              </label>
+
+              <div class="search-input-wrapper">
+
+                <svg class="icon" aria-hidden="true">
+                  <use href="assets/icons.svg#search"></use>
+                </svg>
+
+                <input
+                  id="participant-search"
+                  type="search"
+                  placeholder="Søg efter spillernavn..."
+                  autocomplete="off">
+
+              </div>
+
+            </div>
+
+
+            <div class="participant-filters">
+
+              <span class="filter-label">Vis deltagere</span>
+
+              <div class="filter-buttons">
+
+                <button
+                  class="filter-button is-active"
+                  type="button"
+                  aria-pressed="true">
+                  Alle
+                  <span>24</span>
+                </button>
+
+                <button
+                  class="filter-button"
+                  type="button"
+                  aria-pressed="false">
+                  Skjulte
+                  <span>2</span>
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- RESULTATTABEL -->
+          <div class="participants-table-wrapper">
+
+            <table class="participants-table">
+
+              <thead>
+                <tr>
+                  <th scope="col">Deltager</th>
+                  <th scope="col">Placering</th>
+                  <th scope="col">Bedste score</th>
+                  <th scope="col">Antal forsøg</th>
+                  <th scope="col">Synlighed</th>
+                  <th scope="col">
+                    <span class="visually-hidden">Handlinger</span>
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                <!-- DELTAGER 1 -->
+                <tr>
+
+                  <td>
+                    <div class="participant-identity">
+
+                      <span class="participant-avatar">MK</span>
+
+                      <div>
+                        <strong>MikkelK</strong>
+                        <span class="participant-id">Deltager #001</span>
+                      </div>
+
+                    </div>
+                  </td>
+
+                  <td>
+                    <span class="placement placement-first">
+                      <svg class="icon" aria-hidden="true">
+                        <use href="assets/icons.svg#trophy"></use>
+                      </svg>
+                      #1
+                    </span>
+                  </td>
+
+                  <td>
+                    <strong class="participant-score">24.820</strong>
+                    <span class="score-unit">point</span>
+                  </td>
+
+                  <td>12</td>
+
+                  <td>
+                    <span class="visibility-status is-visible">
+                      <span></span>
+                      Synlig
+                    </span>
+                  </td>
+
+                  <td>
+                    <button class="button button-secondary participant-action" type="button">
+                      Skjul navn
+                    </button>
+                  </td>
+
+                </tr>
+
+
+                <!-- DELTAGER 2 -->
+                <tr>
+
+                  <td>
+                    <div class="participant-identity">
+
+                      <span class="participant-avatar">JS</span>
+
+                      <div>
+                        <strong>JensS</strong>
+                        <span class="participant-id">Deltager #002</span>
+                      </div>
+
+                    </div>
+                  </td>
+
+                  <td>
+                    <span class="placement">#2</span>
+                  </td>
+
+                  <td>
+                    <strong class="participant-score">18.450</strong>
+                    <span class="score-unit">point</span>
+                  </td>
+
+                  <td>9</td>
+
+                  <td>
+                    <span class="visibility-status is-visible">
+                      <span></span>
+                      Synlig
+                    </span>
+                  </td>
+
+                  <td>
+                    <button class="button button-secondary participant-action" type="button">
+                      Skjul navn
+                    </button>
+                  </td>
+
+                </tr>
+
+
+                <!-- DELTAGER 3 -->
+                <tr>
+
+                  <td>
+                    <div class="participant-identity">
+
+                      <span class="participant-avatar">AL</span>
+
+                      <div>
+                        <strong>AndersL</strong>
+                        <span class="participant-id">Deltager #003</span>
+                      </div>
+
+                    </div>
+                  </td>
+
+                  <td>
+                    <span class="placement">#3</span>
+                  </td>
+
+                  <td>
+                    <strong class="participant-score">15.200</strong>
+                    <span class="score-unit">point</span>
+                  </td>
+
+                  <td>7</td>
+
+                  <td>
+                    <span class="visibility-status is-visible">
+                      <span></span>
+                      Synlig
+                    </span>
+                  </td>
+
+                  <td>
+                    <button class="button button-secondary participant-action" type="button">
+                      Skjul navn
+                    </button>
+                  </td>
+
+                </tr>
+
+
+                <!-- DELTAGER 4 -->
+                <tr>
+
+                  <td>
+                    <div class="participant-identity">
+
+                      <span class="participant-avatar">CP</span>
+
+                      <div>
+                        <strong>ChristianP</strong>
+                        <span class="participant-id">Deltager #004</span>
+                      </div>
+
+                    </div>
+                  </td>
+
+                  <td>
+                    <span class="placement">#4</span>
+                  </td>
+
+                  <td>
+                    <strong class="participant-score">12.780</strong>
+                    <span class="score-unit">point</span>
+                  </td>
+
+                  <td>6</td>
+
+                  <td>
+                    <span class="visibility-status is-visible">
+                      <span></span>
+                      Synlig
+                    </span>
+                  </td>
+
+                  <td>
+                    <button class="button button-secondary participant-action" type="button">
+                      Skjul navn
+                    </button>
+                  </td>
+
+                </tr>
+
+
+                <!-- SKJULT DELTAGER -->
+                <tr class="participant-row-hidden">
+
+                  <td>
+                    <div class="participant-identity">
+
+                      <span class="participant-avatar">?</span>
+
+                      <div>
+                        <strong>ThomasB</strong>
+                        <span class="participant-id">Deltager #005</span>
+                      </div>
+
+                    </div>
+                  </td>
+
+                  <td>
+                    <span class="placement">#5</span>
+                  </td>
+
+                  <td>
+                    <strong class="participant-score">9.640</strong>
+                    <span class="score-unit">point</span>
+                  </td>
+
+                  <td>5</td>
+
+                  <td>
+                    <span class="visibility-status is-hidden">
+                      <span></span>
+                      Skjult
+                    </span>
+                  </td>
+
+                  <td>
+                    <button class="button button-secondary participant-action" type="button">
+                      Vis navn
+                    </button>
+                  </td>
+
+                </tr>
+
+
+                <!-- SKJULT DELTAGER -->
+                <tr class="participant-row-hidden">
+
+                  <td>
+                    <div class="participant-identity">
+
+                      <span class="participant-avatar">?</span>
+
+                      <div>
+                        <strong>MartinH</strong>
+                        <span class="participant-id">Deltager #006</span>
+                      </div>
+
+                    </div>
+                  </td>
+
+                  <td>
+                    <span class="placement">#6</span>
+                  </td>
+
+                  <td>
+                    <strong class="participant-score">8.120</strong>
+                    <span class="score-unit">point</span>
+                  </td>
+
+                  <td>4</td>
+
+                  <td>
+                    <span class="visibility-status is-hidden">
+                      <span></span>
+                      Skjult
+                    </span>
+                  </td>
+
+                  <td>
+                    <button class="button button-secondary participant-action" type="button">
+                      Vis navn
+                    </button>
+                  </td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+
+          <!-- TABELFOD -->
+          <div class="participants-table-footer">
+
+            <p>
+              Viser 6 af 24 deltagere.
+              <span>Eksempeldata til designvisning.</span>
+            </p>
+
+            <div class="table-pagination">
+              <button
+                class="pagination-button"
+                type="button"
+                disabled>
+                Forrige
+              </button>
+
+              <span class="pagination-current">1</span>
+
+              <button
+                class="pagination-button"
+                type="button">
+                Næste
+              </button>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- FASTLÅSNING AF RESULTATER -->
+        <section class="panel participants-finalize-panel">
+
+          <div class="finalize-icon">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#trophy"></use>
+            </svg>
+          </div>
+
+          <div class="finalize-content">
+
+            <h2>Fastlås resultater</h2>
+
+            <p>
+              Når resultaterne fastlåses, kan deltagere, der er skjult
+              på dette tidspunkt, ikke vinde. Efter fastlåsningen kan
+              du ændre, hvilke navne der vises på storskærmen, men ikke
+              deltagernes placering eller vinderstatus.
+            </p>
+
+          </div>
+
+          <button
+            class="button button-primary"
+            type="button"
+            disabled>
+            Fastlås resultater
+          </button>
+
+        </section>
+
+
+        <!-- INFORMATION -->
+        <div class="participants-note">
+
+          <svg class="icon" aria-hidden="true">
+            <use href="assets/icons.svg#info"></use>
+          </svg>
+
+          <p>
+            Deltagernes synlighed bestemmer, om deres navn vises på
+            storskærmen. Skjulte deltagere er ikke vinderberettigede,
+            hvis de er skjult, når resultaterne fastlåses.
+          </p>
+
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
