@@ -1,0 +1,410 @@
+```html
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b241a">
+  <meta name="description" content="Resultater fra konkurrencer i Odense Bulldogs Kampkontrol.">
+
+  <title>Resultat | Bulldogs Kampkontrol</title>
+
+  <link rel="icon" type="image/png" href="assets/bulldogs-logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/resultat.css">
+</head>
+
+<body class="resultat">
+
+  <a class="skip-link" href="#main">Spring til indhold</a>
+
+  <div class="app-shell">
+
+    <!-- Fælles navigation -->
+    <aside class="sidebar" aria-label="Hovednavigation">
+
+      <a class="brand" href="vaelg-spil.html">
+        <img src="assets/bulldogs-logo.png" width="44" height="51" alt="Odense Bulldogs">
+        <span>
+          <strong>ODENSE BULLDOGS</strong>
+          <span>KAMPKONTROL</span>
+        </span>
+      </a>
+
+      <div class="sidebar-label">PERSONALE</div>
+
+      <nav class="nav-list">
+        <button class="nav-link" type="button" data-placeholder="Overblik">
+          <svg class="icon" aria-hidden="true">
+            <use href="assets/icons.svg#grid"></use>
+          </svg>
+          <span>Overblik</span>
+        </button>
+
+        <a class="nav-link is-active" href="vaelg-spil.html">
+          <svg class="icon" aria-hidden="true">
+            <use href="assets/icons.svg#trophy"></use>
+          </svg>
+          <span>Konkurrencer</span>
+          <span class="nav-indicator"></span>
+        </a>
+
+        <button class="nav-link" type="button" data-placeholder="Præmier">
+          <svg class="icon" aria-hidden="true">
+            <use href="assets/icons.svg#flag"></use>
+          </svg>
+          <span>Præmier</span>
+        </button>
+
+        <button class="nav-link" type="button" data-placeholder="Statistik">
+          <svg class="icon" aria-hidden="true">
+            <use href="assets/icons.svg#chart"></use>
+          </svg>
+          <span>Statistik</span>
+        </button>
+
+        <button class="nav-link" type="button" data-placeholder="Indstillinger">
+          <svg class="icon" aria-hidden="true">
+            <use href="assets/icons.svg#settings"></use>
+          </svg>
+          <span>Indstillinger</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="arena-note">
+          <span class="arena-dot"></span>
+          <span>Sparekassen Danmark Arena</span>
+        </div>
+
+        <div class="staff-profile">
+          <span class="staff-avatar">OB</span>
+          <span>
+            <strong>Kampafvikler</strong>
+            <small>Personaleadgang</small>
+          </span>
+        </div>
+
+        <p class="sidebar-motto">ÉT HOLD. ÉN BY. ODENSE.</p>
+      </div>
+    </aside>
+
+    <button
+      id="mobile-scrim"
+      class="mobile-scrim"
+      type="button"
+      aria-label="Luk navigation"
+      tabindex="-1">
+    </button>
+
+    <div class="workspace">
+
+      <!-- Topbjælke -->
+      <header class="topbar">
+        <div class="topbar-start">
+          <button
+            id="menu-toggle"
+            class="icon-button menu-toggle"
+            type="button"
+            aria-label="Åbn navigation"
+            aria-expanded="false">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#menu"></use>
+            </svg>
+          </button>
+
+          <nav class="breadcrumb" aria-label="Brødkrumme">
+            <a href="vaelg-spil.html">Konkurrencer</a>
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#chevron-right"></use>
+            </svg>
+            <span aria-current="page">Resultat</span>
+          </nav>
+        </div>
+
+        <span class="environment-badge">
+          <span></span>Eksempeldata
+        </span>
+      </header>
+
+      <!-- Sidens indhold -->
+      <main id="main" class="page-content" tabindex="-1">
+
+        <header class="page-heading">
+          <div>
+            <p class="eyebrow">KAMPKONTROL · RESULTATER</p>
+            <h1>Resultat</h1>
+            <p class="lead">Bulldogs mod Herning, 1. pause</p>
+          </div>
+
+          <span class="badge badge-neutral">Foreløbigt resultat</span>
+        </header>
+
+        <!-- Konkurrencefaner -->
+        <nav class="competition-tabs" aria-label="Konkurrence">
+          <a href="afvikling.html">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#monitor"></use>
+            </svg>
+            Afvikling
+          </a>
+
+          <a href="deltagere.html">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#users"></use>
+            </svg>
+            Deltagere
+          </a>
+
+          <a class="is-active" href="resultat.html" aria-current="page">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#trophy"></use>
+            </svg>
+            Resultat
+          </a>
+        </nav>
+
+        <!-- Konkurrenceoversigt -->
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">KONKURRENCEOVERSIGT</p>
+              <h2>Fredagskampen</h2>
+            </div>
+            <span class="badge badge-neutral">Foreløbig</span>
+          </div>
+
+          <div class="result-overview">
+            <div>
+              <span class="stat-label">Spil</span>
+              <strong>Quiz</strong>
+            </div>
+
+            <div>
+              <span class="stat-label">Hold</span>
+              <strong>Odense Bulldogs</strong>
+            </div>
+
+            <div>
+              <span class="stat-label">Dato</span>
+              <strong>25. oktober 2026</strong>
+            </div>
+
+            <div>
+              <span class="stat-label">Deltagere</span>
+              <strong>24</strong>
+            </div>
+          </div>
+
+          <div class="result-message">
+            <strong>Konkurrencen er ikke afsluttet.</strong>
+            <p>Placeringerne kan stadig ændre sig, indtil resultatet er endeligt.</p>
+          </div>
+        </section>
+
+        <!-- Top 5 -->
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">VINDERE</p>
+              <h2>Top 5</h2>
+            </div>
+            <span class="badge badge-neutral">5 deltagere</span>
+          </div>
+
+          <div class="result-table-wrapper">
+            <table class="result-table">
+              <thead>
+                <tr>
+                  <th>Placering</th>
+                  <th>Spillernavn</th>
+                  <th>Score</th>
+                  <th>Præmie</th>
+                  <th>Voucherstatus</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td><span class="result-rank rank-first">1</span></td>
+                  <td><strong>Anders Nielsen</strong></td>
+                  <td>950</td>
+                  <td>Gavekort</td>
+                  <td><span class="result-voucher">Ikke indløst</span></td>
+                </tr>
+
+                <tr>
+                  <td><span class="result-rank rank-second">2</span></td>
+                  <td>Emil Hansen</td>
+                  <td>870</td>
+                  <td>Gavekort</td>
+                  <td><span class="result-voucher">Ikke indløst</span></td>
+                </tr>
+
+                <tr>
+                  <td><span class="result-rank rank-third">3</span></td>
+                  <td>Oliver Jensen</td>
+                  <td>820</td>
+                  <td>Goodiebag</td>
+                  <td><span class="result-voucher is-redeemed">Indløst</span></td>
+                </tr>
+
+                <tr>
+                  <td><span class="result-rank">4</span></td>
+                  <td>Frederik Larsen</td>
+                  <td>760</td>
+                  <td>Goodiebag</td>
+                  <td><span class="result-voucher">Ikke indløst</span></td>
+                </tr>
+
+                <tr>
+                  <td><span class="result-rank">5</span></td>
+                  <td>Magnus Pedersen</td>
+                  <td>710</td>
+                  <td>Goodiebag</td>
+                  <td><span class="result-voucher">Ikke indløst</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="field-help result-help">
+            Ved samme score vinder den deltager, der opnåede scoren først.
+          </p>
+        </section>
+
+        <!-- Samlet resultatliste -->
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">ALLE DELTAGERE</p>
+              <h2>Samlet resultatliste</h2>
+            </div>
+          </div>
+
+          <div class="field result-search">
+            <label class="field-label" for="player-search">Søg på spillernavn</label>
+            <input
+              class="field-input"
+              type="search"
+              id="player-search"
+              placeholder="Søg efter en deltager...">
+          </div>
+
+          <div class="result-table-wrapper">
+            <table class="result-table">
+              <thead>
+                <tr>
+                  <th>Placering</th>
+                  <th>Navn</th>
+                  <th>Score</th>
+                  <th>Resultatdetaljer</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Anders Nielsen</td>
+                  <td>950</td>
+                  <td>9 rigtige svar</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Emil Hansen</td>
+                  <td>870</td>
+                  <td>8 rigtige svar</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Oliver Jensen</td>
+                  <td>820</td>
+                  <td>8 rigtige svar</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Frederik Larsen</td>
+                  <td>760</td>
+                  <td>7 rigtige svar</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Magnus Pedersen</td>
+                  <td>710</td>
+                  <td>7 rigtige svar</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Mikkel Sørensen</td>
+                  <td>650</td>
+                  <td>6 rigtige svar</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>Jonas Christensen</td>
+                  <td>590</td>
+                  <td>6 rigtige svar</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Handlinger -->
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">KONKURRENCE</p>
+              <h2>Handlinger</h2>
+            </div>
+          </div>
+
+          <div class="result-actions">
+            <a class="button button-primary" href="afvikling.html">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons.svg#monitor"></use>
+              </svg>
+              Åbn vinderne på storskærmen
+            </a>
+
+            <button class="button button-secondary" type="button" disabled>
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons.svg#chart"></use>
+              </svg>
+              Se statistik
+            </button>
+
+            <button class="button button-secondary" type="button" disabled>
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons.svg#flag"></use>
+              </svg>
+              Gå til præmier
+            </button>
+          </div>
+
+          <p class="field-help">
+            Statistik og præmieadministration er ikke tilsluttet endnu.
+          </p>
+        </section>
+
+        <!-- Eksempel på tom tilstand -->
+        <section class="panel result-empty">
+          <span class="result-empty-icon">i</span>
+          <div>
+            <h2>Ingen godkendte resultater</h2>
+            <p>Der er ikke udstedt vouchers til denne konkurrence.</p>
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="workspace-footer">
+        <span>Odense Bulldogs · Kampkontrol</span>
+        <span>For oplevelsen mellem perioderne.</span>
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+</html>
