@@ -1,0 +1,13 @@
+/* Kun skabelonens egne regler. Fælles layout, formularer og knapper ligger i styles.css.
+   Brug din sides klasse foran egne regler, så andre sider ikke ændres. */
+
+.side-skabelon .side-indhold {
+  display: grid;
+  gap: 16px;
+  max-width: 800px;
+}
+
+
+.side-skabelon .side-indhold .button {
+  justify-self: start;
+}

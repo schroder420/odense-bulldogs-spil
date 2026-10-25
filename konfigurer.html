@@ -1,0 +1,571 @@
+<!doctype html>
+
+<html lang="da">
+
+  <!-- Sidetitel, metadata og links til fælles design og funktionalitet. -->
+  <head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="theme-color" content="#0b241a">
+
+    <meta
+      name="description"
+      content="Odense Bulldogs kampkontrol. Opret og afvikl konkurrencer til kampens pauser.">
+    <title>Konfigurér konkurrence | Bulldogs Kampkontrol</title>
+
+    <link rel="icon" type="image/png" href="assets/bulldogs-logo.png">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Gemmefunktionerne indlæses før menu og formularer. defer venter, til HTML er læst. -->
+    <script src="js/data.js" defer></script>
+
+    <script src="js/app.js" defer></script>
+
+    <!-- JavaScript, som kun bruges på denne side. -->
+    <script src="js/konfigurer.js" defer></script>
+  </head>
+
+  <body data-page="configure">
+
+    <!-- Tastaturbrugere kan springe navigationen over og gå direkte til indholdet. -->
+    <a class="skip-link" href="#main">Spring til indhold</a>
+
+    <div class="app-shell">
+
+      <!-- Fælles hovednavigation. Øvrige administrationssider åbner foreløbig en pladsholder. -->
+      <aside class="sidebar" aria-label="Hovednavigation">
+        <a class="brand" href="vaelg-spil.html">
+          <img src="assets/bulldogs-logo.png" width="44" height="51" alt="Odense Bulldogs">
+
+          <span>
+            <strong>ODENSE BULLDOGS</strong>
+
+            <span>KAMPKONTROL</span>
+          </span>
+        </a>
+
+        <div class="sidebar-label">PERSONALE</div>
+
+        <nav class="nav-list">
+          <button class="nav-link" type="button" data-placeholder="Overblik">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#grid"></use>
+            </svg>
+
+            <span>Overblik</span>
+          </button>
+
+          <a class="nav-link is-active" href="vaelg-spil.html" aria-current="page">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#trophy"></use>
+            </svg>
+
+            <span>Konkurrencer</span>
+
+            <span class="nav-indicator"></span>
+          </a>
+
+          <button class="nav-link" type="button" data-placeholder="Præmier">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#flag"></use>
+            </svg>
+
+            <span>Præmier</span>
+          </button>
+
+          <button class="nav-link" type="button" data-placeholder="Statistik">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#chart"></use>
+            </svg>
+
+            <span>Statistik</span>
+          </button>
+
+          <button class="nav-link" type="button" data-placeholder="Indstillinger">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#settings"></use>
+            </svg>
+
+            <span>Indstillinger</span>
+          </button>
+        </nav>
+
+
+        <!-- Arenaoplysninger og personaleprofil nederst i navigationen. -->
+        <div class="sidebar-bottom">
+          <div class="arena-note">
+            <span class="arena-dot"></span>
+
+            <span>Sparekassen Danmark Arena</span>
+          </div>
+
+          <div class="staff-profile">
+            <span class="staff-avatar">OB</span>
+
+            <span>
+              <strong>Kampafvikler</strong>
+
+              <small>Personaleadgang</small>
+            </span>
+
+            <button type="button" class="icon-button" aria-label="Log ud" data-placeholder="Log ud">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons.svg#logout"></use>
+              </svg>
+            </button>
+          </div>
+
+          <p class="sidebar-motto">ÉT HOLD. ÉN BY. ODENSE.</p>
+        </div>
+      </aside>
+
+
+      <!-- Baggrundslag, som lukker mobilmenuen, når brugeren trykker uden for den. -->
+      <button
+        id="mobile-scrim"
+        class="mobile-scrim"
+        type="button"
+        aria-label="Luk navigation"
+        tabindex="-1"></button>
+      <div class="workspace">
+
+        <!-- Topbjælke med mobilmenu, brødkrumme og markering af eksempeldata. -->
+        <header class="topbar">
+          <div class="topbar-start">
+            <button
+              id="menu-toggle"
+              class="icon-button menu-toggle"
+              type="button"
+              aria-label="Åbn navigation"
+              aria-expanded="false">
+
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons.svg#menu"></use>
+              </svg>
+            </button>
+
+            <nav class="breadcrumb" aria-label="Brødkrumme">
+              <button type="button" data-placeholder="Konkurrencer">Konkurrencer</button>
+
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons.svg#chevron-right"></use>
+              </svg>
+
+              <span aria-current="page">Konfigurér konkurrence</span>
+            </nav>
+          </div>
+
+          <span class="environment-badge"><span></span>Eksempeldata</span>
+        </header>
+
+
+        <!-- Konfigurering: andet trin med kampoplysninger, holdfarver og præmier. -->
+        <main id="main" class="page-content" tabindex="-1">
+
+          <!-- Trinvisningen markerer den aktuelle side og linker tilbage til tidligere trin. -->
+          <nav aria-label="Oprettelsestrin">
+            <ol class="steps">
+              <li class="step is-complete">
+                <a href="vaelg-spil.html">
+                  <span class="step-number">
+                    <svg class="icon" aria-hidden="true">
+                      <use href="assets/icons.svg#check"></use>
+                    </svg>
+                  </span>
+
+                  <span class="step-label">Vælg spil</span>
+                </a>
+              </li>
+
+              <li class="step is-active">
+                <span aria-current="step">
+                  <span class="step-number">2</span>
+
+                  <span class="step-label">Konfigurér</span>
+                </span>
+              </li>
+
+              <li class="step">
+                <span>
+                  <span class="step-number">3</span>
+
+                  <span class="step-label">Tidspunkt</span>
+                </span>
+              </li>
+            </ol>
+          </nav>
+
+          <header class="page-heading">
+            <p class="eyebrow">NY KONKURRENCE</p>
+
+            <h1>Konfigurér konkurrencen</h1>
+
+            <p class="lead">Tilpas konkurrencen til dagens kamp.</p>
+          </header>
+
+
+          <!-- Browseren kontrollerer de krævede felter. Valgene gemmes før næste trin. -->
+          <form id="configure-form">
+            <div class="configuration-layout">
+              <div class="configuration-main">
+
+                <!-- Kampoplysninger: konkurrencens navn, fast hjemmehold og valgt modstander. -->
+                <section class="panel form-section">
+                  <div class="section-heading">
+                    <span class="section-number">01</span>
+
+                    <div>
+                      <h2 class="section-title">Kampen</h2>
+
+                      <p>Giv konkurrencen et navn, og vælg dagens modstander.</p>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label class="field-label" for="competition-name">
+                      Konkurrencens navn <span aria-hidden="true">*</span>
+                    </label>
+
+                    <input
+                      id="competition-name"
+                      name="title"
+                      type="text"
+                      maxlength="80"
+                      placeholder="Fx Bulldogs mod Herning, 1. pause"
+                      autocomplete="off"
+                      required>
+                  </div>
+
+                  <div class="field-grid two-columns">
+                    <div class="field">
+                      <label class="field-label" for="home-team">Hjemmehold</label>
+
+                      <input
+                        id="home-team"
+                        name="homeTeam"
+                        type="text"
+                        value="Odense Bulldogs"
+                        readonly>
+                    </div>
+
+                    <div class="field">
+                      <label class="field-label" for="opponent-name">
+                        Modstander <span aria-hidden="true">*</span>
+                      </label>
+
+                      <input
+                        id="opponent-name"
+                        name="opponent"
+                        type="text"
+                        maxlength="40"
+                        placeholder="Indtast modstanderens navn"
+                        autocomplete="off"
+                        required>
+                    </div>
+                  </div>
+                </section>
+
+
+                <!-- Holdfarver: JavaScript bruger farvevalgene i forhåndsvisningen af modstanderens dragt. -->
+                <section class="panel form-section">
+                  <div class="section-heading">
+                    <span class="section-number">02</span>
+
+                    <div>
+                      <h2 class="section-title">Holdenes farver</h2>
+
+                      <p>Gør det let at kende medspillere fra modstandere.</p>
+                    </div>
+                  </div>
+
+                  <div class="field-grid two-columns">
+                    <div class="field">
+                      <label class="field-label" for="kit-primary">Modstanderens trøjefarve</label>
+
+                      <div class="color-field">
+                        <input
+                          type="color"
+                          id="kit-primary"
+                          name="primary"
+                          value="#24364b">
+                        <span id="primary-hex">#24364B</span>
+
+                        <span class="color-field-hint">Vælg farve</span>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label class="field-label" for="kit-stripe">Modstanderens stribefarve</label>
+
+                      <div class="color-field">
+                        <input type="color" id="kit-stripe" name="stripe" value="#e48331">
+
+                        <span id="stripe-hex">#E48331</span>
+
+                        <span class="color-field-hint">Vælg farve</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="field-help">
+                    Bulldogs spiller i hvidt. Vælg modstanderfarver, der gør holdene lette at kende fra hinanden.
+                  </p>
+                </section>
+
+
+                <!-- Det valgte spil anvender standardindstillinger og kræver ingen ekstra opsætning. -->
+                <div class="settings-note">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="assets/icons.svg#check"></use>
+                  </svg>
+
+                  <div>
+                    <strong>Spillet er klar med standardindstillinger</strong>
+
+                    <p>Hold pucken i live kræver ingen yderligere opsætning.</p>
+                  </div>
+                </div>
+
+
+                <!-- Foldbare indstillinger til præmie, antal vindere, afhentningssted og voucherinstruktion. -->
+                <details class="panel advanced-settings">
+                  <summary>
+                    <span>
+                      <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#settings"></use></svg> Flere indstillinger
+                    </span>
+
+                    <svg class="icon" aria-hidden="true">
+                      <use href="assets/icons.svg#chevron-down"></use>
+                    </svg>
+                  </summary>
+
+                  <div class="advanced-content">
+                    <p class="field-help">
+                      Præmie og afhentning er udfyldt på forhånd. Tilpas dem til denne konkurrence.
+                    </p>
+
+                    <div class="field">
+                      <label class="field-label" for="prize">Præmie</label>
+
+                      <input
+                        id="prize"
+                        name="prize"
+                        type="text"
+                        maxlength="160"
+                        value="1 alm. fadøl eller sodavand pr. vinder">
+                    </div>
+
+                    <div class="field-grid two-columns">
+                      <div class="field">
+                        <label class="field-label" for="winners">Antal vindere</label>
+
+                        <input id="winners" type="text" value="Top 5" readonly>
+
+                        <p class="field-help">Kun de fem vindere får en voucher.</p>
+                      </div>
+
+                      <div class="field">
+                        <label class="field-label" for="pickup">Afhentningssted</label>
+
+                        <input
+                          id="pickup"
+                          name="pickup"
+                          type="text"
+                          value="Viggos Bar"
+                          maxlength="80">
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label class="field-label" for="instructions">Instruktion til vinderne</label>
+
+                      <textarea id="instructions" name="instructions" rows="3" maxlength="400">
+                        Vis din voucher i Viggos Bar. Kun barpersonalet må swipe, når du får din drik.
+                      </textarea>
+                    </div>
+                  </div>
+                </details>
+              </div>
+
+
+              <!-- Sidekolonne med valgt spil, link til spilvalg og forhåndsvisning af dragterne. -->
+              <aside class="configuration-aside">
+                <article class="panel selected-game">
+                  <div class="panel-heading">
+                    <p class="eyebrow">VALGT SPIL</p>
+
+                    <a class="text-link" href="vaelg-spil.html">Skift spil</a>
+                  </div>
+
+                  <div class="selected-game-image">
+                    <div
+                      class="game-art compact"
+                      aria-label="Hold pucken i live: Bulldogs-spillere på isen"
+                      role="img">
+
+                      <div class="rink">
+                        <div class="rink-line rink-line-red"></div>
+
+                        <div class="rink-line rink-line-blue"></div>
+
+                        <div class="rink-circle"></div>
+
+                        <img
+                          class="skater skater-away"
+                          src="assets/opponent-receive-v6.webp"
+                          alt=""
+                          width="96"
+                          height="96">
+                        <img
+                          class="skater skater-home"
+                          src="assets/bulldogs-receive-v6.webp"
+                          alt=""
+                          width="96"
+                          height="96">
+                        <div class="active-ring"></div>
+
+                        <img
+                          class="skater skater-active"
+                          src="assets/bulldogs-glide-v6.webp"
+                          alt=""
+                          width="96"
+                          height="96">
+                        <span class="puck"></span>
+
+                        <span class="pass-trail"></span>
+                      </div>
+
+                      <span class="art-label">HOLD PUCKEN I LIVE</span>
+
+                      <span class="art-score">24<span>,82</span></span>
+                    </div>
+                  </div>
+
+                  <div class="selected-game-info">
+                    <h2>Hold pucken i live</h2>
+
+                    <p>Aflever, undvig og hold spillet i gang.</p>
+                  </div>
+                </article>
+
+
+                <!-- Dragtvisning: hjemmeholdet er hvidt, mens modstanderens farver opdateres fra formularen. -->
+                <section class="panel kit-panel">
+                  <p class="eyebrow">FORHÅNDSVISNING AF DRAGTER</p>
+
+                  <div class="kit-preview">
+                    <div class="kit-side">
+                      <div
+                        class="jersey jersey-home"
+                        role="img"
+                        aria-label="Odense Bulldogs spiller i hvidt">
+
+                        <div class="jersey-body">
+                          <span class="jersey-stripe"></span>
+
+                          <span class="jersey-mark">OB</span>
+                        </div>
+                      </div>
+
+                      <strong>Bulldogs</strong>
+
+                      <span>Hjemmehold</span>
+                    </div>
+
+                    <span class="kit-vs">MOD</span>
+
+                    <div class="kit-side">
+                      <div
+                        id="opponent-jersey"
+                        class="jersey jersey-away"
+                        role="img"
+                        aria-label="Modstanderens dragt"
+                        style="--kit-primary: #24364b; --kit-stripe: #e48331">
+
+                        <div class="jersey-body">
+                          <span class="jersey-stripe"></span>
+
+                          <span class="jersey-mark">M</span>
+                        </div>
+                      </div>
+
+                      <strong id="kit-opponent-label">Modstander</strong>
+
+                      <span>Udehold</span>
+                    </div>
+                  </div>
+                </section>
+
+                <div class="info-note">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="assets/icons.svg#trophy"></use>
+                  </svg>
+
+                  <div>
+                    <strong>Der er noget at spille for</strong>
+
+                    <p>Top 5 får en voucher, når konkurrencens resultat er endeligt.</p>
+                  </div>
+                </div>
+              </aside>
+            </div>
+
+
+            <!-- Navigation tilbage til spilvalg eller videre efter validering af formularen. -->
+            <!-- En lagringsfejl vises her, så oplysninger ikke mistes ved sideskift. -->
+            <p id="save-error" class="field-error" role="alert" hidden></p>
+
+            <div class="form-actions">
+              <a class="button button-text" href="vaelg-spil.html">
+                <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chevron-left"></use></svg> Tilbage til spilvalg
+              </a>
+
+              <button class="button button-primary" type="submit">
+                Videre til tidspunkt <img class="icon" src="assets/arrow-up-right.svg" width="22" height="22" alt="">
+              </button>
+            </div>
+          </form>
+        </main>
+
+
+        <!-- Fælles sidefod for de fire administrationssider. -->
+        <footer class="workspace-footer">
+          <span>Odense Bulldogs · Kampkontrol</span>
+
+          <span>For oplevelsen mellem perioderne.</span>
+        </footer>
+      </div>
+    </div>
+
+
+    <!-- Dialog til sider, som senere tilføjes af resten af projektgruppen. -->
+    <dialog
+      id="placeholder-dialog"
+      class="dialog"
+      aria-labelledby="placeholder-title"
+      aria-describedby="placeholder-copy">
+
+      <button class="dialog-close icon-button" type="button" data-close-dialog aria-label="Luk">
+        <svg class="icon" aria-hidden="true">
+          <use href="assets/icons.svg#x"></use>
+        </svg>
+      </button>
+
+      <span class="dialog-icon">
+        <svg class="icon" aria-hidden="true">
+          <use href="assets/icons.svg#grid"></use>
+        </svg>
+      </span>
+
+      <h2 id="placeholder-title">Denne side kommer senere</h2>
+
+      <p id="placeholder-copy">Siden tilføjes i det samlede adminpanel.</p>
+
+      <button class="button button-secondary" type="button" data-close-dialog>Tilbage</button>
+    </dialog>
+
+  </body>
+</html>
