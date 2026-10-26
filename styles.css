@@ -6909,3 +6909,500 @@ body[data-page="participants"] .page-heading h1 {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================
+   PRÆMIEUDLEVERING
+   Bruger fælles layout og komponenter
+   fra styles.css.
+   ========================================== */
+
+.praemier .prize-intro {
+  max-width: 720px;
+  margin: 0 0 24px;
+  color: var(--muted, #68716c);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+
+/* VEJLEDNING */
+
+.praemier .prize-steps {
+  display: grid;
+  gap: 0;
+}
+
+.praemier .prize-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+}
+
+.praemier .step-number {
+  display: flex;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: var(--surface-soft, #f1f3ef);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.praemier .prize-step strong {
+  display: block;
+  margin: 1px 0 6px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.praemier .prize-step p {
+  margin: 0;
+  color: var(--muted, #68716c);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* STANDARDPRÆMIE */
+
+.praemier .standard-prize {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-soft, #f7f8f5);
+}
+
+.praemier .prize-symbol {
+  display: flex;
+  flex: 0 0 58px;
+  width: 58px;
+  height: 58px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: var(--surface, #fff);
+  color: var(--text);
+}
+
+.praemier .prize-symbol svg {
+  width: 38px;
+  height: 38px;
+}
+
+.praemier .standard-prize-copy h3 {
+  margin: 0 0 7px;
+  color: var(--text);
+  font-size: 16px;
+}
+
+.praemier .standard-prize-copy > p {
+  margin: 0;
+  color: var(--muted, #68716c);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.praemier .prize-location {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.praemier .prize-location .icon {
+  width: 16px;
+  height: 16px;
+}
+
+
+/* PRÆMIEKODE */
+
+.praemier .panel-description {
+  margin: 7px 0 0;
+  color: var(--muted, #68716c);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.praemier .prize-code-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+}
+
+.praemier .prize-code-form .field {
+  flex: 1;
+  min-width: 0;
+  max-width: 460px;
+}
+
+.praemier .prize-code-form .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+}
+
+.praemier .prize-code-form .icon {
+  width: 17px;
+  height: 17px;
+}
+
+.praemier .prize-code-form button:disabled,
+.praemier .confirmation-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+
+/* VOUCHERDETALJER */
+
+.praemier .voucher-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.praemier .voucher-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 17px 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.praemier .voucher-detail:nth-child(odd) {
+  border-right: 1px solid var(--border);
+}
+
+.praemier .voucher-detail span {
+  color: var(--muted, #68716c);
+  font-size: 12px;
+}
+
+.praemier .voucher-detail strong {
+  color: var(--text);
+  font-size: 14px;
+}
+
+.praemier .voucher-detail:last-child {
+  grid-column: 1 / -1;
+  border-bottom: 0;
+}
+
+.praemier .voucher-detail .voucher-pending {
+  color: #936a13;
+}
+
+
+/* SWIPE-ELEMENT */
+
+.praemier .swipe-section {
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
+
+.praemier .swipe-heading {
+  margin-bottom: 16px;
+}
+
+.praemier .swipe-heading h3 {
+  margin: 0 0 6px;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.praemier .swipe-heading p {
+  margin: 0;
+  color: var(--muted, #68716c);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.praemier .swipe-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 62px;
+  padding: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface-soft, #f1f3ef);
+}
+
+.praemier .swipe-track-text {
+  width: 100%;
+  padding: 0 62px;
+  color: var(--muted, #68716c);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.praemier .swipe-handle {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  background: var(--text, #0b241a);
+  color: #fff;
+}
+
+.praemier .swipe-handle .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.praemier .swipe-section .field-help {
+  margin-top: 12px;
+}
+
+
+/* BEKRÆFTELSE */
+
+.praemier .confirmation-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-soft, #f7f8f5);
+}
+
+.praemier .confirmation-icon {
+  display: flex;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--surface, #fff);
+  color: var(--text);
+}
+
+.praemier .confirmation-icon .icon {
+  width: 21px;
+  height: 21px;
+}
+
+.praemier .confirmation-copy h3 {
+  margin: 1px 0 8px;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.praemier .confirmation-copy p {
+  margin: 0 0 7px;
+  color: var(--muted, #68716c);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.praemier .confirmation-copy p strong {
+  color: var(--text);
+}
+
+.praemier .confirmation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+
+/* SYSTEMBESKEDER */
+
+.praemier .message-list {
+  display: grid;
+  gap: 12px;
+}
+
+.praemier .prize-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 15px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.praemier .message-indicator {
+  display: flex;
+  flex: 0 0 26px;
+  width: 26px;
+  height: 26px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.praemier .prize-message strong {
+  display: block;
+  margin: 2px 0 5px;
+  font-size: 13px;
+}
+
+.praemier .prize-message p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.praemier .message-success {
+  background: #f1f8f3;
+  border-color: #d5e9da;
+}
+
+.praemier .message-success .message-indicator {
+  background: #d8eddd;
+  color: #22653b;
+}
+
+.praemier .message-success strong,
+.praemier .message-success p {
+  color: #22653b;
+}
+
+.praemier .message-warning {
+  background: #fff8e9;
+  border-color: #f0e2bc;
+}
+
+.praemier .message-warning .message-indicator {
+  background: #f6e8bd;
+  color: #805e13;
+}
+
+.praemier .message-warning strong,
+.praemier .message-warning p {
+  color: #805e13;
+}
+
+.praemier .message-error {
+  background: #fff3f1;
+  border-color: #f0d9d5;
+}
+
+.praemier .message-error .message-indicator {
+  background: #f4dcd8;
+  color: #963f32;
+}
+
+.praemier .message-error strong,
+.praemier .message-error p {
+  color: #963f32;
+}
+
+
+/* SENESTE INDLØSNINGER */
+
+.praemier .prize-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.praemier .prize-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.praemier .prize-table th {
+  padding: 13px 15px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted, #68716c);
+  font-size: 11px;
+  font-weight: 700;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.praemier .prize-table td {
+  padding: 15px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.praemier .prize-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.praemier .prize-table td strong {
+  font-weight: 600;
+}
+
+
+/* RESPONSIVT DESIGN */
+
+@media (max-width: 760px) {
+  .praemier .prize-code-form {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .praemier .prize-code-form .field {
+    max-width: none;
+  }
+
+  .praemier .prize-code-form .button {
+    width: 100%;
+  }
+
+  .praemier .voucher-details {
+    grid-template-columns: 1fr;
+  }
+
+  .praemier .voucher-detail:nth-child(odd) {
+    border-right: 0;
+  }
+
+  .praemier .voucher-detail:last-child {
+    grid-column: auto;
+  }
+
+  .praemier .standard-prize {
+    align-items: flex-start;
+    padding: 16px;
+  }
+
+  .praemier .confirmation-actions {
+    flex-direction: column-reverse;
+  }
+
+  .praemier .confirmation-actions .button {
+    width: 100%;
+  }
+
+  .praemier .prize-table {
+    min-width: 620px;
+  }
+}
