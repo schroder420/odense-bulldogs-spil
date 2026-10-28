@@ -2,7 +2,7 @@
 
 Der er lavet fire sammenhængende administrationssider til Odense Bulldogs: Vælg spil, Konfigurér konkurrence, Tidspunkt og start samt Afvikling. Siderne er bygget i HTML, CSS og enkel JavaScript med formularvalidering, lokalt gemte valg og eksempeldata. Koden er kommenteret og ryddet op, og en sideskabelon med vejledning gør det let for gruppen at tilføje flere sider. Spillet og den rigtige storskærm kan tilsluttes senere.
 
-Repoet indeholder også separate sider til Deltagere og Resultat. Der er ingen installation, byggeproces eller framework.
+Repoet indeholder også separate sider til Deltagere, Resultat, Præmier og Statistik. Der er ingen installation, byggeproces eller framework.
 
 ## Start lokalt
 
@@ -24,6 +24,8 @@ python3 -m http.server 8080
 | `afvikling.html` | Statisk eksempel på konkurrenceafvikling. |
 | `deltagere.html` | Separat side til deltagere. |
 | `resultat.html` | Separat side til resultat. |
+| `praemier.html` | Separat side til præmier. |
+| `statistik.html` | Separat side til statistik. |
 | `styles.css` | Fælles design og de fire siders layout, opdelt med sektionskommentarer. |
 | `js/data.js` | Objektet `competition` og gemning i browseren. |
 | `js/app.js` | Fælles hjælpefunktioner, mobilmenu og pladsholderdialoger. |
@@ -37,23 +39,23 @@ python3 -m http.server 8080
 
 ## Tilføj en ny side
 
-Eksempel: Du skal lave `statistik.html`.
+Eksempel: Du skal lave `ny-side.html`. Brug et filnavn, som ikke allerede findes i repoet.
 
-1. Kopiér `side-skabelon.html` til `statistik.html` i repoets rodmappe.
-2. Kopiér `css/side-skabelon.css` til `css/statistik.css`. Ret CSS-linket i den nye HTML-fil. Skift body-klassen `side-skabelon` til `statistik`, og brug samme klasse foran dine egne CSS-regler.
-3. Hvis siden har JavaScript, kopier `js/side-skabelon.js` til `js/statistik.js`. Ret script-linket og funktionens navn. Hvis du ikke har brug for JavaScript, fjern kun linket til `js/side-skabelon.js`.
+1. Kopiér `side-skabelon.html` til `ny-side.html` i repoets rodmappe.
+2. Kopiér `css/side-skabelon.css` til `css/ny-side.css`. Ret CSS-linket i den nye HTML-fil. Skift body-klassen `side-skabelon` til `ny-side`, og brug samme klasse foran dine egne CSS-regler.
+3. Hvis siden har JavaScript, kopier `js/side-skabelon.js` til `js/ny-side.js`. Ret script-linket og funktionens navn. Hvis du ikke har brug for JavaScript, fjern kun linket til `js/side-skabelon.js`.
 4. Ret `<title>`, beskrivelsen, `data-page`, brødkrummen og overskriften. Udskift indholdet i `<main>`. Behold `id="main"`, så skip-linket virker.
 5. Ret skabelonens aktive menulink til din sides filnavn og navn. Brug `is-active` og `aria-current="page"` på den aktuelle sektion i hovedmenuen.
 6. Tilføj linket på de eksisterende sider, som skal kunne åbne den nye side. Navigationen er almindelig HTML, så linkene opdateres i hver relevant HTML-fil og i skabelonen.
 
-En knap, som åbner en pladsholder, erstattes af et almindeligt link, når siden findes. Eksempel fra hovednavigationen:
+En knap, som åbner en pladsholder, erstattes af et almindeligt link, når siden findes. Eksempel:
 
 ```html
 <!-- Før -->
-<button type="button" data-placeholder="Statistik">Statistik</button>
+<button type="button" data-placeholder="Ny side">Ny side</button>
 
 <!-- Efter -->
-<a href="statistik.html">Statistik</a>
+<a href="ny-side.html">Ny side</a>
 ```
 
 Behold eksisterende klasser og ikoner, når du ændrer et menupunkt. Fjern `data-placeholder` fra det færdige link. Brug et `<a>` til navigation og en `<button>` til en handling på den aktuelle side.
@@ -62,14 +64,14 @@ Behold eksisterende klasser og ikoner, når du ændrer et menupunkt. Fjern `data
 
 Genbrug fx `page-heading`, `panel`, `field`, `field-label`, `button` og `button-primary` fra `styles.css`. `panel` giver et kort med indvendig luft. `form-section` bruges til afsnit inde i en formular. Farver og skrifter styres øverst i filen med CSS-variabler som `--orange`, `--text` og `--body`.
 
-Placér nye, sidespecifikke regler i sidens egen CSS-fil. Sæt sidens body-klasse foran reglerne, fx `.statistik .statistikoversigt`. Ret kun `styles.css`, når ændringen skal gælde fælles komponenter.
+Placér nye, sidespecifikke regler i sidens egen CSS-fil. Sæt sidens body-klasse foran reglerne, fx `.ny-side .sideindhold`. Ret kun `styles.css`, når ændringen skal gælde fælles komponenter.
 
 Fællesscripts indlæses i denne rækkefølge, efterfulgt af sidens egen fil:
 
 ```html
 <script src="js/data.js" defer></script>
 <script src="js/app.js" defer></script>
-<script src="js/statistik.js" defer></script>
+<script src="js/ny-side.js" defer></script>
 ```
 
 `defer` sikrer, at HTML er læst, før scripts kører. Behold menuens ID'er `menu-toggle` og `mobile-scrim` og pladsholderdialogens ID'er fra skabelonen. De bruges af `app.js`.
@@ -102,7 +104,7 @@ Før I samler ændringer, gennemgå disse punkter:
 
 Der er endnu ingen rigtig start eller automatisk planlægning. Dato, tidspunkt og varighed er gemte formularvalg. Afvikling viser faste nøgletal og en fast tid. Knapper til skærmstyring og afslutning er deaktiverede eksempler.
 
-Deltagere og Resultat er tilføjet som separate sider. Øvrige administrationsområder tilføjes af resten af gruppen. Selve spillet og den rigtige storskærm skal senere tilsluttes fra det gamle projekt `Odense-Bulldogs`. “Åbn storskærm” åbner indtil da en pladsholder. Backend, nedtælling, skærmrotation og vouchers er ikke implementeret her.
+Deltagere, Resultat, Præmier og Statistik er tilføjet som separate sider. Øvrige administrationsområder tilføjes af resten af gruppen. Selve spillet og den rigtige storskærm skal senere tilsluttes fra det gamle projekt `Odense-Bulldogs`. “Åbn storskærm” åbner indtil da en pladsholder. Backend, nedtælling, skærmrotation og vouchers er ikke implementeret her.
 
 ## Designaktiver
 
