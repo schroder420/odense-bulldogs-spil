@@ -1,0 +1,72 @@
+<!doctype html>
+
+<html lang="da">
+
+  <!-- Sidetitel, metadata og links til fælles design og funktionalitet. -->
+  <head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="theme-color" content="#0b241a">
+
+    <meta
+      name="description"
+      content="Odense Bulldogs kampkontrol. Personalelogin til konkurrencer, storskærm og resultater.">
+    <title>Log ind | Bulldogs Kampkontrol</title>
+
+    <link rel="icon" type="image/png" href="assets/bulldogs-logo.png">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="css/login.css">
+
+    <!-- Loginsiden har ingen menu, så den bruger kun sin egen JavaScript. -->
+    <script src="js/login.js" defer></script>
+  </head>
+
+  <body class="login" data-page="login">
+
+    <main id="main" class="login-page">
+
+      <!-- LOGINKORT -->
+      <section class="panel login-card" aria-labelledby="login-title">
+        <img class="login-logo" src="assets/bulldogs-logo.png" width="72" height="83" alt="Odense Bulldogs">
+
+        <p class="eyebrow">ODENSE BULLDOGS · KAMPKONTROL</p>
+
+        <h1 id="login-title">Velkommen til kampkontrol</h1>
+
+        <p class="lead">Log ind for at oprette konkurrencer, styre storskærmen og følge resultaterne.</p>
+
+        <form id="login-form" class="login-form" novalidate>
+          <div class="field">
+            <label class="field-label" for="password">Adgangskode</label>
+
+            <div class="password-field">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Indtast personalets adgangskode"
+                autocomplete="current-password"
+                required>
+
+              <button id="password-toggle" class="button button-text password-toggle" type="button" aria-controls="password">Vis</button>
+            </div>
+
+            <!-- Beskeder om fejl og indlæsning læses op af skærmlæsere. -->
+            <p id="login-message" class="login-message" role="status"></p>
+          </div>
+
+          <button id="login-button" class="button button-primary" type="submit">Log ind</button>
+        </form>
+
+        <p class="field-help login-demo">Eksempeldata: brug adgangskoden <strong>bulldogs</strong>.</p>
+      </section>
+
+      <p class="login-motto">ÉT HOLD. ÉN BY. ODENSE.</p>
+    </main>
+
+  </body>
+</html>
