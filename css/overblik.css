@@ -1,0 +1,292 @@
+/* Overblik: aktuel konkurrence, næste konkurrence, seneste resultat og tomme tilstande.
+   Fælles layout, paneler og knapper ligger i styles.css. */
+
+/* ---------- SIDEOVERSKRIFT ---------- */
+
+.overblik .overview-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+
+/* ---------- LAYOUT ---------- */
+
+.overblik .overview-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.overblik .overview-side {
+  display: grid;
+  gap: 20px;
+}
+
+.overblik .panel-heading {
+  align-items: flex-start;
+}
+
+.overblik .panel-heading .eyebrow {
+  margin-bottom: 8px;
+}
+
+
+/* ---------- STATUSMÆRKE ---------- */
+
+.overblik .status-live {
+  background: #e4833126;
+  border-color: #e4833166;
+  color: var(--orange);
+}
+
+.overblik .status-live > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+
+/* ---------- AKTUEL KONKURRENCE ---------- */
+
+.overblik .current-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0 24px;
+}
+
+.overblik .current-card > .panel-heading,
+.overblik .current-facts,
+.overblik .current-actions,
+.overblik .copy-status {
+  grid-column: 1 / -1;
+}
+
+.overblik .current-game {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.overblik .current-game img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  background: #0d2c1e;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px;
+}
+
+.overblik .current-game strong {
+  display: block;
+  margin: 6px 0 4px;
+  font-size: 16px;
+}
+
+.overblik .current-teams {
+  color: var(--muted);
+}
+
+.overblik .current-clock {
+  text-align: right;
+}
+
+.overblik .clock-value {
+  font-family: var(--heading);
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.overblik .current-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.overblik dt {
+  color: #91ae99;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.overblik dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.overblik .current-facts dd {
+  font-family: var(--heading);
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.overblik .current-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.overblik .copy-status {
+  min-height: 18px;
+  margin-top: 10px;
+  color: #91ae99;
+}
+
+
+/* ---------- NÆSTE KONKURRENCE OG SENESTE RESULTAT ---------- */
+
+.overblik .side-card .panel-heading {
+  margin-bottom: 18px;
+}
+
+.overblik .side-card .section-title {
+  font-size: 21px;
+}
+
+.overblik .side-facts {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.overblik .side-facts > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.overblik .side-facts dt {
+  margin-bottom: 0;
+}
+
+.overblik .side-facts dd {
+  text-align: right;
+}
+
+.overblik .winner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  margin-bottom: 18px;
+  background: #1c422c;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.overblik .winner > .icon {
+  width: 24px;
+  height: 24px;
+  color: var(--orange);
+}
+
+.overblik .winner strong {
+  display: block;
+  margin: 4px 0 2px;
+  font-size: 15px;
+}
+
+.overblik .winner span {
+  color: var(--muted);
+}
+
+
+/* ---------- TOMME TILSTANDE ---------- */
+
+.overblik .empty-states {
+  margin-top: 40px;
+}
+
+.overblik .empty-states-title {
+  margin-bottom: 14px;
+  color: #91ae99;
+  font-family: var(--body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.overblik .empty-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.overblik .empty-card {
+  border-style: dashed;
+}
+
+.overblik .empty-card h3 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.overblik .empty-card p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.overblik .empty-card .button {
+  margin-top: 18px;
+}
+
+
+/* ---------- RESPONSIVT DESIGN ---------- */
+
+@media (max-width: 1100px) {
+  .overblik .overview-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .overblik .overview-side {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .overblik .overview-heading {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .overblik .overview-side,
+  .overblik .empty-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .overblik .current-card {
+    grid-template-columns: 1fr;
+  }
+
+  .overblik .current-clock {
+    text-align: left;
+    margin-top: 20px;
+  }
+
+  .overblik .clock-value {
+    font-size: 52px;
+  }
+}
+
+@media (max-width: 520px) {
+  .overblik .current-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .overblik .current-actions .button {
+    width: 100%;
+  }
+}

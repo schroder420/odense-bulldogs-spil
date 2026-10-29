@@ -1,0 +1,109 @@
+/* Personalelogin: centreret loginkort uden sidepanel.
+   Fælles farver, felter og knapper ligger i styles.css. */
+
+/* ---------- LAYOUT ---------- */
+
+.login .login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 40px 16px;
+  background:
+    radial-gradient(circle at 50% 0%, #18492e 0%, transparent 60%),
+    var(--background);
+}
+
+
+/* ---------- LOGINKORT ---------- */
+
+.login .login-card {
+  width: min(440px, 100%);
+  padding: 36px 32px;
+  text-align: center;
+}
+
+.login .login-logo {
+  display: block;
+  margin: 0 auto 22px;
+}
+
+.login .login-card .eyebrow {
+  margin-bottom: 12px;
+}
+
+.login .login-card h1 {
+  font-size: 38px;
+  line-height: 1.05;
+  margin-bottom: 12px;
+}
+
+.login .login-card .lead {
+  margin-bottom: 28px;
+}
+
+.login .login-form {
+  display: grid;
+  gap: 18px;
+  text-align: left;
+}
+
+.login .login-form > .button {
+  width: 100%;
+}
+
+
+/* ---------- ADGANGSKODE ---------- */
+
+.login .password-field {
+  position: relative;
+}
+
+.login .password-field input {
+  padding-right: 64px;
+}
+
+.login .password-toggle {
+  position: absolute;
+  top: 0;
+  right: 12px;
+  min-height: 42px;
+  font-size: 12px;
+}
+
+.login .login-message {
+  min-height: 18px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #ffb3a8;
+}
+
+.login .login-message.is-loading {
+  color: #91ae99;
+}
+
+.login .login-demo {
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+.login .login-motto {
+  color: #627f6c;
+  font-size: 9px;
+  letter-spacing: 1.4px;
+}
+
+
+/* ---------- RESPONSIVT DESIGN ---------- */
+
+@media (max-width: 520px) {
+  .login .login-card {
+    padding: 28px 20px;
+  }
+
+  .login .login-card h1 {
+    font-size: 32px;
+  }
+}

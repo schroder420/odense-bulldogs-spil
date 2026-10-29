@@ -1,0 +1,357 @@
+<!doctype html>
+
+<html lang="da">
+
+  <!-- Sidetitel, metadata og links til fælles design og funktionalitet. -->
+  <head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="theme-color" content="#0b241a">
+
+    <meta
+      name="description"
+      content="Odense Bulldogs kampkontrol. Standarder for nye konkurrencer, storskærm og personaleadgang.">
+    <title>Indstillinger | Bulldogs Kampkontrol</title>
+
+    <link rel="icon" type="image/png" href="assets/bulldogs-logo.png">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="css/indstillinger.css">
+
+    <!-- Gemmefunktionerne indlæses før menu og formularer. defer venter, til HTML er læst. -->
+    <script src="js/data.js" defer></script>
+
+    <script src="js/app.js" defer></script>
+
+    <!-- Gemning af standarder og skift af adgangskode. -->
+    <script src="js/indstillinger.js" defer></script>
+  </head>
+
+  <body class="indstillinger" data-page="indstillinger">
+
+    <!-- Tastaturbrugere kan springe navigationen over og gå direkte til indholdet. -->
+    <a class="skip-link" href="#main">Spring til indhold</a>
+
+    <div class="app-shell">
+
+      <!-- Fælles hovednavigation. -->
+      <aside class="sidebar" aria-label="Hovednavigation">
+        <a class="brand" href="overblik.html">
+          <img src="assets/bulldogs-logo.png" width="44" height="51" alt="Odense Bulldogs">
+
+          <span>
+            <strong>ODENSE BULLDOGS</strong>
+
+            <span>KAMPKONTROL</span>
+          </span>
+        </a>
+
+        <div class="sidebar-label">PERSONALE</div>
+
+        <nav class="nav-list">
+          <a class="nav-link" href="overblik.html">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#grid"></use>
+            </svg>
+
+            <span>Overblik</span>
+          </a>
+
+          <a class="nav-link" href="konkurrencer.html">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#trophy"></use>
+            </svg>
+
+            <span>Konkurrencer</span>
+          </a>
+
+          <a class="nav-link" href="praemier.html">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#flag"></use>
+            </svg>
+
+            <span>Præmier</span>
+          </a>
+
+          <a class="nav-link" href="statistik.html">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#chart"></use>
+            </svg>
+
+            <span>Statistik</span>
+          </a>
+
+          <a class="nav-link is-active" href="indstillinger.html" aria-current="page">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#settings"></use>
+            </svg>
+
+            <span>Indstillinger</span>
+
+            <span class="nav-indicator"></span>
+          </a>
+        </nav>
+
+
+        <!-- Arenaoplysninger og personaleprofil nederst i navigationen. -->
+        <div class="sidebar-bottom">
+          <div class="arena-note">
+            <span class="arena-dot"></span>
+
+            <span>Sparekassen Danmark Arena</span>
+          </div>
+
+          <div class="staff-profile">
+            <span class="staff-avatar">OB</span>
+
+            <span>
+              <strong>Kampafvikler</strong>
+
+              <small>Personaleadgang</small>
+            </span>
+
+            <a class="icon-button" href="login.html" aria-label="Log ud">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons.svg#logout"></use>
+              </svg>
+            </a>
+          </div>
+
+          <p class="sidebar-motto">ÉT HOLD. ÉN BY. ODENSE.</p>
+        </div>
+      </aside>
+
+
+      <!-- Baggrundslag, som lukker mobilmenuen, når brugeren trykker uden for den. -->
+      <button
+        id="mobile-scrim"
+        class="mobile-scrim"
+        type="button"
+        aria-label="Luk navigation"
+        tabindex="-1"></button>
+      <div class="workspace">
+
+        <!-- Topbjælke med mobilmenu, brødkrumme og markering af eksempeldata. -->
+        <header class="topbar">
+          <div class="topbar-start">
+            <button
+              id="menu-toggle"
+              class="icon-button menu-toggle"
+              type="button"
+              aria-label="Åbn navigation"
+              aria-expanded="false">
+
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons.svg#menu"></use>
+              </svg>
+            </button>
+
+            <nav class="breadcrumb" aria-label="Brødkrumme">
+              <span aria-current="page">Indstillinger</span>
+            </nav>
+          </div>
+
+          <span class="environment-badge"><span></span>Eksempeldata</span>
+        </header>
+
+
+        <main id="main" class="page-content" tabindex="-1">
+
+          <!-- SIDEOVERSKRIFT -->
+          <header class="page-heading">
+            <p class="eyebrow">KAMPKONTROL · INDSTILLINGER</p>
+
+            <h1>Indstillinger</h1>
+
+            <p class="lead">Vælg de standarder, der skal bruges, når du opretter en ny konkurrence.</p>
+          </header>
+
+
+          <div class="settings-layout">
+
+            <!-- Standarderne gemmes i konkurrenceudkastet, så konfigureringen starter med dem.
+                 Feltnavnene svarer til objektet competition i js/data.js. -->
+            <form id="settings-form" class="panel settings-form" novalidate>
+
+              <!-- KONKURRENCESTANDARDER -->
+              <section class="form-section" aria-labelledby="defaults-title">
+                <div class="section-heading">
+                  <span class="section-number">01</span>
+
+                  <div>
+                    <h2 id="defaults-title" class="section-title">Konkurrencestandarder</h2>
+
+                    <p>Du kan ændre standarderne for den enkelte konkurrence under oprettelsen.</p>
+                  </div>
+                </div>
+
+                <div class="field-grid two-columns">
+                  <div class="field">
+                    <label class="field-label" for="default-duration">Standardvarighed</label>
+
+                    <div class="input-unit">
+                      <input id="default-duration" name="duration" type="number" min="1" max="15" required>
+
+                      <span>min.</span>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label class="field-label" for="default-pickup">Standardafhentningssted</label>
+
+                    <input id="default-pickup" name="pickup" type="text" maxlength="40" required>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="field-label" for="default-prize">Standardpræmie</label>
+
+                  <input id="default-prize" name="prize" type="text" maxlength="80" required>
+                </div>
+
+                <div class="field">
+                  <label class="field-label" for="default-instructions">Standardinstruktion til vinderne</label>
+
+                  <textarea id="default-instructions" name="instructions" maxlength="200" required></textarea>
+                </div>
+              </section>
+
+
+              <!-- STORSKÆRM: gemmes under sin egen nøgle, fordi felterne ikke findes i competition. -->
+              <section class="form-section" aria-labelledby="screen-title">
+                <div class="section-heading">
+                  <span class="section-number">02</span>
+
+                  <div>
+                    <h2 id="screen-title" class="section-title">Storskærm</h2>
+
+                    <p>Det, publikum ser, når en ny konkurrence åbner.</p>
+                  </div>
+                </div>
+
+                <label class="switch-row" for="default-rotation">
+                  <span>
+                    <strong>Automatisk rotation</strong>
+
+                    <small>Skift automatisk mellem leaderboard, sådan spiller du og stor QR.</small>
+                  </span>
+
+                  <input id="default-rotation" type="checkbox" class="switch" checked>
+                </label>
+
+                <div class="field">
+                  <label class="field-label" for="default-message-title">Standardoverskrift til beskedvisning</label>
+
+                  <input id="default-message-title" type="text" maxlength="40" value="Klar til næste pause?">
+                </div>
+
+                <div class="field">
+                  <label class="field-label" for="default-message">Standardbesked til publikum</label>
+
+                  <textarea id="default-message" maxlength="160">Find telefonen frem, og spil med.</textarea>
+                </div>
+              </section>
+
+              <div class="form-actions">
+                <p id="settings-status" class="settings-status" role="status"></p>
+
+                <button class="button button-primary" type="submit">Gem indstillinger</button>
+              </div>
+
+              <p id="save-error" class="field-error" hidden></p>
+            </form>
+
+
+            <!-- PERSONALEADGANG -->
+            <form id="password-form" class="panel password-form" novalidate>
+              <div class="section-heading">
+                <span class="section-number">03</span>
+
+                <div>
+                  <h2 class="section-title">Personaleadgang</h2>
+
+                  <p>Skift den fælles adgangskode til kampkontrol.</p>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field-label" for="current-password">Nuværende adgangskode</label>
+
+                <div class="password-field">
+                  <input id="current-password" type="password" autocomplete="current-password" required>
+
+                  <button class="button button-text password-toggle" type="button" aria-controls="current-password">Vis</button>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field-label" for="new-password">Ny adgangskode</label>
+
+                <div class="password-field">
+                  <input id="new-password" type="password" autocomplete="new-password" minlength="8" required>
+
+                  <button class="button button-text password-toggle" type="button" aria-controls="new-password">Vis</button>
+                </div>
+
+                <p class="field-help">Mindst 8 tegn.</p>
+              </div>
+
+              <div class="field">
+                <label class="field-label" for="repeat-password">Gentag ny adgangskode</label>
+
+                <div class="password-field">
+                  <input id="repeat-password" type="password" autocomplete="new-password" required>
+
+                  <button class="button button-text password-toggle" type="button" aria-controls="repeat-password">Vis</button>
+                </div>
+              </div>
+
+              <p id="password-status" class="password-status" role="status"></p>
+
+              <button class="button button-secondary" type="submit">Skift adgangskode</button>
+            </form>
+          </div>
+        </main>
+
+
+        <!-- Fælles sidefod. -->
+        <footer class="workspace-footer">
+          <span>Odense Bulldogs · Kampkontrol</span>
+
+          <span>For oplevelsen mellem perioderne.</span>
+        </footer>
+      </div>
+    </div>
+
+
+    <!-- Dialog til sider, som senere tilføjes af resten af projektgruppen. -->
+    <dialog
+      id="placeholder-dialog"
+      class="dialog"
+      aria-labelledby="placeholder-title"
+      aria-describedby="placeholder-copy">
+
+      <button class="dialog-close icon-button" type="button" data-close-dialog aria-label="Luk">
+        <svg class="icon" aria-hidden="true">
+          <use href="assets/icons.svg#x"></use>
+        </svg>
+      </button>
+
+      <span class="dialog-icon">
+        <svg class="icon" aria-hidden="true">
+          <use href="assets/icons.svg#grid"></use>
+        </svg>
+      </span>
+
+      <h2 id="placeholder-title">Denne side kommer senere</h2>
+
+      <p id="placeholder-copy">Siden tilføjes i det samlede adminpanel.</p>
+
+      <button class="button button-secondary" type="button" data-close-dialog>Tilbage</button>
+    </dialog>
+
+  </body>
+</html>

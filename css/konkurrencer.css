@@ -1,0 +1,269 @@
+/* Konkurrencer: søgning, statusfiltre, konkurrenceliste og annullering.
+   Fælles layout, paneler og knapper ligger i styles.css. */
+
+/* ---------- SIDEOVERSKRIFT ---------- */
+
+.konkurrencer .competitions-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+
+/* ---------- SØGNING OG FILTRE ---------- */
+
+.konkurrencer .competition-toolbar {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  padding-bottom: 22px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.konkurrencer .competition-search {
+  flex: 1;
+}
+
+.konkurrencer .competition-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.konkurrencer .competition-filters legend {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+/* Radioknapperne skjules visuelt, men kan stadig bruges med tastaturet. */
+.konkurrencer .competition-filters input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.konkurrencer .competition-filters span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 15px;
+  background: var(--secondary);
+  border: 1px solid #45664e;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.konkurrencer .competition-filters input:checked + span {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--ink);
+}
+
+.konkurrencer .competition-filters input:focus-visible + span {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+}
+
+
+/* ---------- KONKURRENCELISTE ---------- */
+
+.konkurrencer .competition-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.konkurrencer .competition-row {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1.4fr) minmax(0, 1.2fr) auto;
+  grid-template-areas:
+    "image main facts status"
+    "image actions actions actions";
+  align-items: center;
+  gap: 14px 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.konkurrencer .competition-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.konkurrencer .competition-row[hidden] {
+  display: none;
+}
+
+.konkurrencer .competition-row img {
+  grid-area: image;
+  align-self: start;
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  background: #0d2c1e;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px;
+}
+
+.konkurrencer .competition-main {
+  grid-area: main;
+}
+
+.konkurrencer .competition-main h3 {
+  font-size: 21px;
+  margin-bottom: 4px;
+}
+
+.konkurrencer .competition-main p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.konkurrencer .competition-facts {
+  grid-area: facts;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 16px;
+  margin: 0;
+}
+
+.konkurrencer .competition-facts dt {
+  color: #91ae99;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.konkurrencer .competition-facts dd {
+  margin: 0;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.konkurrencer .competition-row > .badge {
+  grid-area: status;
+  justify-self: end;
+}
+
+.konkurrencer .status-live {
+  background: #e4833126;
+  border-color: #e4833166;
+  color: var(--orange);
+}
+
+.konkurrencer .status-live > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+.konkurrencer .status-planned {
+  background: #2c573d;
+  color: #d6e4d9;
+}
+
+.konkurrencer .competition-actions {
+  grid-area: actions;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 20px;
+}
+
+.konkurrencer .competition-actions .button-text {
+  min-height: 36px;
+}
+
+.konkurrencer .cancel-button {
+  color: #ffb3a8;
+}
+
+
+/* ---------- TOMME LISTER ---------- */
+
+.konkurrencer .competition-empty {
+  padding: 40px 0 16px;
+  text-align: center;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.konkurrencer .competition-empty strong {
+  color: var(--text);
+}
+
+
+/* ---------- BEKRÆFTELSE VED ANNULLERING ---------- */
+
+.konkurrencer .dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 23px;
+}
+
+
+/* ---------- RESPONSIVT DESIGN ---------- */
+
+@media (max-width: 1100px) {
+  .konkurrencer .competition-row {
+    grid-template-columns: 56px minmax(0, 1fr) auto;
+    grid-template-areas:
+      "image main status"
+      "image facts facts"
+      "image actions actions";
+  }
+
+  .konkurrencer .competition-facts {
+    justify-content: start;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 760px) {
+  .konkurrencer .competitions-heading,
+  .konkurrencer .competition-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .konkurrencer .competition-row {
+    grid-template-columns: 44px minmax(0, 1fr);
+    grid-template-areas:
+      "image main"
+      "status status"
+      "facts facts"
+      "actions actions";
+  }
+
+  .konkurrencer .competition-row img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .konkurrencer .competition-row > .badge {
+    justify-self: start;
+  }
+
+  .konkurrencer .competition-facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .konkurrencer .competition-facts dd {
+    white-space: normal;
+  }
+}

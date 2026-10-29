@@ -1,0 +1,421 @@
+<!doctype html>
+
+<html lang="da">
+
+  <!-- Sidetitel, metadata og links til fælles design og funktionalitet. -->
+  <head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="theme-color" content="#0b241a">
+
+    <meta
+      name="description"
+      content="Odense Bulldogs kampkontrol. Overblik over aktuelle, kommende og afsluttede konkurrencer.">
+    <title>Overblik | Bulldogs Kampkontrol</title>
+
+    <link rel="icon" type="image/png" href="assets/bulldogs-logo.png">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="css/overblik.css">
+
+    <!-- Gemmefunktionerne indlæses før menu og formularer. defer venter, til HTML er læst. -->
+    <script src="js/data.js" defer></script>
+
+    <script src="js/app.js" defer></script>
+
+    <!-- Kopiér link til storskærmen. -->
+    <script src="js/overblik.js" defer></script>
+  </head>
+
+  <body class="overblik" data-page="overblik">
+
+    <!-- Tastaturbrugere kan springe navigationen over og gå direkte til indholdet. -->
+    <a class="skip-link" href="#main">Spring til indhold</a>
+
+    <div class="app-shell">
+
+      <!-- Fælles hovednavigation. -->
+      <aside class="sidebar" aria-label="Hovednavigation">
+        <a class="brand" href="overblik.html">
+          <img src="assets/bulldogs-logo.png" width="44" height="51" alt="Odense Bulldogs">
+
+          <span>
+            <strong>ODENSE BULLDOGS</strong>
+
+            <span>KAMPKONTROL</span>
+          </span>
+        </a>
+
+        <div class="sidebar-label">PERSONALE</div>
+
+        <nav class="nav-list">
+          <a class="nav-link is-active" href="overblik.html" aria-current="page">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#grid"></use>
+            </svg>
+
+            <span>Overblik</span>
+
+            <span class="nav-indicator"></span>
+          </a>
+
+          <a class="nav-link" href="konkurrencer.html">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#trophy"></use>
+            </svg>
+
+            <span>Konkurrencer</span>
+          </a>
+
+          <a class="nav-link" href="praemier.html">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#flag"></use>
+            </svg>
+
+            <span>Præmier</span>
+          </a>
+
+          <a class="nav-link" href="statistik.html">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#chart"></use>
+            </svg>
+
+            <span>Statistik</span>
+          </a>
+
+          <a class="nav-link" href="indstillinger.html">
+            <svg class="icon" aria-hidden="true">
+              <use href="assets/icons.svg#settings"></use>
+            </svg>
+
+            <span>Indstillinger</span>
+          </a>
+        </nav>
+
+
+        <!-- Arenaoplysninger og personaleprofil nederst i navigationen. -->
+        <div class="sidebar-bottom">
+          <div class="arena-note">
+            <span class="arena-dot"></span>
+
+            <span>Sparekassen Danmark Arena</span>
+          </div>
+
+          <div class="staff-profile">
+            <span class="staff-avatar">OB</span>
+
+            <span>
+              <strong>Kampafvikler</strong>
+
+              <small>Personaleadgang</small>
+            </span>
+
+            <a class="icon-button" href="login.html" aria-label="Log ud">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons.svg#logout"></use>
+              </svg>
+            </a>
+          </div>
+
+          <p class="sidebar-motto">ÉT HOLD. ÉN BY. ODENSE.</p>
+        </div>
+      </aside>
+
+
+      <!-- Baggrundslag, som lukker mobilmenuen, når brugeren trykker uden for den. -->
+      <button
+        id="mobile-scrim"
+        class="mobile-scrim"
+        type="button"
+        aria-label="Luk navigation"
+        tabindex="-1"></button>
+      <div class="workspace">
+
+        <!-- Topbjælke med mobilmenu, brødkrumme og markering af eksempeldata. -->
+        <header class="topbar">
+          <div class="topbar-start">
+            <button
+              id="menu-toggle"
+              class="icon-button menu-toggle"
+              type="button"
+              aria-label="Åbn navigation"
+              aria-expanded="false">
+
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons.svg#menu"></use>
+              </svg>
+            </button>
+
+            <nav class="breadcrumb" aria-label="Brødkrumme">
+              <span aria-current="page">Overblik</span>
+            </nav>
+          </div>
+
+          <span class="environment-badge"><span></span>Eksempeldata</span>
+        </header>
+
+
+        <main id="main" class="page-content" tabindex="-1">
+
+          <!-- SIDEOVERSKRIFT -->
+          <header class="page-heading overview-heading">
+            <div>
+              <p class="eyebrow">KAMPKONTROL · OVERBLIK</p>
+
+              <h1>Kampkontrol</h1>
+
+              <p class="lead">Start en konkurrence, følg afviklingen og gør publikum klar til næste pausespil.</p>
+            </div>
+
+            <a class="button button-primary" href="vaelg-spil.html">
+              <svg class="icon" aria-hidden="true">
+                <use href="assets/icons.svg#plus"></use>
+              </svg>
+
+              Start konkurrence
+            </a>
+          </header>
+
+
+          <div class="overview-layout">
+
+            <!-- AKTUEL KONKURRENCE -->
+            <section class="panel current-card" aria-labelledby="current-title">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">AKTUEL KONKURRENCE</p>
+
+                  <h2 id="current-title" class="section-title">Bulldogs mod Herning, 1. pause</h2>
+                </div>
+
+                <span class="badge status-badge status-live"><span></span>I gang</span>
+              </div>
+
+              <div class="current-game">
+                <img src="assets/bulldogs-glide-v6.webp" width="96" height="96" alt="">
+
+                <div>
+                  <p class="info-label">Spil</p>
+
+                  <strong>Hold pucken i live</strong>
+
+                  <p class="current-teams">Odense Bulldogs mod Herning Blue Fox</p>
+                </div>
+              </div>
+
+              <div class="current-clock">
+                <p class="info-label">Tid tilbage</p>
+
+                <p class="clock-value">02:14</p>
+              </div>
+
+              <dl class="current-facts">
+                <div>
+                  <dt>Start</dt>
+
+                  <dd>19:42</dd>
+                </div>
+
+                <div>
+                  <dt>Slutfløjt</dt>
+
+                  <dd>19:45</dd>
+                </div>
+
+                <div>
+                  <dt>Deltagere med resultat</dt>
+
+                  <dd>248</dd>
+                </div>
+              </dl>
+
+              <div class="current-actions">
+                <a class="button button-primary" href="afvikling.html">
+                  Gå til afvikling
+
+                  <svg class="icon" aria-hidden="true">
+                    <use href="assets/icons.svg#chevron-right"></use>
+                  </svg>
+                </a>
+
+                <button class="button button-secondary" type="button" data-placeholder="Storskærm">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="assets/icons.svg#monitor"></use>
+                  </svg>
+
+                  Åbn storskærm
+                </button>
+
+                <button id="copy-link" class="button button-secondary" type="button">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="assets/icons.svg#copy"></use>
+                  </svg>
+
+                  Kopiér link
+                </button>
+              </div>
+
+              <p id="copy-status" class="copy-status" role="status"></p>
+            </section>
+
+
+            <div class="overview-side">
+
+              <!-- NÆSTE KONKURRENCE -->
+              <section class="panel side-card" aria-labelledby="next-title">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">NÆSTE KONKURRENCE</p>
+
+                    <h2 id="next-title" class="section-title">Bulldogs mod Herning, 2. pause</h2>
+                  </div>
+
+                  <span class="badge badge-neutral">Planlagt</span>
+                </div>
+
+                <dl class="side-facts">
+                  <div>
+                    <dt>Spil</dt>
+
+                    <dd>Hold pucken i live</dd>
+                  </div>
+
+                  <div>
+                    <dt>Start</dt>
+
+                    <dd>Fre. 31. okt. kl. 20.25</dd>
+                  </div>
+
+                  <div>
+                    <dt>Varighed</dt>
+
+                    <dd>3 min.</dd>
+                  </div>
+                </dl>
+
+                <a class="button button-secondary" href="konkurrencer.html">Se konkurrence</a>
+              </section>
+
+
+              <!-- SENESTE RESULTAT -->
+              <section class="panel side-card" aria-labelledby="latest-title">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">SENESTE RESULTAT</p>
+
+                    <h2 id="latest-title" class="section-title">Bulldogs mod Esbjerg, 2. pause</h2>
+                  </div>
+
+                  <span class="badge badge-neutral">Afsluttet</span>
+                </div>
+
+                <div class="winner">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="assets/icons.svg#trophy"></use>
+                  </svg>
+
+                  <div>
+                    <p class="info-label">Vinder</p>
+
+                    <strong>BulldogsFan78</strong>
+
+                    <span>41,26 point</span>
+                  </div>
+                </div>
+
+                <dl class="side-facts">
+                  <div>
+                    <dt>Dato</dt>
+
+                    <dd>24. okt. 2026</dd>
+                  </div>
+
+                  <div>
+                    <dt>Deltagere</dt>
+
+                    <dd>212</dd>
+                  </div>
+                </dl>
+
+                <a class="button button-secondary" href="resultat.html">Se resultat</a>
+              </section>
+            </div>
+          </div>
+
+
+          <!-- TOMME TILSTANDE: vises, når der ikke er en aktuel eller planlagt konkurrence. -->
+          <section class="empty-states" aria-labelledby="empty-title">
+            <h2 id="empty-title" class="empty-states-title">Når der ikke er noget at vise</h2>
+
+            <div class="empty-grid">
+              <div class="panel empty-card">
+                <span class="dialog-icon">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="assets/icons.svg#play"></use>
+                  </svg>
+                </span>
+
+                <h3>Klar til næste pause?</h3>
+
+                <p>Opret en konkurrence, vælg et spil og gør storskærmen klar.</p>
+
+                <a class="button button-primary" href="vaelg-spil.html">Start konkurrence</a>
+              </div>
+
+              <div class="panel empty-card">
+                <span class="dialog-icon">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="assets/icons.svg#calendar"></use>
+                  </svg>
+                </span>
+
+                <h3>Ingen planlagte</h3>
+
+                <p>Der er ingen kommende konkurrencer.</p>
+              </div>
+            </div>
+          </section>
+        </main>
+
+
+        <!-- Fælles sidefod. -->
+        <footer class="workspace-footer">
+          <span>Odense Bulldogs · Kampkontrol</span>
+
+          <span>For oplevelsen mellem perioderne.</span>
+        </footer>
+      </div>
+    </div>
+
+
+    <!-- Dialog til sider, som senere tilføjes af resten af projektgruppen. -->
+    <dialog
+      id="placeholder-dialog"
+      class="dialog"
+      aria-labelledby="placeholder-title"
+      aria-describedby="placeholder-copy">
+
+      <button class="dialog-close icon-button" type="button" data-close-dialog aria-label="Luk">
+        <svg class="icon" aria-hidden="true">
+          <use href="assets/icons.svg#x"></use>
+        </svg>
+      </button>
+
+      <span class="dialog-icon">
+        <svg class="icon" aria-hidden="true">
+          <use href="assets/icons.svg#grid"></use>
+        </svg>
+      </span>
+
+      <h2 id="placeholder-title">Denne side kommer senere</h2>
+
+      <p id="placeholder-copy">Siden tilføjes i det samlede adminpanel.</p>
+
+      <button class="button button-secondary" type="button" data-close-dialog>Tilbage</button>
+    </dialog>
+
+  </body>
+</html>
