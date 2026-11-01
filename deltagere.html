@@ -13,6 +13,8 @@
 
   <!-- CSS til deltagersiden -->
   <link rel="stylesheet" href="css/deltagere.css">
+  <!-- Fælles JavaScript til mobilnavigation. -->
+  <script src="js/app.js" defer></script>
 </head>
 
 <body data-page="participants">
@@ -24,7 +26,7 @@
     <!-- SIDEBAR -->
     <aside class="sidebar" aria-label="Hovednavigation">
 
-      <a class="brand" href="vaelg-spil.html">
+      <a class="brand" href="overblik.html">
         <img
           src="assets/bulldogs-logo.png"
           width="44"
@@ -41,14 +43,14 @@
 
       <nav class="nav-list">
 
-        <button class="nav-link" type="button">
+        <a class="nav-link" href="overblik.html">
           <svg class="icon" aria-hidden="true">
             <use href="assets/icons.svg#grid"></use>
           </svg>
           <span>Overblik</span>
-        </button>
+        </a>
 
-        <a class="nav-link is-active" href="vaelg-spil.html">
+        <a class="nav-link is-active" href="konkurrencer.html">
           <svg class="icon" aria-hidden="true">
             <use href="assets/icons.svg#trophy"></use>
           </svg>
@@ -56,26 +58,26 @@
           <span class="nav-indicator"></span>
         </a>
 
-        <button class="nav-link" type="button">
+        <a class="nav-link" href="praemier.html">
           <svg class="icon" aria-hidden="true">
             <use href="assets/icons.svg#flag"></use>
           </svg>
           <span>Præmier</span>
-        </button>
+        </a>
 
-        <button class="nav-link" type="button">
+        <a class="nav-link" href="statistik.html">
           <svg class="icon" aria-hidden="true">
             <use href="assets/icons.svg#chart"></use>
           </svg>
           <span>Statistik</span>
-        </button>
+        </a>
 
-        <button class="nav-link" type="button">
+        <a class="nav-link" href="indstillinger.html">
           <svg class="icon" aria-hidden="true">
             <use href="assets/icons.svg#settings"></use>
           </svg>
           <span>Indstillinger</span>
-        </button>
+        </a>
 
       </nav>
 
@@ -94,21 +96,28 @@
             <small>Personaleadgang</small>
           </span>
 
-          <button
-            type="button"
+          <a
             class="icon-button"
-            aria-label="Log ud">
+            aria-label="Log ud" href="login.html">
 
             <svg class="icon" aria-hidden="true">
               <use href="assets/icons.svg#logout"></use>
             </svg>
-          </button>
+          </a>
         </div>
 
         <p class="sidebar-motto">ÉT HOLD. ÉN BY. ODENSE.</p>
 
       </div>
     </aside>
+
+    <!-- Luk mobilmenuen ved tryk uden for navigationen. -->
+    <button
+      id="mobile-scrim"
+      class="mobile-scrim"
+      type="button"
+      aria-label="Luk navigation"
+      tabindex="-1"></button>
 
 
     <!-- HOVEDOMRÅDE -->
@@ -134,7 +143,7 @@
 
           <nav class="breadcrumb" aria-label="Brødkrumme">
 
-            <a href="vaelg-spil.html">Konkurrencer</a>
+            <a href="konkurrencer.html">Konkurrencer</a>
 
             <svg class="icon" aria-hidden="true">
               <use href="assets/icons.svg#chevron-right"></use>

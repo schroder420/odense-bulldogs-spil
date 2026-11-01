@@ -12,6 +12,8 @@
   <link rel="icon" type="image/png" href="assets/bulldogs-logo.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="css/resultat.css">
+  <!-- Fælles JavaScript til mobilnavigation. -->
+  <script src="js/app.js" defer></script>
 </head>
 
 <body class="resultat">
@@ -23,7 +25,7 @@
     <!-- Fælles navigation -->
     <aside class="sidebar" aria-label="Hovednavigation">
 
-      <a class="brand" href="vaelg-spil.html">
+      <a class="brand" href="overblik.html">
         <img src="assets/bulldogs-logo.png" width="44" height="51" alt="Odense Bulldogs">
         <span>
           <strong>ODENSE BULLDOGS</strong>
@@ -34,14 +36,14 @@
       <div class="sidebar-label">PERSONALE</div>
 
       <nav class="nav-list">
-        <button class="nav-link" type="button" data-placeholder="Overblik">
+        <a class="nav-link" href="overblik.html">
           <svg class="icon" aria-hidden="true">
             <use href="assets/icons.svg#grid"></use>
           </svg>
           <span>Overblik</span>
-        </button>
+        </a>
 
-        <a class="nav-link is-active" href="vaelg-spil.html">
+        <a class="nav-link is-active" href="konkurrencer.html">
           <svg class="icon" aria-hidden="true">
             <use href="assets/icons.svg#trophy"></use>
           </svg>
@@ -49,26 +51,26 @@
           <span class="nav-indicator"></span>
         </a>
 
-        <button class="nav-link" type="button" data-placeholder="Præmier">
+        <a class="nav-link" href="praemier.html">
           <svg class="icon" aria-hidden="true">
             <use href="assets/icons.svg#flag"></use>
           </svg>
           <span>Præmier</span>
-        </button>
+        </a>
 
-        <button class="nav-link" type="button" data-placeholder="Statistik">
+        <a class="nav-link" href="statistik.html">
           <svg class="icon" aria-hidden="true">
             <use href="assets/icons.svg#chart"></use>
           </svg>
           <span>Statistik</span>
-        </button>
+        </a>
 
-        <button class="nav-link" type="button" data-placeholder="Indstillinger">
+        <a class="nav-link" href="indstillinger.html">
           <svg class="icon" aria-hidden="true">
             <use href="assets/icons.svg#settings"></use>
           </svg>
           <span>Indstillinger</span>
-        </button>
+        </a>
       </nav>
 
       <div class="sidebar-bottom">
@@ -114,7 +116,7 @@
           </button>
 
           <nav class="breadcrumb" aria-label="Brødkrumme">
-            <a href="vaelg-spil.html">Konkurrencer</a>
+            <a href="konkurrencer.html">Konkurrencer</a>
             <svg class="icon" aria-hidden="true">
               <use href="assets/icons.svg#chevron-right"></use>
             </svg>
@@ -367,19 +369,19 @@
               Åbn vinderne på storskærmen
             </a>
 
-            <button class="button button-secondary" type="button" disabled>
+            <a class="button button-secondary" href="statistik.html">
               <svg class="icon" aria-hidden="true">
                 <use href="assets/icons.svg#chart"></use>
               </svg>
               Se statistik
-            </button>
+            </a>
 
-            <button class="button button-secondary" type="button" disabled>
+            <a class="button button-secondary" href="praemier.html">
               <svg class="icon" aria-hidden="true">
                 <use href="assets/icons.svg#flag"></use>
               </svg>
               Gå til præmier
-            </button>
+            </a>
           </div>
 
           <p class="field-help">

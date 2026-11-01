@@ -34,7 +34,7 @@
 
       <!-- Fælles hovednavigation. Øvrige administrationssider åbner foreløbig en pladsholder. -->
       <aside class="sidebar" aria-label="Hovednavigation">
-        <a class="brand" href="vaelg-spil.html">
+        <a class="brand" href="overblik.html">
           <img src="assets/bulldogs-logo.png" width="44" height="51" alt="Odense Bulldogs">
 
           <span>
@@ -47,15 +47,15 @@
         <div class="sidebar-label">PERSONALE</div>
 
         <nav class="nav-list">
-          <button class="nav-link" type="button" data-placeholder="Overblik">
+          <a class="nav-link" href="overblik.html">
             <svg class="icon" aria-hidden="true">
               <use href="assets/icons.svg#grid"></use>
             </svg>
 
             <span>Overblik</span>
-          </button>
+          </a>
 
-          <a class="nav-link is-active" href="vaelg-spil.html" aria-current="page">
+          <a class="nav-link is-active" href="konkurrencer.html" aria-current="page">
             <svg class="icon" aria-hidden="true">
               <use href="assets/icons.svg#trophy"></use>
             </svg>
@@ -65,29 +65,29 @@
             <span class="nav-indicator"></span>
           </a>
 
-          <button class="nav-link" type="button" data-placeholder="Præmier">
+          <a class="nav-link" href="praemier.html">
             <svg class="icon" aria-hidden="true">
               <use href="assets/icons.svg#flag"></use>
             </svg>
 
             <span>Præmier</span>
-          </button>
+          </a>
 
-          <button class="nav-link" type="button" data-placeholder="Statistik">
+          <a class="nav-link" href="statistik.html">
             <svg class="icon" aria-hidden="true">
               <use href="assets/icons.svg#chart"></use>
             </svg>
 
             <span>Statistik</span>
-          </button>
+          </a>
 
-          <button class="nav-link" type="button" data-placeholder="Indstillinger">
+          <a class="nav-link" href="indstillinger.html">
             <svg class="icon" aria-hidden="true">
               <use href="assets/icons.svg#settings"></use>
             </svg>
 
             <span>Indstillinger</span>
-          </button>
+          </a>
         </nav>
 
 
@@ -108,11 +108,11 @@
               <small>Personaleadgang</small>
             </span>
 
-            <button type="button" class="icon-button" aria-label="Log ud" data-placeholder="Log ud">
+            <a class="icon-button" aria-label="Log ud" href="login.html">
               <svg class="icon" aria-hidden="true">
                 <use href="assets/icons.svg#logout"></use>
               </svg>
-            </button>
+            </a>
           </div>
 
           <p class="sidebar-motto">ÉT HOLD. ÉN BY. ODENSE.</p>
@@ -145,7 +145,7 @@
             </button>
 
             <nav class="breadcrumb" aria-label="Brødkrumme">
-              <button type="button" data-placeholder="Konkurrencer">Konkurrencer</button>
+              <a href="konkurrencer.html">Konkurrencer</a>
 
               <svg class="icon" aria-hidden="true">
                 <use href="assets/icons.svg#chevron-right"></use>
@@ -342,9 +342,9 @@
 
           <!-- Tilbage til overblik og angivelse af det aktuelle trin. -->
           <div class="form-actions">
-            <button class="button button-text" type="button" data-placeholder="Overblik">
+            <a class="button button-text" href="overblik.html">
               <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chevron-left"></use></svg> Tilbage til Overblik
-            </button>
+            </a>
 
             <span class="step-footnote">Trin 1 af 3</span>
           </div>
