@@ -26,6 +26,9 @@ python3 -m http.server 8080
 | `resultat.html` | Separat side til resultat. |
 | `praemier.html` | Separat side til præmier. |
 | `statistik.html` | Separat side til statistik. |
+| `kampguide/index.html` | Kampguide til tilskuerne på /kampguide (mobil først, ingen login). Indhold fra kampguiden v2, nov. 2026. |
+| `css/kampguide.css` | Kampguidens egne regler, alle med `.kampguide` foran. |
+| `assets/kampguide/` | Banetegninger, fotos og PDF til kampguiden. |
 | `styles.css` | Fælles skrifter, farver, navigation, formularer og komponenter. |
 | `css/` | Én CSS-fil pr. side med samme navn som HTML-filen, fx `css/afvikling.css`. |
 | `js/data.js` | Objektet `competition` og gemning i browseren. |
