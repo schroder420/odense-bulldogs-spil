@@ -1,18 +1,18 @@
-```html
+
 <!doctype html>
 <html lang="da">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b241a">
-  <meta name="description" content="Præmieudlevering i Odense Bulldogs Kampkontrol.">
+  <meta name="description" content="Vejledning til medarbejdere om indløsning af vinderkuponer.">
 
-  <title>Præmieudlevering | Kampkontrol</title>
+  <title>Præmieudlevering | Bulldogs Kampkontrol</title>
 
   <link rel="icon" type="image/png" href="assets/bulldogs-logo.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="css/praemier.css">
-  <!-- Fælles JavaScript til mobilnavigation. -->
+
   <script src="js/app.js" defer></script>
 </head>
 
@@ -76,6 +76,7 @@
       </nav>
 
       <div class="sidebar-bottom">
+
         <div class="arena-note">
           <span class="arena-dot"></span>
           <span>Sparekassen Danmark Arena</span>
@@ -90,10 +91,12 @@
         </div>
 
         <p class="sidebar-motto">ÉT HOLD. ÉN BY. ODENSE.</p>
-      </div>
 
+      </div>
     </aside>
 
+
+    <!-- MOBILMENU BAGGRUND -->
     <button
       id="mobile-scrim"
       class="mobile-scrim"
@@ -102,12 +105,14 @@
       tabindex="-1">
     </button>
 
+
     <div class="workspace">
 
       <!-- TOPBAR -->
       <header class="topbar">
 
         <div class="topbar-start">
+
           <button
             id="menu-toggle"
             class="icon-button menu-toggle"
@@ -118,9 +123,11 @@
             <svg class="icon" aria-hidden="true">
               <use href="assets/icons.svg#menu"></use>
             </svg>
+
           </button>
 
           <nav class="breadcrumb" aria-label="Brødkrumme">
+
             <a href="konkurrencer.html">Konkurrencer</a>
 
             <svg class="icon" aria-hidden="true">
@@ -128,239 +135,108 @@
             </svg>
 
             <span aria-current="page">Præmieudlevering</span>
+
           </nav>
+
         </div>
 
         <span class="environment-badge">
           <span></span>
-          Eksempeldata
+          Medarbejdervejledning
         </span>
 
       </header>
+
 
       <!-- HOVEDINDHOLD -->
       <main id="main" class="page-content" tabindex="-1">
 
         <header class="page-heading">
-          <div>
-            <p class="eyebrow">KAMPKONTROL · PRÆMIER</p>
-            <h1>Præmieudlevering</h1>
-            <p class="lead">
-              Kontrollér vinderens voucher, og registrér udleveringen.
-            </p>
-          </div>
 
-          <span class="badge badge-neutral">Personale</span>
+          <p class="eyebrow">KAMPKONTROL · PERSONALE</p>
+
+          <h1>Sådan indløser du en coupon</h1>
+
+          <p class="lead">
+            Følg de tre trin, når en vinder skal have sin præmie udleveret.
+          </p>
+
         </header>
 
 
-        <!-- INTRODUKTION OG VEJLEDNING -->
-        <section class="panel">
+        <!-- VEJLEDNING -->
+        <section class="prize-guide" aria-labelledby="guide-title">
 
-          <div class="panel-heading">
+          <div class="prize-guide-heading">
+
             <div>
-              <p class="eyebrow">SÅDAN GØR DU</p>
-              <h2>Udlevering af præmier</h2>
+              <p class="eyebrow">PRÆMIEUDLEVERING</p>
+              <h2 id="guide-title">Fra voucher til præmie</h2>
             </div>
+
+            <span class="prize-guide-tag">3 trin</span>
+
           </div>
 
-          <p class="prize-intro">
-            Vinderne viser deres voucher på telefonen. Kontrollér
-            præmien, og registrér udleveringen, når præmien er givet.
-          </p>
 
-          <div class="prize-steps">
+          <ol class="prize-steps">
 
-            <div class="prize-step">
-              <span class="step-number">01</span>
+            <li class="prize-step">
+
+              <span class="prize-step-number">01</span>
+
               <div>
-                <strong>Åbn vinderens voucher</strong>
-                <p>Bed vinderen åbne sin voucher på telefonen.</p>
+                <h3>Bed vinderen åbne sin coupon</h3>
+                <p>
+                  Vinderen finder sin voucher på telefonen
+                  og viser den til dig.
+                </p>
               </div>
-            </div>
 
-            <div class="prize-step">
-              <span class="step-number">02</span>
+            </li>
+
+
+            <li class="prize-step">
+
+              <span class="prize-step-number">02</span>
+
               <div>
-                <strong>Kontrollér præmien</strong>
-                <p>Kontrollér, at præmien passer til vinderens voucher.</p>
+                <h3>Kontrollér præmien</h3>
+                <p>
+                  Tjek, at præmien på voucheren stemmer
+                  overens med det, vinderen skal have.
+                </p>
               </div>
-            </div>
 
-            <div class="prize-step">
-              <span class="step-number">03</span>
+            </li>
+
+
+            <li class="prize-step">
+
+              <span class="prize-step-number">03</span>
+
               <div>
-                <strong>Swipe ved udlevering</strong>
-                <p>Swipe på vinderens telefon, når præmien udleveres.</p>
+                <h3>Få voucheren indløst</h3>
+                <p>
+                  Når præmien udleveres, skal vinderen
+                  swipe på sin telefon for at registrere indløsningen.
+                </p>
               </div>
-            </div>
 
-            <div class="prize-step">
-              <span class="step-number">04</span>
-              <div>
-                <strong>Vent på bekræftelsen</strong>
-                <p>Kontrollér, at indløsningen er registreret.</p>
-              </div>
-            </div>
+            </li>
 
-          </div>
-
-        </section>
+          </ol>
 
 
-        <!-- STANDARDPRÆMIE -->
-        <section class="panel">
+          <!-- VIGTIG PÅMINDELSE -->
+          <div class="prize-reminder">
 
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">STANDARDPRÆMIE</p>
-              <h2>Fadøl eller sodavand</h2>
-            </div>
+            <span class="prize-reminder-icon" aria-hidden="true">!</span>
 
-            <span class="badge badge-neutral">Standard</span>
-          </div>
-
-          <div class="standard-prize">
-
-            <div class="prize-symbol" aria-hidden="true">
-              <svg viewBox="0 0 48 48" fill="none">
-                <path d="M13 13H34L31 39H16L13 13Z"
-                  stroke="currentColor" stroke-width="2.2"
-                  stroke-linejoin="round"/>
-                <path d="M14 20H33"
-                  stroke="currentColor" stroke-width="2.2"/>
-                <path d="M34 18H38C42 18 42 29 37 29H32"
-                  stroke="currentColor" stroke-width="2.2"
-                  stroke-linecap="round"/>
-                <path d="M17 9C17 6 20 6 20 9M24 9C24 6 27 6 27 9"
-                  stroke="currentColor" stroke-width="2.2"
-                  stroke-linecap="round"/>
-              </svg>
-            </div>
-
-            <div class="standard-prize-copy">
-              <h3>1 valgfri drikkevare pr. vinder</h3>
-              <p>Én almindelig fadøl eller sodavand.</p>
-              <div class="prize-location">
-                <svg class="icon" aria-hidden="true">
-                  <use href="assets/icons.svg#map-pin"></use>
-                </svg>
-                Indløses i Viggos Bar
-              </div>
-            </div>
-
-          </div>
-
-        </section>
-
-
-        <!-- INDLØS MED KODE -->
-        <section class="panel">
-
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">RESERVEFUNKTION</p>
-              <h2>Indløs med kode</h2>
-              <p class="panel-description">
-                Brug denne funktion, hvis voucheren ikke kan swipes.
-              </p>
-            </div>
-          </div>
-
-          <form class="prize-code-form" action="#" method="get">
-
-            <div class="field">
-              <label class="field-label" for="prize-code">Præmiekode</label>
-              <input
-                class="field-input"
-                type="text"
-                id="prize-code"
-                name="prize-code"
-                placeholder="Indtast vinderens præmiekode"
-                autocomplete="off">
-            </div>
-
-            <button class="button button-primary" type="submit" disabled>
-              <svg class="icon" aria-hidden="true">
-                <use href="assets/icons.svg#search"></use>
-              </svg>
-              Kontrollér kode
-            </button>
-
-          </form>
-
-          <p class="field-help">
-            Kodekontrol kræver en tilsluttet indløsningsfunktion.
-          </p>
-
-        </section>
-
-
-        <!-- EKSEMPEL PÅ GYLDIG VOUCHER -->
-        <section class="panel">
-
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">VOUCHERDETALJER</p>
-              <h2>Eksempel på gyldig voucher</h2>
-            </div>
-
-            <span class="badge badge-neutral">Afventer udlevering</span>
-          </div>
-
-          <div class="voucher-details">
-
-            <div class="voucher-detail">
-              <span>Spillernavn</span>
-              <strong>Anders Nielsen</strong>
-            </div>
-
-            <div class="voucher-detail">
-              <span>Konkurrence</span>
-              <strong>Bulldogs mod Herning</strong>
-            </div>
-
-            <div class="voucher-detail">
-              <span>Vinderplacering</span>
-              <strong>1. plads</strong>
-            </div>
-
-            <div class="voucher-detail">
-              <span>Præmie</span>
-              <strong>1 fadøl eller sodavand</strong>
-            </div>
-
-            <div class="voucher-detail">
-              <span>Indløsningsstatus</span>
-              <strong class="voucher-pending">Ikke indløst</strong>
-            </div>
-
-          </div>
-
-
-          <!-- VISUELT SWIPE-ELEMENT -->
-          <div class="swipe-section">
-
-            <div class="swipe-heading">
-              <div>
-                <h3>Registrér udlevering</h3>
-                <p>Bruges, når præmien er givet til vinderen.</p>
-              </div>
-            </div>
-
-            <div class="swipe-control" aria-label="Visuelt eksempel på swipe til bekræftelse">
-              <span class="swipe-track-text">Swipe for at bekræfte udlevering</span>
-
-              <span class="swipe-handle" aria-hidden="true">
-                <svg class="icon">
-                  <use href="assets/icons.svg#chevron-right"></use>
-                </svg>
-              </span>
-            </div>
-
-            <p class="field-help">
-              Dette er en visuel prototype. Swipe og registrering kræver JavaScript
-              og en tilsluttet indløsningsfunktion.
+            <p>
+              <strong>Husk:</strong>
+              Voucheren skal først indløses, når præmien
+              faktisk bliver udleveret.
             </p>
 
           </div>
@@ -368,176 +244,15 @@
         </section>
 
 
-        <!-- BEKRÆFTELSE -->
-        <section class="panel">
-
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">BEKRÆFTELSE</p>
-              <h2>Bekræft udlevering</h2>
-            </div>
-          </div>
-
-          <div class="confirmation-box">
-
-            <div class="confirmation-icon" aria-hidden="true">
-              <svg class="icon">
-                <use href="assets/icons.svg#check-circle"></use>
-              </svg>
-            </div>
-
-            <div class="confirmation-copy">
-              <h3>Er præmien udleveret?</h3>
-              <p>
-                Registrér præmien som udleveret til
-                <strong>Anders Nielsen</strong>.
-              </p>
-              <p class="field-help">
-                Voucheren kan herefter ikke bruges igen.
-              </p>
-            </div>
-
-          </div>
-
-          <div class="confirmation-actions">
-            <button class="button button-secondary" type="button" disabled>
-              Annullér
-            </button>
-
-            <button class="button button-primary" type="button" disabled>
-              <svg class="icon" aria-hidden="true">
-                <use href="assets/icons.svg#check"></use>
-              </svg>
-              Bekræft udlevering
-            </button>
-          </div>
-
-          <p class="field-help">
-            Bekræftelse er deaktiveret i denne HTML/CSS-prototype.
-          </p>
-
-        </section>
-
-
-        <!-- BESKEDER -->
-        <section class="panel">
-
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">SYSTEMBESKEDER</p>
-              <h2>Beskeder ved indløsning</h2>
-            </div>
-          </div>
-
-          <div class="message-list">
-
-            <div class="prize-message message-success">
-              <span class="message-indicator" aria-hidden="true">✓</span>
-              <div>
-                <strong>Præmien er registreret som udleveret.</strong>
-                <p>Indløsningen er gennemført.</p>
-              </div>
-            </div>
-
-            <div class="prize-message message-warning">
-              <span class="message-indicator" aria-hidden="true">!</span>
-              <div>
-                <strong>Denne voucher er allerede indløst.</strong>
-                <p>Præmien er tidligere registreret som udleveret.</p>
-              </div>
-            </div>
-
-            <div class="prize-message message-error">
-              <span class="message-indicator" aria-hidden="true">×</span>
-              <div>
-                <strong>Præmiekoden blev ikke fundet.</strong>
-                <p>Kontrollér koden, og prøv igen.</p>
-              </div>
-            </div>
-
-            <div class="prize-message message-error">
-              <span class="message-indicator" aria-hidden="true">×</span>
-              <div>
-                <strong>Indløsningen kunne ikke bekræftes.</strong>
-                <p>Prøv igen.</p>
-              </div>
-            </div>
-
-          </div>
-
-          <p class="field-help">
-            Beskederne vises som eksempler på systemets forskellige tilstande.
-          </p>
-
-        </section>
-
-
-        <!-- SENESTE INDLØSNINGER -->
-        <section class="panel">
-
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">HISTORIK</p>
-              <h2>Seneste indløsninger</h2>
-            </div>
-
-            <span class="badge badge-neutral">Seneste 5</span>
-          </div>
-
-          <div class="prize-table-wrapper">
-            <table class="prize-table">
-
-              <thead>
-                <tr>
-                  <th>Navn</th>
-                  <th>Konkurrence</th>
-                  <th>Præmie</th>
-                  <th>Tidspunkt for indløsning</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td><strong>Emil Hansen</strong></td>
-                  <td>Bulldogs mod Herning</td>
-                  <td>Fadøl eller sodavand</td>
-                  <td>20:42</td>
-                </tr>
-
-                <tr>
-                  <td><strong>Oliver Jensen</strong></td>
-                  <td>Bulldogs mod Herning</td>
-                  <td>Gavekort</td>
-                  <td>20:36</td>
-                </tr>
-
-                <tr>
-                  <td><strong>Frederik Larsen</strong></td>
-                  <td>Bulldogs mod Herning</td>
-                  <td>Fadøl eller sodavand</td>
-                  <td>20:31</td>
-                </tr>
-
-                <tr>
-                  <td><strong>Magnus Pedersen</strong></td>
-                  <td>Bulldogs mod Herning</td>
-                  <td>Fadøl eller sodavand</td>
-                  <td>20:24</td>
-                </tr>
-
-              </tbody>
-
-            </table>
-          </div>
-
-          <p class="field-help">
-            Eksempeldata — historikken opdateres ikke automatisk.
-          </p>
-
-        </section>
+        <p class="prize-footer-note">
+          Er der problemer med voucheren, så få hjælp fra
+          den ansvarlige kampafvikler.
+        </p>
 
       </main>
 
+
+      <!-- FOOTER -->
       <footer class="workspace-footer">
         <span>Odense Bulldogs · Kampkontrol</span>
         <span>ÉT HOLD. ÉN BY. ODENSE.</span>
