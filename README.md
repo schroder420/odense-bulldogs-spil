@@ -26,7 +26,8 @@ python3 -m http.server 8080
 | `resultat.html` | Separat side til resultat. |
 | `praemier.html` | Separat side til præmier. |
 | `statistik.html` | Separat side til statistik. |
-| `styles.css` | Fælles design og de fire siders layout, opdelt med sektionskommentarer. |
+| `styles.css` | Fælles skrifter, farver, navigation, formularer og komponenter. |
+| `css/` | Én CSS-fil pr. side med samme navn som HTML-filen, fx `css/afvikling.css`. |
 | `js/data.js` | Objektet `competition` og gemning i browseren. |
 | `js/app.js` | Fælles hjælpefunktioner, mobilmenu og pladsholderdialoger. |
 | `js/konfigurer.js` | Kun konfigureringens formular og dragtfarver. |
@@ -42,7 +43,7 @@ python3 -m http.server 8080
 Eksempel: Du skal lave `ny-side.html`. Brug et filnavn, som ikke allerede findes i repoet.
 
 1. Kopiér `side-skabelon.html` til `ny-side.html` i repoets rodmappe.
-2. Kopiér `css/side-skabelon.css` til `css/ny-side.css`. Ret CSS-linket i den nye HTML-fil. Skift body-klassen `side-skabelon` til `ny-side`, og brug samme klasse foran dine egne CSS-regler.
+2. Kopiér `css/side-skabelon.css` til `css/ny-side.css`. Indlæs `styles.css` først og `css/ny-side.css` bagefter. Skift body-klassen `side-skabelon` til `ny-side`, og brug samme klasse foran dine egne CSS-regler.
 3. Hvis siden har JavaScript, kopier `js/side-skabelon.js` til `js/ny-side.js`. Ret script-linket og funktionens navn. Hvis du ikke har brug for JavaScript, fjern kun linket til `js/side-skabelon.js`.
 4. Ret `<title>`, beskrivelsen, `data-page`, brødkrummen og overskriften. Udskift indholdet i `<main>`. Behold `id="main"`, så skip-linket virker.
 5. Ret skabelonens aktive menulink til din sides filnavn og navn. Brug `is-active` og `aria-current="page"` på den aktuelle sektion i hovedmenuen.

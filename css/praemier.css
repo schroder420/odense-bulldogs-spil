@@ -1,0 +1,229 @@
+/* Præmieudlevering. Fælles komponenter ligger i styles.css. */
+
+/* INDHOLD */
+
+.praemier .page-content {
+  max-width: 1100px;
+}
+
+.praemier .page-heading {
+  margin-bottom: 32px;
+}
+
+/* VEJLEDNINGSKORT */
+
+.praemier .prize-guide {
+  max-width: 850px;
+  padding: 34px 38px;
+
+  background: #123624;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* KORTETS OVERSKRIFT */
+
+.praemier .prize-guide-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding-bottom: 25px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.praemier .prize-guide-heading .eyebrow {
+  margin-bottom: 8px;
+}
+
+.praemier .prize-guide-heading h2 {
+  font-size: 30px;
+}
+
+.praemier .prize-guide-tag {
+  flex-shrink: 0;
+
+  padding: 7px 11px;
+
+  border: 1px solid var(--border);
+  border-radius: 4px;
+
+  color: var(--muted);
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+}
+
+/* TRIN */
+
+.praemier .prize-steps {
+  display: grid;
+  gap: 0;
+
+  margin: 0;
+  padding: 8px 0 0;
+
+  list-style: none;
+}
+
+.praemier .prize-step {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr);
+  align-items: start;
+  gap: 20px;
+
+  padding: 25px 0;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.praemier .prize-step:last-child {
+  border-bottom: 0;
+}
+
+.praemier .prize-step-number {
+  display: grid;
+  place-items: center;
+
+  width: 48px;
+  height: 48px;
+
+  border-radius: 50%;
+
+  background: var(--secondary);
+  border: 1px solid #45664e;
+
+  color: var(--orange);
+
+  font-family: var(--heading);
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.praemier .prize-step h3 {
+  margin: 1px 0 7px;
+
+  color: var(--text);
+
+  font-family: var(--body);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.praemier .prize-step p {
+  max-width: 620px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* VIGTIG PÅMINDELSE */
+
+.praemier .prize-reminder {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+
+  margin-top: 12px;
+  padding: 17px 18px;
+
+  border: 1px solid rgba(228, 131, 49, .28);
+  border-radius: 6px;
+
+  background: rgba(228, 131, 49, .08);
+}
+
+.praemier .prize-reminder-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 23px;
+
+  width: 23px;
+  height: 23px;
+
+  border-radius: 50%;
+
+  background: var(--orange);
+  color: var(--ink);
+
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.praemier .prize-reminder p {
+  color: #d7e1d9;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.praemier .prize-reminder strong {
+  color: white;
+}
+
+/* AFSLUTTENDE HJÆLP */
+
+.praemier .prize-footer-note {
+  max-width: 850px;
+  margin-top: 18px;
+
+  color: var(--muted);
+
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* TABLET OG MOBIL */
+
+@media (max-width: 768px) {
+  .praemier .prize-guide {
+    padding: 25px 20px;
+  }
+
+  .praemier .prize-guide-heading {
+    align-items: flex-start;
+  }
+
+  .praemier .prize-guide-heading h2 {
+    font-size: 26px;
+  }
+
+  .praemier .prize-step {
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 14px;
+
+    padding: 22px 0;
+  }
+
+  .praemier .prize-step-number {
+    width: 40px;
+    height: 40px;
+
+    font-size: 19px;
+  }
+
+  .praemier .prize-step h3 {
+    font-size: 15px;
+  }
+
+  .praemier .prize-step p {
+    font-size: 13px;
+  }
+
+}
+
+/* SMÅ MOBILER */
+
+@media (max-width: 420px) {
+  .praemier .prize-guide-heading {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+}

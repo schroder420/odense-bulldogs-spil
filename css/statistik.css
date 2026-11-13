@@ -1,0 +1,577 @@
+/* Statistik. Fælles komponenter ligger i styles.css. */
+
+/* SEKTIONER */
+
+.statistik .statistics-section {
+  margin-top: 30px;
+}
+
+.statistik .statistics-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.statistik .statistics-section-heading h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.statistik .statistics-section-heading .eyebrow {
+  margin: 0 0 7px;
+}
+
+/* FILTRE */
+
+.statistik .statistics-filters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  align-items: end;
+  gap: 16px;
+}
+
+.statistik .statistics-filters .field {
+  min-width: 0;
+}
+
+.statistik .statistics-filters .button {
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+.statistik .statistics-filters button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* NØGLETAL */
+
+.statistik .statistics-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.statistik .kpi-card {
+  min-width: 0;
+  margin: 0;
+  padding: 20px;
+}
+
+.statistik .kpi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.statistik .kpi-label {
+  color: var(--muted, #68716c);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.statistik .kpi-icon {
+  display: flex;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: var(--surface-soft, #f1f3ef);
+  color: var(--text);
+}
+
+.statistik .kpi-icon .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.statistik .kpi-value {
+  display: block;
+  margin-top: 18px;
+  color: var(--text);
+  font-size: clamp(25px, 3vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.7px;
+}
+
+.statistik .kpi-description {
+  min-height: 40px;
+  margin: 10px 0 0;
+  color: var(--muted, #68716c);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+/* GRAFER */
+
+.statistik .statistics-chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.statistik .chart-card {
+  min-width: 0;
+  margin: 0;
+  padding: 22px;
+}
+
+.statistik .chart-card-wide {
+  grid-column: 1 / -1;
+}
+
+.statistik .chart-card h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.statistik .chart-subtitle {
+  margin: 6px 0 0;
+  color: var(--muted, #68716c);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* AKTIVITETSGRAF */
+
+.statistik .activity-chart {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 10px;
+  height: 230px;
+  margin-top: 26px;
+}
+
+.statistik .chart-y-labels {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 25px;
+  color: var(--muted, #68716c);
+  font-size: 10px;
+  text-align: right;
+}
+
+.statistik .activity-plot {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.statistik .chart-grid-line {
+  position: absolute;
+  right: 0;
+  left: 0;
+  border-top: 1px dashed var(--border);
+}
+
+.statistik .line-1 { top: 0; }
+
+.statistik .line-2 { top: 25%; }
+
+.statistik .line-3 { top: 50%; }
+
+.statistik .line-4 { top: 75%; }
+
+.statistik .line-5 { top: 100%; }
+
+.statistik .activity-bars {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  height: 100%;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  align-items: end;
+  gap: 12px;
+}
+
+.statistik .activity-bar-wrap {
+  display: flex;
+  height: 100%;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+}
+
+.statistik .activity-bar {
+  display: block;
+  width: min(100%, 42px);
+  height: var(--bar-height);
+  min-height: 4px;
+  border-radius: 5px 5px 0 0;
+  background: var(--primary, #164b35);
+}
+
+.statistik .activity-bar-label {
+  min-height: 16px;
+  color: var(--muted, #68716c);
+  font-size: 10px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.statistik .chart-card .field-help {
+  margin-top: 18px;
+}
+
+/* HORISONTAL GRAF */
+
+.statistik .horizontal-chart {
+  display: grid;
+  gap: 22px;
+  margin-top: 26px;
+}
+
+.statistik .horizontal-chart-row {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr) 34px;
+  align-items: center;
+  gap: 10px;
+}
+
+.statistik .horizontal-chart-row > span {
+  overflow: hidden;
+  color: var(--muted, #68716c);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.statistik .horizontal-chart-row > strong {
+  color: var(--text);
+  font-size: 12px;
+  text-align: right;
+}
+
+.statistik .horizontal-track,
+.statistik .distribution-track {
+  height: 9px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--surface-soft, #edf0ec);
+}
+
+.statistik .horizontal-track > span,
+.statistik .distribution-track > span {
+  display: block;
+  width: var(--bar-width);
+  height: 100%;
+  border-radius: inherit;
+  background: var(--primary, #164b35);
+}
+
+/* GENTAGNEDE FORSØG */
+
+.statistik .repeat-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 26px 0 10px;
+}
+
+.statistik .repeat-donut {
+  display: grid;
+  width: 148px;
+  height: 148px;
+  flex: 0 0 148px;
+  place-items: center;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--primary, #164b35) 0 42%,
+    var(--surface-soft, #edf0ec) 42% 100%
+  );
+}
+
+.statistik .repeat-donut > div {
+  display: flex;
+  width: 108px;
+  height: 108px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--surface, #fff);
+}
+
+.statistik .repeat-donut strong {
+  color: var(--text);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.statistik .repeat-donut span {
+  margin-top: 5px;
+  color: var(--muted, #68716c);
+  font-size: 10px;
+  text-align: center;
+}
+
+.statistik .repeat-legend {
+  display: grid;
+  gap: 16px;
+}
+
+.statistik .repeat-legend > div {
+  display: grid;
+  grid-template-columns: 9px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.statistik .repeat-legend span:not(.legend-dot) {
+  color: var(--muted, #68716c);
+  font-size: 11px;
+}
+
+.statistik .repeat-legend strong {
+  color: var(--text);
+  font-size: 12px;
+}
+
+.statistik .legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.statistik .legend-repeat {
+  background: var(--primary, #164b35);
+}
+
+.statistik .legend-single {
+  background: #cdd4cf;
+}
+
+/* SPILFORDELING */
+
+.statistik .game-distribution {
+  display: grid;
+  gap: 24px;
+  margin-top: 28px;
+}
+
+.statistik .distribution-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.statistik .distribution-label span {
+  color: var(--muted, #68716c);
+  font-size: 12px;
+}
+
+.statistik .distribution-label strong {
+  color: var(--text);
+  font-size: 12px;
+}
+
+/* RESULTATSTATISTIK */
+
+.statistik .result-stat-list {
+  display: grid;
+  margin-top: 20px;
+}
+
+.statistik .result-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.statistik .result-stat-row:last-child {
+  border-bottom: 0;
+}
+
+.statistik .result-stat-row span {
+  color: var(--muted, #68716c);
+  font-size: 12px;
+}
+
+.statistik .result-stat-row strong {
+  color: var(--text);
+  font-size: 13px;
+  text-align: right;
+}
+
+/* KONKURRENCELISTE */
+
+.statistik .statistics-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.statistik .statistics-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.statistik .statistics-table th {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted, #68716c);
+  font-size: 11px;
+  font-weight: 700;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.statistik .statistics-table td {
+  padding: 15px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.statistik .statistics-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.statistik .statistics-table td strong {
+  font-weight: 600;
+}
+
+.statistik .button-small {
+  min-height: 32px;
+  padding: 7px 10px;
+  font-size: 11px;
+}
+
+/* TOM TILSTAND */
+
+.statistik .statistics-empty {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.statistik .statistics-empty-icon {
+  display: flex;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-soft, #f1f3ef);
+  color: var(--text);
+}
+
+.statistik .statistics-empty-icon .icon {
+  width: 21px;
+  height: 21px;
+}
+
+.statistik .statistics-empty h2 {
+  margin: 2px 0 8px;
+  color: var(--text);
+  font-size: 16px;
+}
+
+.statistik .statistics-empty p {
+  max-width: 600px;
+  margin: 0;
+  color: var(--muted, #68716c);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* RESPONSIVT DESIGN */
+
+/* Smalle desktopskærme. */
+
+@media (max-width: 1100px) {
+  .statistik .statistics-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .statistik .statistics-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .statistik .statistics-filters .button {
+    width: 100%;
+  }
+}
+
+/* Mobilvisning. */
+
+@media (max-width: 760px) {
+  .statistik .statistics-chart-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .statistik .chart-card-wide {
+    grid-column: auto;
+  }
+
+  .statistik .statistics-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .statistik .repeat-summary {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .statistik .statistics-table {
+    min-width: 1000px;
+  }
+}
+
+/* Smalle telefoner. */
+
+@media (max-width: 520px) {
+  .statistik .statistics-kpis {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .statistik .statistics-filters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .statistik .kpi-description {
+    min-height: 0;
+  }
+
+  .statistik .activity-bars {
+    gap: 5px;
+  }
+
+  .statistik .activity-bar-label {
+    font-size: 9px;
+  }
+
+  .statistik .horizontal-chart-row {
+    grid-template-columns: 76px minmax(0, 1fr) 30px;
+    gap: 7px;
+  }
+
+  .statistik .repeat-summary {
+    flex-direction: column;
+  }
+}

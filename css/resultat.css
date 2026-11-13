@@ -1,0 +1,204 @@
+/* Resultat. Fælles komponenter ligger i styles.css. */
+
+.resultat .result-overview {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.resultat .result-overview > div {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface, #fff);
+}
+
+.resultat .result-overview strong {
+  color: var(--text);
+  font-size: 14px;
+}
+
+.resultat .result-message {
+  margin-top: 20px;
+  padding: 16px;
+  border-left: 3px solid var(--orange);
+  border-radius: 6px;
+  background: var(--surface-soft, #f7f7f5);
+}
+
+.resultat .result-message strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.resultat .result-message p {
+  margin: 0;
+  color: var(--muted, #68716c);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.resultat .result-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.resultat .result-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.resultat .result-table th {
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted, #68716c);
+  font-size: 11px;
+  font-weight: 700;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.resultat .result-table td {
+  padding: 15px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.resultat .result-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.resultat .result-rank {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--surface-soft, #f1f2ef);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.resultat .rank-first {
+  background: #f5e5b4;
+  color: #755515;
+}
+
+.resultat .rank-second {
+  background: #e5e8e7;
+  color: #414b47;
+}
+
+.resultat .rank-third {
+  background: #ead5c5;
+  color: #754a2e;
+}
+
+.resultat .result-voucher {
+  display: inline-block;
+  padding: 6px 9px;
+  border-radius: 5px;
+  background: #fff1d1;
+  color: #805b12;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.resultat .result-voucher.is-redeemed {
+  background: #dcefe4;
+  color: #216642;
+}
+
+.resultat .result-help {
+  margin-top: 16px;
+}
+
+.resultat .result-search {
+  max-width: 360px;
+  margin-bottom: 20px;
+}
+
+.resultat .result-search input {
+  width: 100%;
+}
+
+.resultat .result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.resultat .result-actions .button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.resultat .result-actions .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.resultat .result-empty {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.resultat .result-empty-icon {
+  display: inline-flex;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--muted, #68716c);
+  font-weight: 700;
+}
+
+.resultat .result-empty h2 {
+  margin: 2px 0 8px;
+  font-size: 16px;
+}
+
+.resultat .result-empty p {
+  margin: 0;
+  color: var(--muted, #68716c);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .resultat .result-overview {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .resultat .result-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .resultat .result-actions .button {
+    justify-content: center;
+  }
+}
+
+/* Smalle telefoner. */
+
+@media (max-width: 520px) {
+  .resultat .result-overview {
+    grid-template-columns: 1fr;
+  }
+}

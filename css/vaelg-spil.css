@@ -1,0 +1,456 @@
+/* Vælg spil. Fælles komponenter ligger i styles.css. */
+
+/* Spilvalg: kort, isbane, spillerfigurer og kommende spil. */
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 21px;
+}
+
+.game-card {
+  min-width: 0;
+  border: 1px solid #3d6249;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #133925;
+  display: flex;
+  flex-direction: column;
+  transition: border-color .2s,transform .2s;
+}
+
+.game-card:first-child:hover {
+  border-color: #7e946a;
+  transform: translateY(-3px);
+}
+
+.game-card-body {
+  padding: 22px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.game-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+  color: #8eaa98;
+  letter-spacing: .35px;
+}
+
+.game-meta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.game-card h2 {
+  font-size: 31px;
+  letter-spacing: .1px;
+}
+
+.game-description {
+  line-height: 1.65;
+  color: #adc3b5;
+  margin-top: 12px;
+  margin-bottom: 24px;
+  max-width: 290px;
+  font-size: 14px;
+}
+
+.game-card .button {
+  width: 100%;
+  margin-top: auto;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.game-card.is-unavailable {
+  border-color: #2b4d37;
+  background: #103021;
+}
+
+.game-card.is-unavailable h2 {
+  color: #8ea996;
+}
+
+.game-card.is-unavailable .game-description {
+  color: #7d9b88;
+}
+
+.game-card.is-unavailable .game-meta {
+  color: #718f7c;
+}
+
+.game-card.is-unavailable .button {
+  opacity: 1;
+  background: #1d402c;
+  border-color: #31543c;
+  color: #668371;
+}
+
+.coming-art {
+  display: grid;
+  place-items: center;
+  position: relative;
+  aspect-ratio: 1.6;
+  background: #153925;
+  overflow: hidden;
+}
+
+.coming-art::before,
+.coming-art::after {
+  content: '';
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border: 1px solid #587b4c20;
+  transform: rotate(35deg);
+  border-radius: 35px;
+}
+
+.coming-art::after {
+  width: 130px;
+  height: 130px;
+  transform: rotate(35deg);
+}
+
+.coming-number {
+  font-family: var(--heading);
+  font-size: 94px;
+  font-weight: 800;
+  line-height: 1;
+  color: #2d5032;
+  letter-spacing: -4px;
+}
+
+.game-card.is-unavailable:nth-child(3) .coming-art {
+  background: #163626;
+}
+
+.page-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: 24px;
+  color: #8ca994;
+  line-height: 1.6;
+  font-size: 12px;
+}
+
+.page-note .icon {
+  width: 14px;
+  height: 14px;
+  margin-top: 2px;
+}
+
+.step-footnote {
+  color: #789982;
+  font-size: 11px;
+}
+
+.game-availability {
+  color: #9bb79c;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.game-availability > span {
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+  background: #a3c58e;
+}
+
+.coming-symbol {
+  position: absolute;
+  bottom: 14px;
+  right: 16px;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #4c704e5e;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #64875f;
+}
+
+.coming-symbol .icon {
+  width: 11px;
+  height: 11px;
+}
+
+.coming-rink {
+  position: absolute;
+  inset: 24% 10%;
+  border: 1px solid #72926417;
+  border-radius: 50%;
+  transform: rotate(-22deg);
+}
+
+.game-meta,
+.game-availability {
+  font-size: 11px;
+}
+
+/* Store skærme. */
+
+@media (min-width: 1500px) {
+  .game-card-body {
+    padding: 25px;
+  }
+
+  .game-description {
+    margin-bottom: 30px;
+  }
+
+  .game-grid {
+    gap: 25px;
+  }
+}
+
+/* Mindre desktopskærme. */
+
+@media (max-width: 1190px) {
+  .game-grid {
+    gap: 15px;
+  }
+
+  .game-card-body {
+    padding: 18px;
+  }
+
+  .game-card h2 {
+    font-size: 27px;
+  }
+
+  .game-meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+}
+
+/* Smalle desktopskærme. */
+
+@media (max-width: 1100px) {
+  .game-card .button {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* Tablets. */
+
+@media (max-width: 960px) {
+  .game-grid {
+    gap: 12px;
+  }
+
+  .game-card-body {
+    padding: 16px;
+  }
+
+  .game-description {
+    line-height: 1.6;
+    margin-top: 9px;
+    font-size: 13px;
+  }
+
+  .game-meta {
+    flex-wrap: wrap;
+    margin-bottom: 11px;
+    font-size: 10px;
+  }
+
+  .coming-number {
+    font-size: 76px;
+  }
+
+  .coming-art {
+    aspect-ratio: 1.25;
+  }
+
+  .game-card .button {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .game-card .button .icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .game-card.is-unavailable .badge {
+    font-size: 8px;
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  .game-card h2 {
+    font-size: 26px;
+  }
+}
+
+/* Mobilvisning. */
+
+@media (max-width: 760px) {
+  .game-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .game-card {
+    display: grid;
+    grid-template-columns: 37% 1fr;
+    min-height: 220px;
+  }
+
+  .coming-art {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .game-card-body {
+    padding: 22px;
+  }
+
+  .game-description {
+    line-height: 1.65;
+    margin-bottom: 19px;
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  .game-meta {
+    margin-bottom: 10px;
+    flex-direction: row;
+    font-size: 11px;
+  }
+
+  .game-card .button {
+    padding: 10px 13px;
+    min-height: 40px;
+    font-size: 14px;
+  }
+
+  .game-card .button .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .game-card .badge {
+    font-size: 8px;
+  }
+
+  .game-card.is-unavailable {
+    min-height: 190px;
+  }
+
+  .game-card.is-unavailable .game-description {
+    margin-bottom: 17px;
+  }
+
+  .coming-number {
+    font-size: 85px;
+  }
+
+  .page-note {
+    margin-top: 19px;
+  }
+
+  .game-card h2 {
+    font-size: 29px;
+  }
+}
+
+/* Smalle telefoner. */
+
+@media (max-width: 520px) {
+  .game-card {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .coming-art {
+    height: auto;
+    aspect-ratio: 1.85;
+  }
+
+  .game-card-body {
+    padding: 22px;
+  }
+
+  .game-description {
+    margin-top: 11px;
+    margin-bottom: 22px;
+  }
+
+  .game-meta {
+    margin-bottom: 13px;
+  }
+
+  .game-card .button {
+    min-height: 43px;
+  }
+
+  .game-card.is-unavailable {
+    min-height: 0;
+    grid-template-columns: 29% 1fr;
+  }
+
+  .game-card.is-unavailable .coming-art {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .game-card.is-unavailable .game-card-body {
+    padding: 18px;
+  }
+
+  .game-card.is-unavailable h2 {
+    font-size: 25px;
+  }
+
+  .game-card.is-unavailable .game-meta {
+    margin-bottom: 10px;
+    font-size: 9px;
+  }
+
+  .game-card.is-unavailable .game-description {
+    margin-top: 8px;
+    margin-bottom: 16px;
+    font-size: 12px;
+  }
+
+  .game-card.is-unavailable .button {
+    min-height: 35px;
+    font-size: 12px;
+  }
+
+  .coming-number {
+    font-size: 66px;
+  }
+
+  .coming-art::before {
+    width: 100px;
+    height: 100px;
+    border-radius: 18px;
+  }
+
+  .coming-art::after {
+    width: 70px;
+    height: 70px;
+    border-radius: 14px;
+  }
+
+  .game-card .game-meta {
+    flex-wrap: wrap;
+    font-size: 10px;
+  }
+}

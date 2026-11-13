@@ -1,0 +1,661 @@
+/* Konfigurér konkurrence. Fælles komponenter ligger i styles.css. */
+
+/* Konfigurering: kampoplysninger, dragtfarver og ekstra indstillinger. */
+
+.configuration-layout {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 310px;
+  gap: 27px;
+  align-items: start;
+}
+
+.configuration-main {
+  min-width: 0;
+  display: grid;
+  gap: 20px;
+}
+
+.configuration-aside {
+  display: grid;
+  gap: 18px;
+}
+
+.selected-game {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #133925;
+  display: block;
+  margin-bottom: 0;
+  min-height: 0;
+  padding: 0;
+}
+
+.selected-game > .panel-heading {
+  padding: 17px 19px;
+  margin: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.selected-game > .panel-heading .eyebrow {
+  margin: 0;
+  font-size: 9px;
+  letter-spacing: 1.2px;
+}
+
+.selected-game-image {
+  min-height: 0;
+  aspect-ratio: auto !important;
+}
+
+.selected-game-image .game-art {
+  aspect-ratio: 1.75;
+}
+
+.selected-game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  min-width: 0;
+}
+
+.selected-game-info h2 {
+  font-size: 27px;
+  margin-right: 0;
+}
+
+.selected-game-info p {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #9cb9a6;
+  margin-top: 7px;
+}
+
+.configuration-main > .panel.form-section {
+  padding: 25px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.kit-panel {
+  padding: 20px;
+}
+
+.kit-panel > .eyebrow {
+  margin: 0 0 23px;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.kit-preview {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 9px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.kit-vs {
+  font-family: var(--heading);
+  font-size: 12px;
+  letter-spacing: .6px;
+  color: #658c71;
+  align-self: center;
+  margin-bottom: 35px;
+}
+
+.kit-side > span {
+  display: block;
+  color: #8bab96;
+  margin-top: 5px;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.kit-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 0;
+}
+
+.kit-side strong {
+  font-family: var(--heading);
+  font-size: 20px;
+  line-height: 1.12;
+  margin-top: 13px;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+.jersey {
+  position: relative;
+  width: 86px;
+  height: 93px;
+  filter: drop-shadow(0 8px 5px #071d123d);
+  --kit-primary: #f7f8f2;
+  --kit-stripe: #ae0a1b;
+}
+
+.jersey-body {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(28% 0,40% 5%,60% 5%,72% 0,100% 21%,87% 44%,75% 36%,75% 100%,25% 100%,25% 36%,13% 44%,0 21%);
+  background: var(--kit-primary);
+  border-top: 2px solid #ffffff15;
+}
+
+.jersey-body::before {
+  content: '';
+  position: absolute;
+  left: 38%;
+  right: 38%;
+  top: -7%;
+  height: 20%;
+  border-radius: 0 0 40% 40%;
+  background: #123723;
+  border: 3px solid var(--kit-stripe);
+}
+
+.jersey-body::after {
+  content: '';
+  position: absolute;
+  left: 45%;
+  right: 45%;
+  bottom: 6%;
+  top: 18%;
+  background: linear-gradient(90deg,#00000008,transparent);
+}
+
+.jersey-stripe {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16%;
+  height: 11%;
+  background: var(--kit-stripe);
+  border-top: 3px solid #102c2017;
+  border-bottom: 2px solid #102c2017;
+}
+
+.jersey-mark {
+  position: absolute;
+  left: 40%;
+  right: 40%;
+  top: 32%;
+  font-family: var(--heading);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--kit-stripe);
+  text-align: center;
+}
+
+.color-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid #3f5f49;
+  border-radius: 4px;
+  background: #0d2c1e;
+  min-height: 43px;
+}
+
+.color-field > span {
+  font-size: 12px;
+  color: #bdd0c1;
+  font-variant-numeric: tabular-nums;
+  text-transform: uppercase;
+}
+
+.settings-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.65;
+  color: #a0b8a8;
+  background: #173b28;
+  padding: 15px 17px;
+  border-radius: 5px;
+  border-left: 2px solid #56765b;
+  margin-top: 0;
+}
+
+.settings-note > .icon {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  color: #9fb991;
+}
+
+.settings-note strong {
+  display: block;
+  font-size: 12px;
+  color: #d2dfd4;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.advanced-settings {
+  background: #123624;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-top: 0;
+  padding: 0 !important;
+}
+
+.advanced-settings > summary {
+  padding: 17px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  color: #c6d8cb;
+  font-weight: 600;
+  list-style: none;
+  font-size: 13px;
+}
+
+.advanced-settings > summary::-webkit-details-marker {
+  display: none;
+}
+
+.advanced-settings > summary > span {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.advanced-settings > summary .icon {
+  width: 15px;
+  height: 15px;
+  color: #90ae9a;
+}
+
+.advanced-settings > summary > .icon {
+  width: 13px;
+  height: 13px;
+  transition: transform .18s;
+}
+
+.advanced-settings[open] > summary > .icon {
+  transform: rotate(180deg);
+}
+
+.advanced-settings[open] > summary {
+  border-bottom: 1px solid var(--border);
+}
+
+.advanced-settings > div,
+.advanced-settings > .advanced-content {
+  padding: 19px 20px 22px;
+  display: grid;
+  gap: 19px;
+}
+
+.configuration-aside .info-note {
+  line-height: 1.65;
+  padding: 17px;
+}
+
+.color-field .color-field-hint {
+  margin-left: auto;
+  text-transform: none;
+  color: #718f7a;
+  font-size: 8px;
+  white-space: nowrap;
+}
+
+.selected-game-image .rink {
+  inset: 0;
+  border-radius: 0;
+  transform: none;
+}
+
+.selected-game-image .skater-home {
+  height: 76%;
+  left: 7%;
+  bottom: 4%;
+}
+
+.selected-game-image .skater-away {
+  height: 65%;
+  right: 5%;
+  top: 0;
+}
+
+.selected-game-image .skater-active {
+  height: 90%;
+  left: 30%;
+  bottom: -13%;
+}
+
+.selected-game-image .art-score {
+  font-size: 28px;
+  bottom: 12px;
+  right: 12px;
+}
+
+.selected-game-image .art-score > span {
+  font-size: 17px;
+}
+
+.selected-game-image .game-art .art-label {
+  left: 12px;
+  top: 11px;
+  font-size: 6px;
+}
+
+.info-note,
+.configuration-aside .info-note,
+.settings-note {
+  font-size: 12px;
+}
+
+.configuration-aside .selected-game-info p {
+  font-size: 12px;
+}
+
+.selected-game > .panel-heading .text-link {
+  font-size: 12px;
+}
+
+.advanced-content > .field-help {
+  font-size: 12px;
+}
+
+/* Store skærme. */
+
+@media (min-width: 1500px) {
+  .configuration-layout {
+    grid-template-columns: minmax(0,1fr) 340px;
+  }
+}
+
+/* Mindre desktopskærme. */
+
+@media (max-width: 1190px) {
+  .configuration-layout {
+    grid-template-columns: minmax(0,1fr) 270px;
+    gap: 21px;
+  }
+
+  .selected-game {
+    grid-template-columns: 100px 1fr;
+  }
+
+  .selected-game-info {
+    padding-left: 16px;
+  }
+
+  .selected-game-info h2 {
+    font-size: 23px;
+  }
+
+  .kit-panel {
+    padding: 18px 15px;
+  }
+
+  .kit-vs {
+    font-size: 11px;
+  }
+
+  .color-field .color-field-hint {
+    display: none;
+  }
+}
+
+/* Smalle desktopskærme. */
+
+@media (max-width: 1100px) {
+  .configuration-layout {
+    grid-template-columns: minmax(0,1fr) 250px;
+    gap: 20px;
+  }
+
+  .configuration-main > .panel {
+    padding: 21px;
+  }
+
+  .configuration-aside .info-note {
+    padding: 15px;
+    font-size: 12px;
+  }
+
+  .kit-preview {
+    padding: 18px 12px;
+  }
+
+  .kit-side strong {
+    font-size: 18px;
+  }
+
+  .jersey {
+    width: 76px;
+    height: 84px;
+  }
+}
+
+/* Tablets. */
+
+@media (max-width: 960px) {
+  .configuration-layout {
+    grid-template-columns: minmax(0,1fr);
+  }
+
+  .configuration-aside {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .jersey {
+    width: 76px;
+    height: 84px;
+  }
+
+  .configuration-main > .panel {
+    padding: 24px;
+  }
+
+  .selected-game {
+    grid-template-columns: 125px 1fr;
+  }
+
+  .configuration-aside .selected-game {
+    margin: 0;
+  }
+
+  .selected-game-info {
+    padding: 18px;
+  }
+
+  .selected-game-info h2 {
+    font-size: 26px;
+    margin-right: 0;
+  }
+
+  .selected-game-image {
+    min-height: 0;
+  }
+
+  .configuration-main > .panel.form-section {
+    padding: 24px;
+  }
+
+  .kit-panel {
+    padding: 22px;
+  }
+
+  .kit-panel > .eyebrow {
+    margin-bottom: 25px;
+  }
+
+  .kit-preview {
+    padding: 0;
+  }
+
+  .kit-vs {
+    margin-bottom: 32px;
+  }
+
+  .configuration-aside > .info-note {
+    grid-column: 1/-1;
+  }
+}
+
+/* Mobilvisning. */
+
+@media (max-width: 760px) {
+  .configuration-layout {
+    gap: 21px;
+  }
+
+  .configuration-main > .panel {
+    padding: 22px;
+  }
+
+  .selected-game {
+    grid-template-columns: 110px 1fr;
+    margin-bottom: 21px;
+    min-height: 98px;
+  }
+
+  .configuration-aside {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .kit-side strong {
+    font-size: 19px;
+  }
+
+  .jersey {
+    width: 68px;
+    height: 75px;
+  }
+
+  .configuration-main > .panel.form-section {
+    padding: 22px;
+  }
+
+  .kit-preview {
+    padding: 0;
+  }
+
+  .kit-panel {
+    padding: 20px;
+  }
+
+  .selected-game-info h2 {
+    font-size: 25px;
+    margin-right: 0;
+  }
+
+  .selected-game-image {
+    min-height: 0;
+  }
+
+  .selected-game-info {
+    padding: 18px;
+  }
+}
+
+/* Smalle telefoner. */
+
+@media (max-width: 520px) {
+  .selected-game {
+    grid-template-columns: 83px 1fr;
+    min-height: 88px;
+  }
+
+  .configuration-main > .panel {
+    padding: 20px;
+  }
+
+  .configuration-aside {
+    grid-template-columns: 1fr;
+  }
+
+  .kit-side strong {
+    font-size: 22px;
+  }
+
+  .jersey {
+    width: 83px;
+    height: 91px;
+  }
+
+  .advanced-settings > summary {
+    padding: 16px 18px;
+  }
+
+  .advanced-settings > div,
+  .advanced-settings > .advanced-content {
+    padding: 18px;
+  }
+
+  .configuration-main > .panel.form-section {
+    padding: 20px;
+  }
+
+  .selected-game-info h2 {
+    font-size: 27px;
+    margin-right: 0;
+  }
+
+  .selected-game-info {
+    padding: 20px;
+  }
+
+  .selected-game-image {
+    min-height: 0;
+  }
+
+  .selected-game-image .game-art {
+    aspect-ratio: 1.85;
+  }
+
+  .configuration-aside .selected-game {
+    min-height: 0;
+  }
+
+  .kit-preview {
+    padding: 0;
+  }
+
+  .kit-panel {
+    padding: 22px 25px;
+  }
+
+  .kit-panel > .eyebrow {
+    margin-bottom: 24px;
+  }
+
+  .kit-vs {
+    font-size: 12px;
+    margin-bottom: 33px;
+  }
+
+  .color-field > span {
+    font-size: 12px;
+  }
+
+  .configuration-aside .selected-game-info p {
+    font-size: 12px;
+  }
+
+  .configuration-aside > .info-note {
+    grid-column: auto;
+  }
+}
