@@ -989,6 +989,24 @@
 
 /* MOBILE */
 
+/* Skift menuen før de fem menupunkter får for lidt plads. */
+@media (max-width: 960px) {
+
+  .spiller .desktop-navigation {
+    display: none;
+  }
+
+  .spiller .mobile-navigation {
+    display: block;
+    order: 3;
+  }
+
+  .spiller .header-cta {
+    display: none;
+  }
+
+}
+
 @media (max-width: 768px) {
 
   .spiller .site-header {
@@ -1008,21 +1026,8 @@
     font-size: 17px;
   }
 
-  .spiller .desktop-navigation {
-    display: none;
-  }
-
-  .spiller .mobile-navigation {
-    display: block;
-    order: 3;
-  }
-
   .spiller .mobile-navigation .main-navigation {
     top: 70px;
-  }
-
-  .spiller .header-cta {
-    display: none;
   }
 
   .spiller .hero {

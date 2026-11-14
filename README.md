@@ -26,6 +26,9 @@ python3 -m http.server 8080
 | `resultat.html` | Separat side til resultat. |
 | `praemier.html` | Separat side til præmier. |
 | `statistik.html` | Separat side til statistik. |
+| `kampguide/index.html` | Kampguide til tilskuerne på /kampguide (mobil først, ingen login). Indhold fra kampguiden v2, nov. 2026. |
+| `css/kampguide.css` | Kampguidens egne regler, alle med `.kampguide` foran. |
+| `assets/kampguide/` | Banetegninger, fotos og PDF til kampguiden. |
 | `styles.css` | Fælles skrifter, farver, navigation, formularer og komponenter. |
 | `css/` | Én CSS-fil pr. side med samme navn som HTML-filen, fx `css/afvikling.css`. |
 | `js/data.js` | Objektet `competition` og gemning i browseren. |
@@ -90,6 +93,8 @@ Konkurrencens navn og modstander må ikke være tomme eller kun indeholde mellem
 Data gemmes kun i den aktuelle browser. De deles ikke med andre brugere eller en backend. Ryd browserens webstedsdata for at begynde forfra.
 
 ## Arbejd sammen
+
+Fansidens menu i `spiller.html` har linket **Kampguide** i både desktop- og mobilnavigationen. Det åbner `kampguide/`, hvorfra **Tilbage til forsiden** fører tilbage til fansiden. Linkene er almindelig HTML og kræver ikke JavaScript. Menuen skifter til mobilvisning ved 960 px, så alle fem punkter har plads.
 
 Arbejd på hver jeres Git-branch og primært i egne HTML-, CSS- og JS-filer. Aftal ændringer i `styles.css`, `js/app.js` og `js/data.js`, fordi de deles mellem siderne. Tilføj kun egen sidelogik til sidens egen JS-fil.
 
