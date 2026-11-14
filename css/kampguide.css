@@ -64,6 +64,17 @@
   margin-bottom: auto;
 }
 
+.kampguide .kg-back {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-bottom: 16px;
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 .kampguide .kg-hero-top img {
   width: 56px;
   height: auto;

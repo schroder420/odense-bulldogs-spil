@@ -94,6 +94,8 @@ Data gemmes kun i den aktuelle browser. De deles ikke med andre brugere eller en
 
 ## Arbejd sammen
 
+Fansidens menu i `spiller.html` har linket **Kampguide** i både desktop- og mobilnavigationen. Det åbner `kampguide/`, hvorfra **Tilbage til forsiden** fører tilbage til fansiden. Linkene er almindelig HTML og kræver ikke JavaScript. Menuen skifter til mobilvisning ved 960 px, så alle fem punkter har plads.
+
 Arbejd på hver jeres Git-branch og primært i egne HTML-, CSS- og JS-filer. Aftal ændringer i `styles.css`, `js/app.js` og `js/data.js`, fordi de deles mellem siderne. Tilføj kun egen sidelogik til sidens egen JS-fil.
 
 Før I samler ændringer, gennemgå disse punkter:
