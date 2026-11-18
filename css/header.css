@@ -1,0 +1,275 @@
+
+/* ==============================
+   HEADER – ODENSE BULLDOGS
+============================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background: rgba(11, 36, 26, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  width: 100%;
+  max-width: 1400px;
+  height: 82px;
+  margin: 0 auto;
+  padding: 0 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+/* LOGO */
+
+.site-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.site-brand img {
+  width: 42px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.brand-text strong {
+  font-family: var(--heading);
+  font-size: 19px;
+  line-height: 1;
+}
+
+.brand-text small {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+}
+
+/* DESKTOP MENU */
+
+.desktop-navigation {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-item {
+  position: relative;
+  padding: 10px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color .2s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  color: var(--text);
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--orange);
+  transition: width .2s ease;
+}
+
+.nav-item:hover::after,
+.nav-item.active::after {
+  width: 100%;
+}
+
+/* CTA */
+
+.header-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 17px;
+  flex-shrink: 0;
+
+  border-radius: 5px;
+  background: var(--orange);
+  color: var(--ink);
+
+  font-size: 11px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition: background .2s ease;
+}
+
+.header-cta:hover {
+  background: #f19a4e;
+}
+
+.header-cta span {
+  font-size: 16px;
+}
+
+/* MOBILMENU */
+
+.mobile-navigation {
+  display: none;
+  position: relative;
+}
+
+.mobile-navigation summary {
+  width: 42px;
+  height: 42px;
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+
+  cursor: pointer;
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+}
+
+.mobile-navigation summary::-webkit-details-marker {
+  display: none;
+}
+
+.mobile-navigation summary span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: .2s ease;
+}
+
+.mobile-navigation[open] summary span:first-child {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-navigation[open] summary span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-navigation[open] summary span:last-child {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* DROPDOWN */
+
+.mobile-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+
+  width: 280px;
+  max-width: calc(100vw - 30px);
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, .3);
+}
+
+.mobile-menu a {
+  padding: 14px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-menu a:hover {
+  color: var(--orange);
+}
+
+.mobile-menu .mobile-menu-cta {
+  margin-top: 10px;
+  text-align: center;
+  background: var(--orange);
+  color: var(--ink);
+  border-radius: 5px;
+  border-bottom: none;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+  .header-inner {
+    padding: 0 25px;
+    gap: 18px;
+  }
+
+  .desktop-navigation {
+    gap: 18px;
+  }
+
+  .nav-item {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 750px) {
+  .header-inner {
+    height: 72px;
+    padding: 0 20px;
+  }
+
+  .desktop-navigation,
+  .header-cta {
+    display: none;
+  }
+
+  .mobile-navigation {
+    display: block;
+  }
+
+  .site-brand img {
+    width: 36px;
+    height: 42px;
+  }
+
+  .brand-text strong {
+    font-size: 17px;
+  }
+
+  .brand-text small {
+    font-size: 8px;
+  }
+}
+
+.site-header a:focus-visible,
+.mobile-navigation summary:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 4px;
+}
