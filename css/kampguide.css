@@ -613,9 +613,3 @@
     gap: 16px;
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .kampguide {
-    scroll-behavior: auto;
-  }
-}
