@@ -32,8 +32,6 @@ function startIndstillinger() {
       return;
     }
 
-    showText('settings-status', 'Gemmer…');
-
     let screenSaved = true;
 
     try {
