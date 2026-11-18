@@ -1,0 +1,512 @@
+
+/* ========================================
+   LEADERBOARD – SPILLERSIDE
+======================================== */
+
+.leaderboard-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(46, 104, 63, 0.35),
+      transparent 55%
+    ),
+    #0b241a;
+  color: #f7f8f2;
+  font-family: var(--body, Arial, sans-serif);
+}
+
+.leaderboard-layout {
+  width: 100%;
+  max-width: 620px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 26px 24px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* BRAND */
+
+.leaderboard-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.leaderboard-brand img {
+  width: 35px;
+  height: 41px;
+  object-fit: contain;
+}
+
+/* OVERSKRIFT */
+
+.leaderboard-heading {
+  margin: 38px auto 26px;
+  text-align: center;
+}
+
+.leaderboard-eyebrow {
+  margin: 0 0 8px;
+  color: #e48331;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.leaderboard-heading h1 {
+  margin: 0;
+  font-family: var(--heading, Impact, sans-serif);
+  font-size: clamp(42px, 9vw, 58px);
+  line-height: 0.98;
+  text-transform: uppercase;
+}
+
+.leaderboard-heading > p:not(.leaderboard-eyebrow) {
+  max-width: 350px;
+  margin: 13px auto 17px;
+  color: #acbfb1;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.leaderboard-heading strong {
+  color: #f7f8f2;
+}
+
+.competition-label {
+  width: fit-content;
+  margin: 0 auto;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(205, 225, 207, 0.15);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #acbfb1;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #e48331;
+}
+
+/* TOP 3 PODIUM */
+
+.podium-section {
+  margin-bottom: 30px;
+}
+
+.podium {
+  display: grid;
+  grid-template-columns: 1fr 1.12fr 1fr;
+  align-items: end;
+  gap: 8px;
+}
+
+.podium-player {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.podium-avatar {
+  width: 53px;
+  height: 53px;
+  margin-bottom: 9px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #254d32;
+  border: 2px solid rgba(205, 225, 207, 0.2);
+  color: #f7f8f2;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.first-place .podium-avatar {
+  width: 66px;
+  height: 66px;
+  border: 2px solid #e48331;
+  background: #315d3b;
+  font-size: 18px;
+}
+
+.podium-rank {
+  width: 25px;
+  height: 25px;
+  margin-bottom: 7px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #254d32;
+  color: #f7f8f2;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.first-place .podium-rank {
+  background: #e48331;
+  color: #102c20;
+}
+
+.podium-player > strong {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+}
+
+.podium-score {
+  margin-top: 5px;
+  color: #acbfb1;
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.first-place .podium-score {
+  color: #f5b36f;
+}
+
+.podium-block {
+  width: 100%;
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  border: 1px solid rgba(205, 225, 207, 0.12);
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(
+    180deg,
+    rgba(49, 93, 59, 0.85),
+    rgba(24, 73, 46, 0.35)
+  );
+}
+
+.podium-block span {
+  padding-top: 10px;
+  color: rgba(247, 248, 242, 0.55);
+  font-family: var(--heading, Impact, sans-serif);
+  font-size: 26px;
+}
+
+.second-place .podium-block {
+  height: 65px;
+}
+
+.first-place .podium-block {
+  height: 92px;
+  border-color: rgba(228, 131, 49, 0.4);
+  background: linear-gradient(
+    180deg,
+    rgba(228, 131, 49, 0.2),
+    rgba(24, 73, 46, 0.35)
+  );
+}
+
+.first-place .podium-block span {
+  color: #e48331;
+}
+
+.third-place .podium-block {
+  height: 48px;
+}
+
+/* KRONE */
+
+.crown-icon {
+  position: absolute;
+  top: -27px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #e48331;
+}
+
+.crown-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* RESTEN AF LEADERBOARDET */
+
+.ranking-section {
+  padding: 20px;
+  border: 1px solid rgba(205, 225, 207, 0.15);
+  border-radius: 12px;
+  background: rgba(24, 73, 46, 0.65);
+}
+
+.ranking-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.ranking-heading h2 {
+  margin: 0;
+  font-family: var(--heading, Impact, sans-serif);
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.ranking-heading > span {
+  color: #acbfb1;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.ranking-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.ranking-row {
+  min-height: 66px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid rgba(205, 225, 207, 0.12);
+}
+
+.ranking-number {
+  width: 20px;
+  color: #acbfb1;
+  font-family: var(--heading, Impact, sans-serif);
+  font-size: 21px;
+  text-align: center;
+}
+
+.ranking-avatar {
+  width: 37px;
+  height: 37px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #254d32;
+  color: #d8e1d9;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.ranking-player {
+  min-width: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ranking-player strong {
+  overflow-wrap: anywhere;
+  font-size: 13px;
+}
+
+.ranking-player span {
+  color: #acbfb1;
+  font-size: 10px;
+}
+
+.ranking-score {
+  color: #f7f8f2;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* PRÆMIEBANNER */
+
+.prize-banner {
+  margin-top: 20px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  border: 1px solid rgba(228, 131, 49, 0.25);
+  border-radius: 10px;
+  background: rgba(228, 131, 49, 0.08);
+}
+
+.prize-banner-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: rgba(228, 131, 49, 0.14);
+  color: #e48331;
+}
+
+.prize-banner-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.prize-banner strong {
+  color: #f5b36f;
+  font-size: 13px;
+}
+
+.prize-banner p {
+  margin: 4px 0 0;
+  color: #acbfb1;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* TILBAGE-KNAP */
+
+.back-to-player {
+  width: 100%;
+  min-height: 50px;
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid rgba(205, 225, 207, 0.22);
+  border-radius: 9px;
+  color: #f7f8f2;
+  background: rgba(255, 255, 255, 0.04);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.back-to-player:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: #e48331;
+}
+
+.back-to-player svg {
+  width: 19px;
+  height: 19px;
+  color: #e48331;
+}
+
+/* FOOTER */
+
+.leaderboard-footer {
+  margin-top: auto;
+  padding-top: 22px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #718b79;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* MOBIL */
+
+@media (max-width: 480px) {
+  .leaderboard-layout {
+    padding: 22px 17px 16px;
+  }
+
+  .leaderboard-heading {
+    margin-top: 30px;
+  }
+
+  .podium {
+    gap: 5px;
+  }
+
+  .podium-avatar {
+    width: 45px;
+    height: 45px;
+  }
+
+  .first-place .podium-avatar {
+    width: 58px;
+    height: 58px;
+  }
+
+  .podium-player > strong {
+    font-size: 10px;
+  }
+
+  .podium-score {
+    font-size: 12px;
+  }
+
+  .ranking-section {
+    padding: 16px;
+  }
+
+  .leaderboard-footer {
+    font-size: 8px;
+  }
+}
+
+/* PRÆMIEKNAP */
+
+.claim-prize-button {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  margin-top: 18px;
+  padding: 17px;
+  border-radius: 10px;
+  background: #e48331;
+  color: #102c20;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.claim-prize-button:hover {
+  background: #f19a4e;
+}
+
+.claim-prize-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: rgba(16, 44, 32, 0.12);
+  font-size: 22px;
+}
+
+.claim-prize-button > span:nth-child(2) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.claim-prize-button strong {
+  font-size: 14px;
+}
+
+.claim-prize-button small {
+  font-size: 11px;
+  opacity: 0.8;
+  line-height: 1.4;
+}
+
+.claim-prize-button svg {
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+}
