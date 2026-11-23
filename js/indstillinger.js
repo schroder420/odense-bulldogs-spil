@@ -1,93 +1,57 @@
-// Indstillinger: standarder for nye konkurrencer, storskærm og skift af adgangskode.
-// Hold sidens variabler inde i funktionen, så de ikke kolliderer med andre scripts.
+import { errorText, showStatus, staffReady } from './app.js';
+import { fillForm, formValues, localSettings, saveLocalSettings } from './data.js';
 
-function startIndstillinger() {
+async function startSettings() {
+  const session = await staffReady;
+  if (!session) return;
+  const { api, user } = session;
   const settingsForm = document.getElementById('settings-form');
-  const screenKey = 'bulldogs-demo:v1:screen-settings';
-  const rotation = document.getElementById('default-rotation');
-  const messageTitle = document.getElementById('default-message-title');
-  const message = document.getElementById('default-message');
+  const settings = localSettings(user.uid);
 
-  // Konkurrencestandarderne hentes fra competition i data.js.
-  fillForm(settingsForm);
+  fillForm(settingsForm, settings);
 
-  // Storskærmens standarder har deres egen nøgle i browseren.
-  try {
-    const savedScreen = JSON.parse(localStorage.getItem(screenKey));
-
-    if (savedScreen) {
-      rotation.checked = savedScreen.rotation;
-      messageTitle.value = savedScreen.messageTitle;
-      message.value = savedScreen.message;
-    }
-  } catch (error) {
-    // Brug værdierne fra HTML, hvis de gemte oplysninger ikke kan læses.
-  }
-
-  settingsForm.addEventListener('submit', function (event) {
+  settingsForm.addEventListener('submit', event => {
     event.preventDefault();
-
-    if (!settingsForm.checkValidity()) {
-      settingsForm.reportValidity();
-      return;
-    }
-
-    let screenSaved = true;
-
-    try {
-      localStorage.setItem(screenKey, JSON.stringify({
-        rotation: rotation.checked,
-        messageTitle: messageTitle.value.trim(),
-        message: message.value.trim()
-      }));
-    } catch (error) {
-      screenSaved = false;
-    }
-
-    if (saveForm(settingsForm) && screenSaved) {
-      showText('settings-status', 'Indstillingerne er gemt.');
-    } else {
-      showText('settings-status', '');
-    }
+    if (!settingsForm.reportValidity()) return;
+    const values = formValues(settingsForm);
+    const saved = saveLocalSettings(user.uid, values);
+    showStatus('save-error', saved ? '' : 'Indstillingerne kunne ikke gemmes i browseren.', 'error');
+    showStatus('settings-status', saved ? 'Indstillingerne er gemt i denne browser.' : '');
   });
 
-
-  // Vis/skjul adgangskode i alle felter med en Vis-knap.
   for (const button of document.querySelectorAll('.password-toggle')) {
-    button.addEventListener('click', function () {
+    button.addEventListener('click', () => {
       const input = document.getElementById(button.getAttribute('aria-controls'));
       const isHidden = input.type === 'password';
-
       input.type = isHidden ? 'text' : 'password';
       button.textContent = isHidden ? 'Skjul' : 'Vis';
     });
   }
 
-
-  // Eksempel på skift af adgangskode. Den rigtige kontrol sker senere på serveren.
   const passwordForm = document.getElementById('password-form');
-
-  passwordForm.addEventListener('submit', function (event) {
+  const submit = passwordForm.querySelector('[type="submit"]');
+  passwordForm.addEventListener('submit', async event => {
     event.preventDefault();
-
+    if (submit.disabled || !passwordForm.reportValidity()) return;
     const current = document.getElementById('current-password').value;
-    const newPassword = document.getElementById('new-password').value;
-    const repeat = document.getElementById('repeat-password').value;
-
-    if (!passwordForm.checkValidity()) {
-      passwordForm.reportValidity();
+    const replacement = document.getElementById('new-password').value;
+    if (replacement !== document.getElementById('repeat-password').value) {
+      showStatus('password-status', 'De nye adgangskoder er ikke ens.', 'error');
       return;
     }
 
-    if (current !== 'bulldogs') {
-      showText('password-status', 'Den nuværende adgangskode er forkert.');
-    } else if (newPassword !== repeat) {
-      showText('password-status', 'De nye adgangskoder er ikke ens.');
-    } else {
-      showText('password-status', 'Adgangskoden er ændret.');
+    submit.disabled = true;
+    showStatus('password-status', 'Ændrer adgangskode…');
+    try {
+      await api.changePassword(user, current, replacement);
       passwordForm.reset();
+      showStatus('password-status', 'Adgangskoden er ændret.');
+    } catch (error) {
+      showStatus('password-status', errorText(error, 'Adgangskoden kunne ikke ændres.'), 'error');
+    } finally {
+      submit.disabled = false;
     }
   });
 }
 
-startIndstillinger();
+startSettings();

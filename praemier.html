@@ -13,10 +13,10 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="css/praemier.css">
 
-  <script src="js/app.js" defer></script>
+  <script type="module" src="js/round-details.js"></script>
 </head>
 
-<body class="praemier">
+<body data-details="prizes" class="praemier">
 
   <a class="skip-link" href="#main">Spring til indhold</a>
 
@@ -149,106 +149,38 @@
 
 
       <!-- HOVEDINDHOLD -->
-      <main id="main" class="page-content" tabindex="-1">
+      <main id="main" class="page-content" tabindex="-1" data-checking-access>
+          <p id="access-status" class="panel firebase-status" role="status">Kontrollerer personaleadgang…</p>
 
         <header class="page-heading">
 
           <p class="eyebrow">KAMPKONTROL · PERSONALE</p>
 
-          <h1>Sådan indløser du en coupon</h1>
+          <h1>Præmier</h1>
 
           <p class="lead">
-            Følg de tre trin, når en vinder skal have sin præmie udleveret.
+            Se registrerede præmier for den valgte konkurrence.
           </p>
 
         </header>
 
 
-        <!-- VEJLEDNING -->
-        <section class="prize-guide" aria-labelledby="guide-title">
-
-          <div class="prize-guide-heading">
-
-            <div>
-              <p class="eyebrow">PRÆMIEUDLEVERING</p>
-              <h2 id="guide-title">Fra voucher til præmie</h2>
-            </div>
-
-            <span class="prize-guide-tag">3 trin</span>
-
+        <section class="panel data-panel">
+          <h2 id="detail-title">Vouchers</h2>
+          <div class="field" id="prize-round-field" hidden>
+            <label class="field-label" for="prize-round">Konkurrence</label>
+            <select id="prize-round" class="field-input"><option value="">Vælg konkurrence</option></select>
           </div>
-
-
-          <ol class="prize-steps">
-
-            <li class="prize-step">
-
-              <span class="prize-step-number">01</span>
-
-              <div>
-                <h3>Bed vinderen åbne sin coupon</h3>
-                <p>
-                  Vinderen finder sin voucher på telefonen
-                  og viser den til dig.
-                </p>
-              </div>
-
-            </li>
-
-
-            <li class="prize-step">
-
-              <span class="prize-step-number">02</span>
-
-              <div>
-                <h3>Kontrollér præmien</h3>
-                <p>
-                  Tjek, at præmien på voucheren stemmer
-                  overens med det, vinderen skal have.
-                </p>
-              </div>
-
-            </li>
-
-
-            <li class="prize-step">
-
-              <span class="prize-step-number">03</span>
-
-              <div>
-                <h3>Få voucheren indløst</h3>
-                <p>
-                  Når præmien udleveres, skal vinderen
-                  swipe på sin telefon for at registrere indløsningen.
-                </p>
-              </div>
-
-            </li>
-
-          </ol>
-
-
-          <!-- VIGTIG PÅMINDELSE -->
-          <div class="prize-reminder">
-
-            <span class="prize-reminder-icon" aria-hidden="true">!</span>
-
-            <p>
-              <strong>Husk:</strong>
-              Voucheren skal først indløses, når præmien
-              faktisk bliver udleveret.
-            </p>
-
+          <p id="details-status" class="firebase-status" role="status">Henter præmier…</p>
+          <div id="details-table" class="data-table-wrapper" hidden>
+            <table class="prize-table">
+              <thead><tr><th scope="col">Placering</th><th scope="col">Deltager</th><th scope="col">Præmie</th><th scope="col">Status</th></tr></thead>
+              <tbody id="details-rows"></tbody>
+            </table>
           </div>
-
+          <p class="field-help">Udstedelse og indløsning kræver spillets server og er endnu utilgængelig her.</p>
+          <div id="details-actions" class="data-actions"></div>
         </section>
-
-
-        <p class="prize-footer-note">
-          Er der problemer med voucheren, så få hjælp fra
-          den ansvarlige kampafvikler.
-        </p>
-
       </main>
 
 

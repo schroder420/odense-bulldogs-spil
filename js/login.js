@@ -1,46 +1,36 @@
-// Personalelogin: vis/skjul adgangskode og et eksempel på login.
-// Den rigtige kontrol af adgangskoden sker senere på serveren.
+import { errorText, firebase, pageUrl } from './app.js';
 
-function startLogin() {
-  const form = document.getElementById('login-form');
-  const password = document.getElementById('password');
-  const toggle = document.getElementById('password-toggle');
-  const message = document.getElementById('login-message');
-  const loginButton = document.getElementById('login-button');
+const form = document.getElementById('login-form');
+const password = document.getElementById('password');
+const toggle = document.getElementById('password-toggle');
+const message = document.getElementById('login-message');
+const loginButton = document.getElementById('login-button');
+const next = new URLSearchParams(location.search).get('retur');
+const target = /^(vaelg-spil|overblik|konfigurer|tidspunkt|konkurrencer|afvikling|deltagere|resultat|praemier|statistik|indstillinger|side-skabelon)\.html(?:\?[^#]*)?$/.test(next)
+  ? next : 'overblik.html';
 
-  toggle.addEventListener('click', function () {
-    const isHidden = password.type === 'password';
+toggle.addEventListener('click', () => {
+  const isHidden = password.type === 'password';
+  password.type = isHidden ? 'text' : 'password';
+  toggle.textContent = isHidden ? 'Skjul' : 'Vis';
+});
 
-    password.type = isHidden ? 'text' : 'password';
-    toggle.textContent = isHidden ? 'Skjul' : 'Vis';
-  });
+form.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (loginButton.disabled || !form.reportValidity()) return;
 
-  form.addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    if (password.value === '') {
-      message.classList.remove('is-loading');
-      message.textContent = 'Indtast personalets adgangskode.';
-      password.focus();
-      return;
-    }
-
-    message.classList.add('is-loading');
-    message.textContent = 'Logger ind…';
-    loginButton.disabled = true;
-
-    // Kort pause, så indlæsningsbeskeden kan ses i eksemplet.
-    setTimeout(function () {
-      if (password.value === 'bulldogs') {
-        window.location.href = 'overblik.html';
-      } else {
-        message.classList.remove('is-loading');
-        message.textContent = 'Adgangskoden er forkert. Prøv igen.';
-        loginButton.disabled = false;
-        password.select();
-      }
-    }, 600);
-  });
-}
-
-startLogin();
+  message.classList.add('is-loading');
+  message.textContent = 'Logger ind…';
+  loginButton.disabled = true;
+  try {
+    const api = await firebase();
+    await api.login(form.elements.email.value.trim(), password.value);
+    location.replace(pageUrl(target));
+  } catch (error) {
+    message.textContent = errorText(error, 'Login kunne ikke gennemføres. Prøv igen.');
+    password.select();
+  } finally {
+    message.classList.remove('is-loading');
+    loginButton.disabled = false;
+  }
+});

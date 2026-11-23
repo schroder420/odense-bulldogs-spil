@@ -1,65 +1,74 @@
-// TIDSPUNKT: vis relevante felter og en opsummering af de gemte valg.
-const timingForm = document.getElementById('timing-form');
+import { duringSave, errorText, keepRoundLinks, pageUrl, selectedId, showStatus, showText, staffReady } from './app.js';
+import { fillForm, loadCompetition, saveDraft, saveForm } from './data.js';
 
-if (timingForm) {
-  function updateSummary() {
-    const scheduled = competition.startMode === 'scheduled';
-    const dateInput = document.getElementById('start-date');
-    const timeInput = document.getElementById('start-time');
+async function startTiming() {
+  const session = await staffReady;
+  if (!session) return;
+  const { api, user } = session;
+  const form = document.getElementById('timing-form');
+  const submit = document.getElementById('start-competition');
+  const dateInput = document.getElementById('start-date');
+  const timeInput = document.getElementById('start-time');
 
-    document.getElementById('scheduled-fields').hidden = !scheduled;
-    dateInput.required = scheduled;
-    timeInput.required = scheduled;
+  try {
+    const id = selectedId();
+    if (!id) throw new Error('Vælg en konkurrence i arkivet, eller opret en ny via spilvalget.');
+    const draft = await loadCompetition(api, user.uid, id, false);
+    const { values } = draft;
 
-    for (const radio of timingForm.querySelectorAll('[name="startMode"]')) {
-      radio.closest('.option-card').classList.toggle('is-selected', radio.checked);
-    }
+    function updateSummary() {
+      const scheduled = values.startMode === 'scheduled';
+      document.getElementById('scheduled-fields').hidden = !scheduled;
+      dateInput.required = scheduled;
+      timeInput.required = scheduled;
 
-    let startText = 'Med det samme';
-    let buttonText = 'Start nu';
-
-    if (scheduled) {
-      startText = 'Vælg dato og tidspunkt';
-      buttonText = 'Planlæg konkurrence';
-
-      if (competition.date && competition.time) {
-        startText = competition.date + ' kl. ' + competition.time;
+      for (const radio of form.querySelectorAll('[name="startMode"]')) {
+        radio.closest('.option-card').classList.toggle('is-selected', radio.checked);
       }
+
+      const startText = scheduled
+        ? (values.date && values.time ? values.date + ' kl. ' + values.time : 'Vælg dato og tidspunkt')
+        : 'Med det samme';
+
+      showText('start-button-label', scheduled ? 'Planlæg konkurrence' : 'Start nu');
+      showText('calculated-start', startText);
+      showText('calculated-end', values.duration + ' minutter efter start');
+      showText('summary-name', values.title);
+      showText('summary-teams', values.homeTeam + ' mod ' + values.opponent);
+      showText('summary-start', startText);
+      showText('summary-duration', values.duration + ' minutter');
+      showText('summary-prize', values.prize);
+      showText('summary-pickup', values.pickup);
     }
 
-    showText('start-button-label', buttonText);
-    showText('calculated-start', startText);
-    showText('calculated-end', competition.duration + ' minutter efter start');
-    showText('summary-name', competition.title || 'Din konkurrence');
-    showText('summary-teams', competition.homeTeam + ' mod ' + (competition.opponent || 'modstander'));
-    showText('summary-start', startText);
-    showText('summary-duration', competition.duration + ' minutter');
-    showText('summary-prize', competition.prize);
-    showText('summary-pickup', competition.pickup);
-  }
-
-  fillForm(timingForm);
-  updateSummary();
-
-  timingForm.addEventListener('input', function () {
-    saveForm(timingForm);
+    fillForm(form, values);
+    keepRoundLinks({ runde: id });
     updateSummary();
-  });
+    form.hidden = false;
+    showStatus('form-status', draft.newerVersion ? 'Konkurrencen er ændret siden din lokale kladde. De gemte oplysninger vises.' : '');
 
-  timingForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    competition.title = competition.title.trim();
-    competition.opponent = competition.opponent.trim();
+    form.addEventListener('input', () => {
+      saveDraft(form, draft);
+      updateSummary();
+    });
 
-    if (!saveForm(timingForm)) {
-      return;
-    }
-
-    if (!competition.title || !competition.opponent) {
-      window.location.href = 'konfigurer.html';
-      return;
-    }
-
-    window.location.href = 'afvikling.html';
-  });
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      duringSave(submit, 'save-error', async () => {
+        form.inert = true;
+        try {
+          const action = form.elements.startMode.value === 'scheduled' ? 'schedule' : 'start';
+          await saveForm(form, api, id, draft, action);
+          location.href = pageUrl('afvikling.html', { runde: id });
+        } finally {
+          form.inert = false;
+        }
+      });
+    });
+  } catch (error) {
+    showStatus('form-status', errorText(error, 'Konkurrencen kunne ikke hentes. Genindlæs siden for at prøve igen.'), 'error');
+  }
 }
+
+startTiming();

@@ -21,9 +21,8 @@
     <link rel="stylesheet" href="css/vaelg-spil.css">
 
     <!-- Gemmefunktionerne indlæses før menu og formularer. defer venter, til HTML er læst. -->
-    <script src="js/data.js" defer></script>
 
-    <script src="js/app.js" defer></script>
+  <script type="module" src="js/app.js"></script>
   </head>
 
   <body data-page="choose">
@@ -156,12 +155,13 @@
             </nav>
           </div>
 
-          <span class="environment-badge"><span></span>Eksempeldata</span>
+          <span class="environment-badge"><span></span>Firebase</span>
         </header>
 
 
         <!-- Spilvalg: første trin i oprettelsen af en konkurrence. -->
-        <main id="main" class="page-content" tabindex="-1">
+        <main id="main" class="page-content" tabindex="-1" data-checking-access>
+          <p id="access-status" class="panel firebase-status" role="status">Kontrollerer personaleadgang…</p>
 
           <!-- Trinvisningen markerer den aktuelle side og linker tilbage til tidligere trin. -->
           <nav aria-label="Oprettelsestrin">

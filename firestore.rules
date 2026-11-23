@@ -1,0 +1,88 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isStaff() {
+      return request.auth != null
+        && get(/databases/$(database)/documents/staff/$(request.auth.uid)).data.role == 'staff';
+    }
+
+    function validRound(round) {
+      return round.keys().hasAll([
+          'gameId', 'title', 'homeTeam', 'opponent', 'primary', 'stripe', 'prize', 'pickup',
+          'instructions', 'duration', 'status', 'scheduled_at', 'started_at', 'ended_at',
+          'created_at', 'updated_at', 'version'
+        ])
+        && round.gameId == 'puck'
+        && round.title is string && round.title.size() > 0 && round.title.size() <= 80
+        && round.homeTeam == 'Odense Bulldogs'
+        && round.opponent is string && round.opponent.size() > 0 && round.opponent.size() <= 40
+        && round.primary is string && round.primary.matches('#[0-9a-fA-F]{6}')
+        && round.stripe is string && round.stripe.matches('#[0-9a-fA-F]{6}')
+        && round.prize is string && round.prize.size() <= 160
+        && round.pickup is string && round.pickup.size() <= 80
+        && round.instructions is string && round.instructions.size() <= 400
+        && round.duration is int && round.duration >= 1 && round.duration <= 15
+        && (round.scheduled_at == null || round.scheduled_at is timestamp)
+        && (round.started_at == null || round.started_at is timestamp)
+        && (round.ended_at == null || round.ended_at is timestamp)
+        && round.updated_at == request.time && round.version is int;
+    }
+
+    function validChange(before, after) {
+      let changed = after.diff(before).affectedKeys();
+      let editable = before.status in ['draft', 'scheduled'];
+      return (editable && after.status == before.status
+          && changed.hasOnly(['title', 'opponent', 'primary', 'stripe', 'prize', 'pickup',
+            'instructions', 'updated_at', 'version']))
+        || (editable && after.status == 'scheduled' && after.scheduled_at > request.time
+          && changed.hasOnly(['status', 'scheduled_at', 'duration', 'updated_at', 'version']))
+        || (editable && after.status == 'live' && after.started_at == request.time
+          && changed.hasOnly(['status', 'started_at', 'duration', 'updated_at', 'version']))
+        || (editable && after.status == 'cancelled'
+          && changed.hasOnly(['status', 'updated_at', 'version']))
+        || (before.status == 'live' && after.status == 'final' && after.ended_at == request.time
+          && changed.hasOnly(['status', 'ended_at', 'updated_at', 'version']));
+    }
+
+    match /staff/{uid} {
+      allow get: if request.auth != null && request.auth.uid == uid;
+    }
+    match /historical_round_stats/{id} {
+      allow read: if isStaff();
+    }
+    match /rounds/{id} {
+      allow read: if isStaff();
+      allow create: if isStaff() && validRound(request.resource.data)
+        && request.resource.data.keys().size() == 17
+        && request.resource.data.status == 'draft'
+        && request.resource.data.scheduled_at == null
+        && request.resource.data.started_at == null
+        && request.resource.data.ended_at == null
+        && request.resource.data.created_at == request.time
+        && request.resource.data.version == 1;
+      allow update: if isStaff() && validRound(request.resource.data)
+        && request.resource.data.version == resource.data.version + 1
+        && validChange(resource.data, request.resource.data);
+    }
+    match /participants/{id} {
+      allow read: if isStaff();
+    }
+    match /runs/{id} {
+      allow read: if isStaff();
+    }
+    match /scores/{id} {
+      allow read: if isStaff();
+    }
+    match /prizes/{id} {
+      allow read: if isStaff();
+    }
+
+    // Kun dokumenter og felter, en betroet server har gjort offentlige, hører til her.
+    match /public_rounds/{id} {
+      allow read: if true;
+      match /leaderboard/{entry} {
+        allow read: if true;
+      }
+    }
+  }
+}

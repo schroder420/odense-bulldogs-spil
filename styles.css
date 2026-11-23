@@ -806,8 +806,12 @@ textarea {
   margin-top: 7px;
 }
 
-.field-error {
+.field-error,
+[data-kind="error"] {
   color: #ffb3a8;
+}
+
+.field-error {
   line-height: 1.5;
   margin-top: 6px;
   font-size: 12px;
@@ -2488,4 +2492,53 @@ summary:focus-visible {
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
   }
+}
+
+/* Data- og adgangstilstande skal også virke på elementer med display: grid eller flex. */
+[hidden], [data-checking-access] > :not(#access-status, [data-access-link]) {
+  display: none !important;
+}
+
+.firebase-status:not(:empty) {
+  margin-block: 0.75rem;
+}
+
+
+.data-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.data-panel {
+  margin-block: 1rem;
+}
+
+.data-panel h2 {
+  margin-bottom: 0.75rem;
+}
+
+.data-panel .data-actions,
+#public-competition-link {
+  margin-top: 1rem;
+}
+
+.data-table-wrapper {
+  overflow-x: auto;
+}
+
+.data-table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table-wrapper th,
+.data-table-wrapper td {
+  text-align: left;
+  padding: 0.65rem;
+  border-bottom: 1px solid var(--border, #d5dbd5);
+}
+
+.run-aside .data-actions {
+  margin-block-start: 1rem;
 }

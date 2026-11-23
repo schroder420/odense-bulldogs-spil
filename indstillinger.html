@@ -22,12 +22,11 @@
     <link rel="stylesheet" href="css/indstillinger.css">
 
     <!-- Gemmefunktionerne indlæses før menu og formularer. defer venter, til HTML er læst. -->
-    <script src="js/data.js" defer></script>
 
-    <script src="js/app.js" defer></script>
 
     <!-- Gemning af standarder og skift af adgangskode. -->
-    <script src="js/indstillinger.js" defer></script>
+
+  <script type="module" src="js/indstillinger.js"></script>
   </head>
 
   <body class="indstillinger" data-page="indstillinger">
@@ -154,11 +153,12 @@
             </nav>
           </div>
 
-          <span class="environment-badge"><span></span>Eksempeldata</span>
+          <span class="environment-badge"><span></span>Firebase</span>
         </header>
 
 
-        <main id="main" class="page-content" tabindex="-1">
+        <main id="main" class="page-content" tabindex="-1" data-checking-access>
+          <p id="access-status" class="panel firebase-status" role="status">Kontrollerer personaleadgang…</p>
 
           <!-- SIDEOVERSKRIFT -->
           <header class="page-heading">
@@ -220,39 +220,9 @@
               </section>
 
 
-              <!-- STORSKÆRM: gemmes under sin egen nøgle, fordi felterne ikke findes i competition. -->
-              <section class="form-section" aria-labelledby="screen-title">
-                <div class="section-heading">
-                  <span class="section-number">02</span>
-
-                  <div>
-                    <h2 id="screen-title" class="section-title">Storskærm</h2>
-
-                    <p>Det, publikum ser, når en ny konkurrence åbner.</p>
-                  </div>
-                </div>
-
-                <label class="switch-row" for="default-rotation">
-                  <span>
-                    <strong>Automatisk rotation</strong>
-
-                    <small>Skift automatisk mellem leaderboard, sådan spiller du og stor QR.</small>
-                  </span>
-
-                  <input id="default-rotation" type="checkbox" class="switch" checked>
-                </label>
-
-                <div class="field">
-                  <label class="field-label" for="default-message-title">Standardoverskrift til beskedvisning</label>
-
-                  <input id="default-message-title" type="text" maxlength="40" value="Klar til næste pause?">
-                </div>
-
-                <div class="field">
-                  <label class="field-label" for="default-message">Standardbesked til publikum</label>
-
-                  <textarea id="default-message" maxlength="160">Find telefonen frem, og spil med.</textarea>
-                </div>
+              <section class="form-section">
+                <h2 class="section-title">Storskærm</h2>
+                <p>Skærmrotation og publikumsbeskeder bliver tilgængelige, når storskærmen er tilkoblet.</p>
               </section>
 
               <div class="form-actions">
@@ -261,7 +231,7 @@
                 <button class="button button-primary" type="submit">Gem indstillinger</button>
               </div>
 
-              <p id="save-error" class="field-error" hidden></p>
+              <p id="save-error" class="field-error" role="status" hidden></p>
             </form>
 
 
@@ -273,7 +243,7 @@
                 <div>
                   <h2 class="section-title">Personaleadgang</h2>
 
-                  <p>Skift den fælles adgangskode til kampkontrol.</p>
+                  <p>Skift adgangskoden til din egen personalekonto.</p>
                 </div>
               </div>
 

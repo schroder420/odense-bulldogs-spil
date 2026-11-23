@@ -12,8 +12,7 @@
   <link rel="stylesheet" href="css/statistik.css">
 
   <!-- Fælles funktionalitet til navigation og brugerflade -->
-  <script src="js/data.js" defer></script>
-  <script src="js/app.js" defer></script>
+  <script type="module" src="js/statistik.js"></script>
 </head>
 
 <body class="statistik" data-page="statistik">
@@ -135,13 +134,14 @@
         </div>
 
         <span class="environment-badge">
-          <span></span>Eksempeldata
+          <span></span>Firebase
         </span>
       </header>
 
 
       <!-- HOVEDINDHOLD -->
-      <main id="main" class="page-content" tabindex="-1">
+      <main id="main" class="page-content" tabindex="-1" data-checking-access>
+          <p id="access-status" class="panel firebase-status" role="status">Kontrollerer personaleadgang…</p>
 
         <header class="page-heading">
           <p class="eyebrow">ADMINISTRATION · OVERBLIK</p>
@@ -153,447 +153,127 @@
         </header>
 
 
-        <!-- FILTRE -->
-        <section class="panel" aria-labelledby="filter-heading">
-
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">TILPAS VISNING</p>
-              <h2 id="filter-heading">Filtre</h2>
-            </div>
-          </div>
-
-          <form class="statistics-filters">
-
+        <p id="statistics-status" class="panel firebase-status" role="status">Henter statistik…</p>
+        <section class="panel" id="statistics-filters" aria-labelledby="filter-heading" hidden>
+          <div class="panel-heading"><h2 id="filter-heading">Filtre</h2></div>
+          <div class="statistics-filters">
             <div class="field">
               <label class="field-label" for="period">Periode</label>
-              <select class="field-input" id="period" name="period">
-                <option>Seneste 7 dage</option>
-                <option>Seneste 30 dage</option>
-                <option>Denne sæson</option>
-                <option>Alle perioder</option>
+              <select id="period" class="field-input">
+                <option value="">Alle perioder</option>
+                <option value="7">Seneste 7 dage</option>
+                <option value="30">Seneste 30 dage</option>
               </select>
             </div>
-
             <div class="field">
               <label class="field-label" for="competition">Konkurrence</label>
-              <select class="field-input" id="competition" name="competition">
-                <option>Alle konkurrencer</option>
-                <option>Bulldogs mod Herning</option>
-                <option>Bulldogs mod Aalborg</option>
-                <option>Fredagsquizzen</option>
-              </select>
+              <select id="competition" class="field-input"><option value="">Alle konkurrencer</option></select>
             </div>
-
             <div class="field">
               <label class="field-label" for="game">Spil</label>
-              <select class="field-input" id="game" name="game">
-                <option>Alle spil</option>
-                <option>Quiz</option>
-                <option>Reaktionsspil</option>
-                <option>Gæt resultatet</option>
+              <select id="game" class="field-input">
+                <option value="">Alle spil og historiske kampe</option>
+                <option value="puck">Hold pucken i live</option>
               </select>
             </div>
-
-            <button class="button button-secondary" type="button" disabled>
-              Anvend filtre
-            </button>
-
-          </form>
-
-          <p class="field-help">
-            Filtrene er visuelle i prototypen og ændrer endnu ikke statistikken.
-          </p>
-
+          </div>
         </section>
 
-
-        <!-- NØGLETAL -->
-        <section class="statistics-section" aria-labelledby="keyfigures-heading">
-
-          <div class="statistics-section-heading">
-            <div>
-              <p class="eyebrow">NØGLETAL</p>
-              <h2 id="keyfigures-heading">Konkurrencernes performance</h2>
+        <div id="statistics-data" hidden>
+          <section class="statistics-section" aria-labelledby="keyfigures-heading">
+            <div class="statistics-section-heading">
+              <div><h2 id="keyfigures-heading">Konkurrencernes nøgletal</h2>
+                <p id="kpi-coverage" class="field-help"></p>
+              </div>
             </div>
-            <span class="badge badge-neutral">Eksempeldata</span>
-          </div>
-
-          <div class="statistics-kpis">
-
-            <article class="panel kpi-card">
+            <div class="statistics-kpis">
+              <article class="panel kpi-card">
               <div class="kpi-top">
-                <span class="kpi-label">Deltagere</span>
+                <span class="kpi-label">Deltagelser</span>
                 <span class="kpi-icon">
                   <svg class="icon" aria-hidden="true">
                     <use href="assets/icons.svg#users"></use>
                   </svg>
                 </span>
               </div>
-              <strong class="kpi-value">1.248</strong>
-              <p class="kpi-description">
-                Antal unikke deltagere med et godkendt resultat.
-              </p>
+              <strong class="kpi-value" id="kpi-players"></strong>
+              <p class="kpi-description">Summen af deltagere pr. konkurrence.</p>
             </article>
-
-            <article class="panel kpi-card">
+              <article class="panel kpi-card">
               <div class="kpi-top">
-                <span class="kpi-label">Forsøg</span>
+                <span class="kpi-label">Starter</span>
                 <span class="kpi-icon">
                   <svg class="icon" aria-hidden="true">
-                    <use href="assets/icons.svg#activity"></use>
+                    <use href=""assets/icons.svg#play"></use>
                   </svg>
                 </span>
               </div>
-              <strong class="kpi-value">2.864</strong>
-              <p class="kpi-description">
-                Antal påbegyndte forsøg.
-              </p>
+              <strong class="kpi-value" id="kpi-starts"></strong>
+              <p class="kpi-description">Antal påbegyndte forsøg.</p>
             </article>
-
-            <article class="panel kpi-card">
+              <article class="panel kpi-card">
               <div class="kpi-top">
-                <span class="kpi-label">Godkendte resultater</span>
+                <span class="kpi-label">Accepterede resultater</span>
                 <span class="kpi-icon">
                   <svg class="icon" aria-hidden="true">
-                    <use href="assets/icons.svg#check-circle"></use>
+                    <use href=""assets/icons.svg#check"></use>
                   </svg>
                 </span>
               </div>
-              <strong class="kpi-value">2.517</strong>
-              <p class="kpi-description">
-                Antal forsøg med et godkendt resultat.
-              </p>
+              <strong class="kpi-value" id="kpi-accepted"></strong>
+              <p class="kpi-description">Forsøg med både afslutningstid og score.</p>
             </article>
-
-            <article class="panel kpi-card">
+              <article class="panel kpi-card">
               <div class="kpi-top">
-                <span class="kpi-label">Forsøg pr. deltager</span>
+                <span class="kpi-label">Forsøg pr. deltagelse</span>
                 <span class="kpi-icon">
                   <svg class="icon" aria-hidden="true">
-                    <use href="assets/icons.svg#repeat"></use>
+                    <use href=""assets/icons.svg#chart"></use>
                   </svg>
                 </span>
               </div>
-              <strong class="kpi-value">2,3</strong>
-              <p class="kpi-description">
-                Gennemsnitligt antal forsøg pr. deltager.
-              </p>
+              <strong class="kpi-value" id="kpi-per-player"></strong>
+              <p class="kpi-description">Starter divideret med deltagelser i de samme konkurrencer.</p>
             </article>
-
-            <article class="panel kpi-card">
+              <article class="panel kpi-card">
               <div class="kpi-top">
                 <span class="kpi-label">Spillede igen</span>
                 <span class="kpi-icon">
                   <svg class="icon" aria-hidden="true">
-                    <use href="assets/icons.svg#rotate-cw"></use>
+                    <use href=""assets/icons.svg#users"></use>
                   </svg>
                 </span>
               </div>
-              <strong class="kpi-value">42 %</strong>
-              <p class="kpi-description">
-                Andel af deltagerne, der tog mere end ét forsøg.
-              </p>
+              <strong class="kpi-value" id="kpi-repeat"></strong>
+              <p class="kpi-description">Andel med mere end ét forsøg i samme konkurrence.</p>
             </article>
-
-            <article class="panel kpi-card">
+              <article class="panel kpi-card">
               <div class="kpi-top">
                 <span class="kpi-label">Indløste præmier</span>
                 <span class="kpi-icon">
                   <svg class="icon" aria-hidden="true">
-                    <use href="assets/icons.svg#gift"></use>
+                    <use href=""assets/icons.svg#trophy"></use>
                   </svg>
                 </span>
               </div>
-              <strong class="kpi-value">86 / 100</strong>
-              <p class="kpi-description">
-                Antal indløste vouchers ud af de udstedte.
-              </p>
+              <strong class="kpi-value" id="kpi-vouchers"></strong>
+              <p class="kpi-description">Indløste vouchers ud af de udstedte.</p>
             </article>
-
-          </div>
-        </section>
-
-
-        <!-- GRAFER -->
-        <section class="statistics-section" aria-labelledby="charts-heading">
-
-          <div class="statistics-section-heading">
-            <div>
-              <p class="eyebrow">AKTIVITET OG ENGAGEMENT</p>
-              <h2 id="charts-heading">Grafer og oversigter</h2>
+              <article class="panel kpi-card"><span class="kpi-label">Gennemsnitlig spilletid</span><strong class="kpi-value" id="kpi-average-time"></strong><p class="kpi-description">Vægtet efter accepterede forsøg med kendt spilletid.</p></article>
+              <article class="panel kpi-card"><span class="kpi-label">Bedste score</span><strong class="kpi-value" id="kpi-best-score"></strong><p class="kpi-description">Højeste registrerede score i de valgte konkurrencer.</p></article>
+              <article class="panel kpi-card"><span class="kpi-label">Gennemsnitsscore</span><strong class="kpi-value" id="kpi-average-score"></strong><p class="kpi-description">Kræver individuelle scorer for de valgte konkurrencer.</p></article>
             </div>
-          </div>
-
-          <div class="statistics-chart-grid">
-
-            <!-- Aktivitet gennem konkurrencen -->
-            <article class="panel chart-card chart-card-wide">
-
-              <div class="panel-heading">
-                <div>
-                  <h3>Aktivitet gennem konkurrencen</h3>
-                  <p class="chart-subtitle">Forsøg fordelt over tid</p>
-                </div>
-                <span class="badge badge-neutral">Eksempel</span>
-              </div>
-
-              <div class="activity-chart" role="img"
-                   aria-label="Eksempel på aktivitet: lav ved start, stigende frem mod pausen og faldende mod slutningen.">
-
-                <div class="chart-y-labels">
-                  <span>120</span>
-                  <span>90</span>
-                  <span>60</span>
-                  <span>30</span>
-                  <span>0</span>
-                </div>
-
-                <div class="activity-plot">
-                  <div class="chart-grid-line line-1"></div>
-                  <div class="chart-grid-line line-2"></div>
-                  <div class="chart-grid-line line-3"></div>
-                  <div class="chart-grid-line line-4"></div>
-                  <div class="chart-grid-line line-5"></div>
-
-                  <div class="activity-bars">
-                    <div class="activity-bar-wrap">
-                      <span class="activity-bar" style="--bar-height: 24%"></span>
-                      <span class="activity-bar-label">Start</span>
-                    </div>
-                    <div class="activity-bar-wrap">
-                      <span class="activity-bar" style="--bar-height: 38%"></span>
-                      <span class="activity-bar-label">19:15</span>
-                    </div>
-                    <div class="activity-bar-wrap">
-                      <span class="activity-bar" style="--bar-height: 58%"></span>
-                      <span class="activity-bar-label">19:30</span>
-                    </div>
-                    <div class="activity-bar-wrap">
-                      <span class="activity-bar" style="--bar-height: 83%"></span>
-                      <span class="activity-bar-label">Pause</span>
-                    </div>
-                    <div class="activity-bar-wrap">
-                      <span class="activity-bar" style="--bar-height: 65%"></span>
-                      <span class="activity-bar-label">19:45</span>
-                    </div>
-                    <div class="activity-bar-wrap">
-                      <span class="activity-bar" style="--bar-height: 43%"></span>
-                      <span class="activity-bar-label">20:00</span>
-                    </div>
-                    <div class="activity-bar-wrap">
-                      <span class="activity-bar" style="--bar-height: 28%"></span>
-                      <span class="activity-bar-label">Slut</span>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              <p class="field-help">
-                Viser, hvornår publikum er mest aktive under konkurrencen.
-              </p>
-
-            </article>
-
-
-            <!-- Deltagere pr. konkurrence -->
-            <article class="panel chart-card">
-
-              <div class="panel-heading">
-                <div>
-                  <h3>Deltagere pr. konkurrence</h3>
-                  <p class="chart-subtitle">Unikke deltagere</p>
-                </div>
-              </div>
-
-              <div class="horizontal-chart" role="img"
-                   aria-label="Eksempel: Herning 420 deltagere, Aalborg 350, Esbjerg 278 og Sønderjyske 200.">
-
-                <div class="horizontal-chart-row">
-                  <span>Herning</span>
-                  <div class="horizontal-track">
-                    <span style="--bar-width: 100%"></span>
-                  </div>
-                  <strong>420</strong>
-                </div>
-
-                <div class="horizontal-chart-row">
-                  <span>Aalborg</span>
-                  <div class="horizontal-track">
-                    <span style="--bar-width: 83%"></span>
-                  </div>
-                  <strong>350</strong>
-                </div>
-
-                <div class="horizontal-chart-row">
-                  <span>Esbjerg</span>
-                  <div class="horizontal-track">
-                    <span style="--bar-width: 66%"></span>
-                  </div>
-                  <strong>278</strong>
-                </div>
-
-                <div class="horizontal-chart-row">
-                  <span>Sønderjyske</span>
-                  <div class="horizontal-track">
-                    <span style="--bar-width: 48%"></span>
-                  </div>
-                  <strong>200</strong>
-                </div>
-
-              </div>
-
-            </article>
-
-
-            <!-- Gentagne forsøg -->
-            <article class="panel chart-card">
-
-              <div class="panel-heading">
-                <div>
-                  <h3>Gentagne forsøg</h3>
-                  <p class="chart-subtitle">Deltagernes adfærd</p>
-                </div>
-              </div>
-
-              <div class="repeat-summary">
-
-                <div class="repeat-donut" role="img"
-                     aria-label="42 procent spillede igen, 58 procent tog kun ét forsøg.">
-                  <div>
-                    <strong>42 %</strong>
-                    <span>Spillede igen</span>
-                  </div>
-                </div>
-
-                <div class="repeat-legend">
-                  <div>
-                    <span class="legend-dot legend-repeat"></span>
-                    <span>Flere forsøg</span>
-                    <strong>42 %</strong>
-                  </div>
-                  <div>
-                    <span class="legend-dot legend-single"></span>
-                    <span>Ét forsøg</span>
-                    <strong>58 %</strong>
-                  </div>
-                </div>
-
-              </div>
-
-            </article>
-
-
-            <!-- Fordeling mellem spillene -->
-            <article class="panel chart-card">
-
-              <div class="panel-heading">
-                <div>
-                  <h3>Fordeling mellem spillene</h3>
-                  <p class="chart-subtitle">Andel af alle forsøg</p>
-                </div>
-              </div>
-
-              <div class="game-distribution">
-
-                <div class="distribution-row">
-                  <div class="distribution-label">
-                    <span>Quiz</span>
-                    <strong>46 %</strong>
-                  </div>
-                  <div class="distribution-track">
-                    <span style="--bar-width: 46%"></span>
-                  </div>
-                </div>
-
-                <div class="distribution-row">
-                  <div class="distribution-label">
-                    <span>Reaktionsspil</span>
-                    <strong>32 %</strong>
-                  </div>
-                  <div class="distribution-track">
-                    <span style="--bar-width: 32%"></span>
-                  </div>
-                </div>
-
-                <div class="distribution-row">
-                  <div class="distribution-label">
-                    <span>Gæt resultatet</span>
-                    <strong>22 %</strong>
-                  </div>
-                  <div class="distribution-track">
-                    <span style="--bar-width: 22%"></span>
-                  </div>
-                </div>
-
-              </div>
-
-            </article>
-
-
-            <!-- Resultatstatistik -->
-            <article class="panel chart-card">
-
-              <div class="panel-heading">
-                <div>
-                  <h3>Resultatstatistik</h3>
-                  <p class="chart-subtitle">Det valgte spil: Quiz</p>
-                </div>
-              </div>
-
-              <div class="result-stat-list">
-
-                <div class="result-stat-row">
-                  <span>Gennemsnitlig score</span>
-                  <strong>72 / 100</strong>
-                </div>
-
-                <div class="result-stat-row">
-                  <span>Højeste score</span>
-                  <strong>100 / 100</strong>
-                </div>
-
-                <div class="result-stat-row">
-                  <span>Gennemsnitlig svartid</span>
-                  <strong>4,8 sek.</strong>
-                </div>
-
-                <div class="result-stat-row">
-                  <span>Godkendte resultater</span>
-                  <strong>88 %</strong>
-                </div>
-
-              </div>
-
-              <p class="field-help">
-                Tallene er eksempler og skal erstattes med data fra det valgte spil.
-              </p>
-
-            </article>
-
-          </div>
-        </section>
-
-
-        <!-- KONKURRENCELISTE -->
-        <section class="panel" aria-labelledby="competition-list-heading">
-
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">SAMLET OVERBLIK</p>
-              <h2 id="competition-list-heading">Konkurrencer</h2>
-              <p class="panel-description">
-                Sammenlign deltagelse og præmieindløsning på tværs af konkurrencer.
-              </p>
-            </div>
-          </div>
-
-          <div class="statistics-table-wrapper">
-
-            <table class="statistics-table">
-
-              <thead>
+          </section>
+          <section class="panel data-panel chart-card">
+            <h2>Aktivitet gennem konkurrencen</h2>
+            <p id="activity-title" class="chart-subtitle"></p>
+            <ul id="activity-list" class="horizontal-chart"></ul>
+          </section>
+          <section class="panel" aria-labelledby="competition-list-heading">
+            <div class="panel-heading"><h2 id="competition-list-heading">Konkurrencer</h2></div>
+            <div class="statistics-table-wrapper">
+              <table class="statistics-table">
+                <thead>
                 <tr>
                   <th>Navn</th>
                   <th>Dato</th>
@@ -602,103 +282,14 @@
                   <th>Forsøg</th>
                   <th>Forsøg pr. deltager</th>
                   <th>Indløste præmier</th>
-                  <th></th>
+                  <th>Visning</th>
                 </tr>
               </thead>
-
-              <tbody>
-
-                <tr>
-                  <td><strong>Bulldogs mod Herning</strong></td>
-                  <td>25.10.2026</td>
-                  <td>Quiz</td>
-                  <td>420</td>
-                  <td>980</td>
-                  <td>2,3</td>
-                  <td>32 / 40</td>
-                  <td>
-                    <a class="button button-secondary button-small" href="afvikling.html">
-                      Se konkurrencen
-                    </a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td><strong>Bulldogs mod Aalborg</strong></td>
-                  <td>18.10.2026</td>
-                  <td>Reaktionsspil</td>
-                  <td>350</td>
-                  <td>760</td>
-                  <td>2,2</td>
-                  <td>24 / 30</td>
-                  <td>
-                    <a class="button button-secondary button-small" href="afvikling.html">
-                      Se konkurrencen
-                    </a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td><strong>Bulldogs mod Esbjerg</strong></td>
-                  <td>11.10.2026</td>
-                  <td>Gæt resultatet</td>
-                  <td>278</td>
-                  <td>604</td>
-                  <td>2,2</td>
-                  <td>18 / 20</td>
-                  <td>
-                    <a class="button button-secondary button-small" href="afvikling.html">
-                      Se konkurrencen
-                    </a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td><strong>Bulldogs mod Sønderjyske</strong></td>
-                  <td>04.10.2026</td>
-                  <td>Quiz</td>
-                  <td>200</td>
-                  <td>520</td>
-                  <td>2,6</td>
-                  <td>12 / 15</td>
-                  <td>
-                    <a class="button button-secondary button-small" href="afvikling.html">
-                      Se konkurrencen
-                    </a>
-                  </td>
-                </tr>
-
-              </tbody>
-            </table>
-
-          </div>
-
-          <p class="field-help">
-            Eksempeldata. Konkurrencelisten er endnu ikke koblet til databasen.
-          </p>
-
-        </section>
-
-
-        <!-- TOM TILSTAND -->
-        <section class="panel statistics-empty">
-
-          <div class="statistics-empty-icon" aria-hidden="true">
-            <svg class="icon">
-              <use href="assets/icons.svg#chart"></use>
-            </svg>
-          </div>
-
-          <div>
-            <h2>Der er endnu ingen statistik at vise</h2>
-            <p>
-              Tallene bliver tilgængelige, når publikum begynder at spille,
-              og konkurrencerne har registreret resultater.
-            </p>
-          </div>
-
-        </section>
-
+                <tbody id="statistics-rows"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
       </main>
 
       <footer class="workspace-footer">

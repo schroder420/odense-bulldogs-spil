@@ -21,12 +21,11 @@
     <link rel="stylesheet" href="css/konfigurer.css">
 
     <!-- Gemmefunktionerne indlæses før menu og formularer. defer venter, til HTML er læst. -->
-    <script src="js/data.js" defer></script>
 
-    <script src="js/app.js" defer></script>
 
     <!-- JavaScript, som kun bruges på denne side. -->
-    <script src="js/konfigurer.js" defer></script>
+
+  <script type="module" src="js/konfigurer.js"></script>
   </head>
 
   <body data-page="configure">
@@ -159,12 +158,13 @@
             </nav>
           </div>
 
-          <span class="environment-badge"><span></span>Eksempeldata</span>
+          <span class="environment-badge"><span></span>Firebase</span>
         </header>
 
 
         <!-- Konfigurering: andet trin med kampoplysninger, holdfarver og præmier. -->
-        <main id="main" class="page-content" tabindex="-1">
+        <main id="main" class="page-content" tabindex="-1" data-checking-access>
+          <p id="access-status" class="panel firebase-status" role="status">Kontrollerer personaleadgang…</p>
 
           <!-- Trinvisningen markerer den aktuelle side og linker tilbage til tidligere trin. -->
           <nav aria-label="Oprettelsestrin">
@@ -209,7 +209,9 @@
 
 
           <!-- Browseren kontrollerer de krævede felter. Valgene gemmes før næste trin. -->
-          <form id="configure-form">
+          <p id="form-status" class="panel firebase-status" role="status">Henter konkurrence…</p>
+          <p id="save-error" class="firebase-status" role="status" hidden></p>
+          <form id="configure-form" hidden>
             <div class="configuration-layout">
               <div class="configuration-main">
 
@@ -517,7 +519,6 @@
 
             <!-- Navigation tilbage til spilvalg eller videre efter validering af formularen. -->
             <!-- En lagringsfejl vises her, så oplysninger ikke mistes ved sideskift. -->
-            <p id="save-error" class="field-error" role="alert" hidden></p>
 
             <div class="form-actions">
               <a class="button button-text" href="vaelg-spil.html">

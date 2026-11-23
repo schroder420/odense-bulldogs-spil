@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="css/spiller.css">
   <link rel="stylesheet" href="css/header.css">
+  <script type="module" src="js/public-competition.js"></script>
 </head>
 
 <body class="spiller">
@@ -207,7 +208,7 @@
       </div>
 
       <p class="match-disclaimer">
-        Kampinformation er eksempelindhold og kan opdateres.
+        Kampkalenderen er endnu ikke tilkoblet her.
       </p>
 
     </section>
@@ -256,68 +257,10 @@
         <!-- INFORMATION OM SPILLET -->
         <div class="competition-content">
 
-          <div class="competition-status">
-            <span></span>
-            KLAR TIL KAMP
-          </div>
-
           <h3>PAUSESPIL</h3>
-
-          <p>
-            Nu er det din tur til at komme på banen.
-            Deltag i vores pausekonkurrence direkte fra din mobil,
-            og se om du er bedre end de andre fans.
-          </p>
-
-
-          <!-- FAKTA OM KONKURRENCEN -->
-          <div class="competition-facts">
-
-            <div>
-              <strong>01</strong>
-              <span>PAUSESPIL</span>
-            </div>
-
-            <div>
-              <strong>TOP 5</strong>
-              <span>VINDERE</span>
-            </div>
-
-            <div>
-              <strong>PRÆMIE</strong>
-              <span>FADØL ELLER SODAVAND</span>
-            </div>
-
-          </div>
-
-
-          <!-- SÅDAN DELTAGER DU -->
-          <div class="competition-how">
-
-            <h4>SÅDAN DELTAGER DU</h4>
-
-            <div class="competition-how-step">
-              <span>01</span>
-              <p>Scan QR-koden på storskærmen i pausen.</p>
-            </div>
-
-            <div class="competition-how-step">
-              <span>02</span>
-              <p>Åbn spillet på din mobil, og start konkurrencen.</p>
-            </div>
-
-            <div class="competition-how-step">
-              <span>03</span>
-              <p>Spil spillet, og forsøg at komme i top 5 for en præmie.</p>
-            </div>
-
-          </div>
-
-          <a class="button button-primary" href="#spillerguide">
-            SE NUVÆRENDE SPIL
-            <span aria-hidden="true">↗</span>
-          </a>
-
+          <p id="public-status" class="firebase-status" role="status">Henter pausekonkurrencer…</p>
+          <p>Selve spillet skal tilkobles, før du kan deltage fra denne side.</p>
+          <div id="public-competition-link"></div>
         </div>
 
       </div>
@@ -436,7 +379,7 @@
         arenaen og de praktiske detaljer.
       </p>
 
-      <a class="button button-primary" href="kampguide/">
+      <a class="button button-primary" href="kampguide.html">
         SE KAMPGUIDEN
         <span aria-hidden="true">↗</span>
       </a>
@@ -469,7 +412,7 @@
           <span>PÅ ISEN.</span>
         </h2>
 
-        <a class="button button-primary" href="kampguide/index.html">
+        <a class="button button-primary" href="kampguide.html">
           KOM TIL KAMP
           <span aria-hidden="true">↗</span>
         </a>
