@@ -1,63 +1,67 @@
-// KONFIGURERING: gem felter, og opdater dragtens navn og farver.
-const configureForm = document.getElementById('configure-form');
+import { duringSave, errorText, pageUrl, selectedId, showStatus, showText, staffReady } from './app.js';
+import { fillForm, loadCompetition, saveDraft, saveForm } from './data.js';
 
-if (configureForm) {
+async function startConfigure() {
+  const session = await staffReady;
+  if (!session) return;
+  const { api, user } = session;
+  const form = document.getElementById('configure-form');
   const nameInput = document.getElementById('competition-name');
   const opponentInput = document.getElementById('opponent-name');
+  const submit = form.querySelector('[type="submit"]');
 
-  // Native validering viser en dansk fejl, hvis et navn kun indeholder mellemrum.
-  function validateNames() {
-    nameInput.setCustomValidity('');
-    opponentInput.setCustomValidity('');
+  try {
+    const existingId = selectedId();
+    const id = existingId ?? crypto.randomUUID();
+    const allowNew = !existingId || new URLSearchParams(location.search).get('ny') === '1';
+    if (!existingId) history.replaceState(null, '', pageUrl('konfigurer.html', { runde: id, ny: 1 }));
+    const draft = await loadCompetition(api, user.uid, id, allowNew);
 
-    if (!nameInput.value.trim()) {
-      nameInput.setCustomValidity('Giv konkurrencen et navn.');
+    function updateKit() {
+      const { primary, stripe, opponent } = draft.values;
+      showText('primary-hex', primary.toUpperCase());
+      showText('stripe-hex', stripe.toUpperCase());
+      showText('kit-opponent-label', opponent || 'Modstander');
+      const jersey = document.getElementById('opponent-jersey');
+      jersey.style.setProperty('--kit-primary', primary);
+      jersey.style.setProperty('--kit-stripe', stripe);
+      jersey.setAttribute('aria-label', 'Dragt for ' + (opponent || 'modstanderen'));
     }
 
-    if (!opponentInput.value.trim()) {
-      opponentInput.setCustomValidity('Indtast modstanderens navn.');
-    }
-  }
-
-  function updateKit() {
-    showText('primary-hex', competition.primary.toUpperCase());
-    showText('stripe-hex', competition.stripe.toUpperCase());
-    showText('kit-opponent-label', competition.opponent || 'Modstander');
-
-    const jersey = document.getElementById('opponent-jersey');
-    jersey.style.setProperty('--kit-primary', competition.primary);
-    jersey.style.setProperty('--kit-stripe', competition.stripe);
-    jersey.setAttribute('aria-label', 'Dragt for ' + (competition.opponent || 'modstanderen'));
-  }
-
-  fillForm(configureForm);
-  validateNames();
-  updateKit();
-
-  configureForm.addEventListener('input', function () {
-    validateNames();
-    saveForm(configureForm);
+    fillForm(form, draft.values);
     updateKit();
-  });
+    form.hidden = false;
+    showStatus('form-status', draft.newerVersion ? 'Konkurrencen er ændret siden din lokale kladde. De gemte oplysninger vises.' : '');
 
-  // Fjern ydre mellemrum ved submit. Bliv i formularen, hvis gemning afvises.
-  configureForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    nameInput.value = nameInput.value.trim();
-    opponentInput.value = opponentInput.value.trim();
-    validateNames();
+    form.addEventListener('input', () => {
+      nameInput.setCustomValidity('');
+      opponentInput.setCustomValidity('');
+      saveDraft(form, draft);
+      updateKit();
+    });
 
-    if (!configureForm.reportValidity()) {
-      return;
-    }
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      nameInput.value = nameInput.value.trim();
+      opponentInput.value = opponentInput.value.trim();
+      nameInput.setCustomValidity(nameInput.value ? '' : 'Giv konkurrencen et navn.');
+      opponentInput.setCustomValidity(opponentInput.value ? '' : 'Indtast modstanderens navn.');
+      if (!form.reportValidity()) return;
 
-    const saved = saveForm(configureForm);
-    updateKit();
-
-    if (!saved) {
-      return;
-    }
-
-    window.location.href = 'tidspunkt.html';
-  });
+      duringSave(submit, 'save-error', async () => {
+        form.inert = true;
+        try {
+          await saveForm(form, api, id, draft, 'configure');
+          history.replaceState(null, '', pageUrl('konfigurer.html', { runde: id }));
+          location.href = pageUrl('tidspunkt.html', { runde: id });
+        } finally {
+          form.inert = false;
+        }
+      });
+    });
+  } catch (error) {
+    showStatus('form-status', errorText(error, 'Konkurrencen kunne ikke hentes. Genindlæs siden for at prøve igen.'), 'error');
+  }
 }
+
+startConfigure();

@@ -23,12 +23,11 @@
     <link rel="stylesheet" href="css/side-skabelon.css">
 
     <!-- Gemmefunktionerne indlæses før menu og formularer. defer venter, til HTML er læst. -->
-    <script src="js/data.js" defer></script>
 
-    <script src="js/app.js" defer></script>
 
     <!-- Egen sidelogik. Scriptet kan fjernes, hvis siden kun bruger HTML og CSS. -->
-    <script src="js/side-skabelon.js" defer></script>
+
+  <script type="module" src="js/side-skabelon.js"></script>
   </head>
 
   <body class="side-skabelon" data-page="ny-side">
@@ -169,12 +168,13 @@
             </nav>
           </div>
 
-          <span class="environment-badge"><span></span>Eksempeldata</span>
+          <span class="environment-badge"><span></span>Firebase</span>
         </header>
 
 
         <!-- SIDENS INDHOLD: udskift dette main-element. Behold id="main" til skip-linket. -->
-        <main id="main" class="page-content" tabindex="-1">
+        <main id="main" class="page-content" tabindex="-1" data-checking-access>
+          <p id="access-status" class="panel firebase-status" role="status">Kontrollerer personaleadgang…</p>
           <header class="page-heading">
             <p class="eyebrow">ADMINISTRATION</p>
 

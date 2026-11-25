@@ -22,12 +22,11 @@
     <link rel="stylesheet" href="css/konkurrencer.css">
 
     <!-- Gemmefunktionerne indlæses før menu og formularer. defer venter, til HTML er læst. -->
-    <script src="js/data.js" defer></script>
 
-    <script src="js/app.js" defer></script>
 
     <!-- Søgning, filtre og annullering. -->
-    <script src="js/konkurrencer.js" defer></script>
+
+  <script type="module" src="js/konkurrencer.js"></script>
   </head>
 
   <body class="konkurrencer" data-page="konkurrencer">
@@ -154,11 +153,12 @@
             </nav>
           </div>
 
-          <span class="environment-badge"><span></span>Eksempeldata</span>
+          <span class="environment-badge"><span></span>Firebase</span>
         </header>
 
 
-        <main id="main" class="page-content" tabindex="-1">
+        <main id="main" class="page-content" tabindex="-1" data-checking-access>
+          <p id="access-status" class="panel firebase-status" role="status">Kontrollerer personaleadgang…</p>
 
           <!-- SIDEOVERSKRIFT -->
           <header class="page-heading competitions-heading">
@@ -182,9 +182,10 @@
 
           <section class="panel competitions-panel" aria-labelledby="list-title">
             <h2 id="list-title" class="visually-hidden">Alle konkurrencer</h2>
+            <p id="archive-status" class="firebase-status" role="status">Henter konkurrencer…</p>
 
             <!-- SØGNING OG FILTRE -->
-            <div class="competition-toolbar">
+            <div class="competition-toolbar" id="archive-filters" hidden>
               <div class="field competition-search">
                 <label class="field-label" for="competition-search">Søg</label>
 
@@ -198,164 +199,23 @@
               <fieldset class="competition-filters">
                 <legend class="field-label">Vis</legend>
 
+                <label><input type="radio" name="status-filter" value="draft"><span>Kladder</span></label>
+
                 <label><input type="radio" name="status-filter" value="alle" checked><span>Alle</span></label>
 
-                <label><input type="radio" name="status-filter" value="planlagt"><span>Planlagte</span></label>
+                <label><input type="radio" name="status-filter" value="scheduled"><span>Planlagte</span></label>
 
-                <label><input type="radio" name="status-filter" value="i-gang"><span>I gang</span></label>
+                <label><input type="radio" name="status-filter" value="live"><span>I gang</span></label>
 
-                <label><input type="radio" name="status-filter" value="afsluttet"><span>Afsluttede</span></label>
+                <label><input type="radio" name="status-filter" value="final"><span>Afsluttede</span></label>
+
+                <label><input type="radio" name="status-filter" value="cancelled"><span>Annullerede</span></label>
               </fieldset>
             </div>
 
 
             <!-- KONKURRENCELISTE: data-status og data-name bruges af søgning og filtre. -->
-            <ul id="competition-list" class="competition-list">
-
-              <li class="competition-row" data-status="i-gang" data-name="Bulldogs mod Herning, 1. pause">
-                <img src="assets/bulldogs-glide-v6.webp" width="56" height="56" alt="">
-
-                <div class="competition-main">
-                  <h3>Bulldogs mod Herning, 1. pause</h3>
-
-                  <p>Hold pucken i live · Odense Bulldogs mod Herning Blue Fox</p>
-                </div>
-
-                <dl class="competition-facts">
-                  <div><dt>Start</dt><dd>31. okt. · 19.42</dd></div>
-
-                  <div><dt>Varighed</dt><dd>3 min.</dd></div>
-
-                  <div><dt>Deltagere</dt><dd>248</dd></div>
-                </dl>
-
-                <span class="badge status-badge status-live"><span></span>I gang</span>
-
-                <div class="competition-actions">
-                  <a class="button button-primary" href="afvikling.html">Åbn konkurrence</a>
-                </div>
-              </li>
-
-              <li class="competition-row" data-status="planlagt" data-name="Bulldogs mod Herning, 2. pause">
-                <img src="assets/bulldogs-glide-v6.webp" width="56" height="56" alt="">
-
-                <div class="competition-main">
-                  <h3>Bulldogs mod Herning, 2. pause</h3>
-
-                  <p>Hold pucken i live · Odense Bulldogs mod Herning Blue Fox</p>
-                </div>
-
-                <dl class="competition-facts">
-                  <div><dt>Start</dt><dd>31. okt. · 20.25</dd></div>
-
-                  <div><dt>Varighed</dt><dd>3 min.</dd></div>
-
-                  <div><dt>Deltagere</dt><dd>–</dd></div>
-                </dl>
-
-                <span class="badge status-badge status-planned">Planlagt</span>
-
-                <div class="competition-actions">
-                  <a class="button button-secondary" href="afvikling.html">Åbn konkurrence</a>
-
-                  <a class="button button-text" href="konfigurer.html">Rediger</a>
-
-                  <a class="button button-text" href="afvikling.html">Start nu</a>
-
-                  <button class="button button-text cancel-button" type="button">Annullér</button>
-                </div>
-              </li>
-
-              <li class="competition-row" data-status="planlagt" data-name="Bulldogs mod Aalborg, 1. pause">
-                <img src="assets/bulldogs-glide-v6.webp" width="56" height="56" alt="">
-
-                <div class="competition-main">
-                  <h3>Bulldogs mod Aalborg, 1. pause</h3>
-
-                  <p>Hold pucken i live · Odense Bulldogs mod Aalborg Pirates</p>
-                </div>
-
-                <dl class="competition-facts">
-                  <div><dt>Start</dt><dd>7. nov. · 19.40</dd></div>
-
-                  <div><dt>Varighed</dt><dd>4 min.</dd></div>
-
-                  <div><dt>Deltagere</dt><dd>–</dd></div>
-                </dl>
-
-                <span class="badge status-badge status-planned">Planlagt</span>
-
-                <div class="competition-actions">
-                  <a class="button button-secondary" href="afvikling.html">Åbn konkurrence</a>
-
-                  <a class="button button-text" href="konfigurer.html">Rediger</a>
-
-                  <a class="button button-text" href="afvikling.html">Start nu</a>
-
-                  <button class="button button-text cancel-button" type="button">Annullér</button>
-                </div>
-              </li>
-
-              <li class="competition-row" data-status="afsluttet" data-name="Bulldogs mod Esbjerg, 2. pause">
-                <img src="assets/bulldogs-glide-v6.webp" width="56" height="56" alt="">
-
-                <div class="competition-main">
-                  <h3>Bulldogs mod Esbjerg, 2. pause</h3>
-
-                  <p>Hold pucken i live · Odense Bulldogs mod Esbjerg Energy</p>
-                </div>
-
-                <dl class="competition-facts">
-                  <div><dt>Start</dt><dd>24. okt. · 20.21</dd></div>
-
-                  <div><dt>Varighed</dt><dd>3 min.</dd></div>
-
-                  <div><dt>Deltagere</dt><dd>212</dd></div>
-                </dl>
-
-                <span class="badge badge-neutral">Afsluttet</span>
-
-                <div class="competition-actions">
-                  <a class="button button-secondary" href="afvikling.html">Åbn konkurrence</a>
-
-                  <a class="button button-text" href="resultat.html">Se resultat</a>
-
-                  <a class="button button-text" href="statistik.html">Se statistik</a>
-
-                  <button class="button button-text" type="button" data-placeholder="Storskærm">Åbn storskærm</button>
-                </div>
-              </li>
-
-              <li class="competition-row" data-status="afsluttet" data-name="Bulldogs mod Esbjerg, 1. pause">
-                <img src="assets/bulldogs-glide-v6.webp" width="56" height="56" alt="">
-
-                <div class="competition-main">
-                  <h3>Bulldogs mod Esbjerg, 1. pause</h3>
-
-                  <p>Hold pucken i live · Odense Bulldogs mod Esbjerg Energy</p>
-                </div>
-
-                <dl class="competition-facts">
-                  <div><dt>Start</dt><dd>24. okt. · 19.38</dd></div>
-
-                  <div><dt>Varighed</dt><dd>3 min.</dd></div>
-
-                  <div><dt>Deltagere</dt><dd>187</dd></div>
-                </dl>
-
-                <span class="badge badge-neutral">Afsluttet</span>
-
-                <div class="competition-actions">
-                  <a class="button button-secondary" href="afvikling.html">Åbn konkurrence</a>
-
-                  <a class="button button-text" href="resultat.html">Se resultat</a>
-
-                  <a class="button button-text" href="statistik.html">Se statistik</a>
-
-                  <button class="button button-text" type="button" data-placeholder="Storskærm">Åbn storskærm</button>
-                </div>
-              </li>
-            </ul>
+            <ul id="competition-list" class="competition-list"></ul>
 
 
             <!-- Vises af JavaScript, når søgning eller filter ikke giver resultater. -->
@@ -420,7 +280,8 @@
 
       <h2 id="cancel-title">Annullér konkurrencen?</h2>
 
-      <p id="cancel-copy">Konkurrencen bliver ikke startet.</p>
+      <p id="cancel-copy">Konkurrencen bliver stående i arkivet som annulleret.</p>
+      <p id="cancel-status" class="firebase-status" role="status" hidden></p>
 
       <div class="dialog-actions">
         <button class="button button-secondary" type="button" data-close-dialog>Behold konkurrence</button>

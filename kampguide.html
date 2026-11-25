@@ -19,10 +19,82 @@
     <link rel="icon" type="image/png" href="../assets/bulldogs-logo.png">
 
     <!-- Fælles skrifter, farver og fokusmarkeringer. -->
-    <link rel="stylesheet" href="../styles.css">
-
-    <link rel="stylesheet" href="../css/kampguide.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/kampguide.css">
+    <link rel="stylesheet" href="css/header.css">
   </head>
+
+  <!-- HEADER -->
+<header class="site-header">
+
+  <div class="header-inner">
+
+    <!-- LOGO -->
+    <a class="site-brand" href="spiller.html" aria-label="Odense Bulldogs forside">
+
+      <img
+        src="assets/bulldogs-logo.png"
+        alt="Odense Bulldogs logo"
+      >
+
+      <span class="brand-text">
+        <strong>ODENSE BULLDOGS</strong>
+      </span>
+
+    </a>
+
+
+    <!-- DESKTOP NAVIGATION -->
+    <nav class="desktop-navigation" aria-label="Hovednavigation">
+
+      <a class="nav-item" href="spiller.html#forside">Forside</a>
+
+      <a class="nav-item" href="spiller.html#kamp">Næste kamp</a>
+
+      <a class="nav-item" href="spiller.html#konkurrence">Pausekonkurrence</a>
+
+      <a class="nav-item active" href="kampguide.html">Kampguide</a>
+
+    </nav>
+
+
+    <!-- KOM TIL KAMP KNAP -->
+    <a class="header-cta" href="spiller.html#kamp">
+      KOM TIL KAMP
+      <span aria-hidden="true">↗</span>
+    </a>
+
+
+    <!-- MOBIL MENU -->
+    <details class="mobile-navigation">
+
+      <summary aria-label="Åbn navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </summary>
+
+      <nav class="mobile-menu" aria-label="Mobilnavigation">
+
+        <a href="spiller.html#forside">Forside</a>
+
+        <a href="spiller.html#kamp">Næste kamp</a>
+
+        <a href="spiller.html#konkurrence">Pausekonkurrence</a>
+
+        <a href="kampguide.html">Kampguide</a>
+
+        <a class="mobile-menu-cta" href="spiller.html#kamp">
+          KOM TIL KAMP ↗
+        </a>
+
+      </nav>
+
+    </details>
+
+  </div>
+
+</header>
 
   <body class="kampguide">
 
@@ -35,13 +107,6 @@
       <img class="kg-hero-photo" src="../assets/kampguide/forside.webp" width="864" height="1080" alt="">
 
       <div class="kg-hero-inner">
-        <a class="kg-back" href="../spiller.html">← Tilbage til forsiden</a>
-
-        <div class="kg-hero-top">
-          <p class="kg-kicker">ODENSE BULLDOGS</p>
-
-          <img src="../assets/bulldogs-logo.png" width="56" height="65" alt="Odense Bulldogs">
-        </div>
 
         <p class="kg-label">KAMPGUIDE</p>
 

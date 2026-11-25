@@ -22,12 +22,11 @@
     <link rel="stylesheet" href="css/overblik.css">
 
     <!-- Gemmefunktionerne indlæses før menu og formularer. defer venter, til HTML er læst. -->
-    <script src="js/data.js" defer></script>
 
-    <script src="js/app.js" defer></script>
 
     <!-- Kopiér link til storskærmen. -->
-    <script src="js/overblik.js" defer></script>
+
+  <script type="module" src="js/overblik.js"></script>
   </head>
 
   <body class="overblik" data-page="overblik">
@@ -154,11 +153,12 @@
             </nav>
           </div>
 
-          <span class="environment-badge"><span></span>Eksempeldata</span>
+          <span class="environment-badge"><span></span>Firebase</span>
         </header>
 
 
-        <main id="main" class="page-content" tabindex="-1">
+        <main id="main" class="page-content" tabindex="-1" data-checking-access>
+          <p id="access-status" class="panel firebase-status" role="status">Kontrollerer personaleadgang…</p>
 
           <!-- SIDEOVERSKRIFT -->
           <header class="page-heading overview-heading">
@@ -180,15 +180,20 @@
           </header>
 
 
-          <div class="overview-layout">
+          <p id="overview-status" class="panel firebase-status" role="status">Henter kampoverblik…</p>
+          <div class="overview-layout" hidden>
 
             <!-- AKTUEL KONKURRENCE -->
-            <section class="panel current-card" aria-labelledby="current-title">
+            <section class="panel empty-card" id="no-active" hidden>
+              <h2>Ingen aktiv konkurrence</h2>
+              <a class="button button-primary" href="vaelg-spil.html">Start konkurrence</a>
+            </section>
+            <section class="panel current-card" aria-labelledby="current-title" hidden>
               <div class="panel-heading">
                 <div>
                   <p class="eyebrow">AKTUEL KONKURRENCE</p>
 
-                  <h2 id="current-title" class="section-title">Bulldogs mod Herning, 1. pause</h2>
+                  <h2 id="current-title" class="section-title">Aktuel konkurrence</h2>
                 </div>
 
                 <span class="badge status-badge status-live"><span></span>I gang</span>
@@ -202,75 +207,50 @@
 
                   <strong>Hold pucken i live</strong>
 
-                  <p class="current-teams">Odense Bulldogs mod Herning Blue Fox</p>
+                  <p class="current-teams" id="current-teams"></p>
                 </div>
               </div>
 
               <div class="current-clock">
                 <p class="info-label">Tid tilbage</p>
 
-                <p class="clock-value">02:14</p>
+                <p class="clock-value" id="current-clock"></p>
               </div>
 
               <dl class="current-facts">
                 <div>
                   <dt>Start</dt>
 
-                  <dd>19:42</dd>
+                  <dd id="current-start"></dd>
                 </div>
 
                 <div>
                   <dt>Slutfløjt</dt>
 
-                  <dd>19:45</dd>
+                  <dd id="current-end"></dd>
                 </div>
 
                 <div>
                   <dt>Deltagere med resultat</dt>
 
-                  <dd>248</dd>
+                  <dd id="current-count">Henter forsøg…</dd>
                 </div>
               </dl>
 
-              <div class="current-actions">
-                <a class="button button-primary" href="afvikling.html">
-                  Gå til afvikling
-
-                  <svg class="icon" aria-hidden="true">
-                    <use href="assets/icons.svg#chevron-right"></use>
-                  </svg>
-                </a>
-
-                <button class="button button-secondary" type="button" data-placeholder="Storskærm">
-                  <svg class="icon" aria-hidden="true">
-                    <use href="assets/icons.svg#monitor"></use>
-                  </svg>
-
-                  Åbn storskærm
-                </button>
-
-                <button id="copy-link" class="button button-secondary" type="button">
-                  <svg class="icon" aria-hidden="true">
-                    <use href="assets/icons.svg#copy"></use>
-                  </svg>
-
-                  Kopiér link
-                </button>
-              </div>
-
-              <p id="copy-status" class="copy-status" role="status"></p>
+              <div class="current-actions" id="current-actions"></div>
             </section>
 
 
             <div class="overview-side">
 
               <!-- NÆSTE KONKURRENCE -->
-              <section class="panel side-card" aria-labelledby="next-title">
+              <section class="panel side-card" id="no-scheduled" hidden><h2>Ingen planlagte konkurrencer</h2></section>
+              <section class="panel side-card" aria-labelledby="next-title" id="next-card" hidden>
                 <div class="panel-heading">
                   <div>
                     <p class="eyebrow">NÆSTE KONKURRENCE</p>
 
-                    <h2 id="next-title" class="section-title">Bulldogs mod Herning, 2. pause</h2>
+                    <h2 id="next-title" class="section-title">Planlagt konkurrence</h2>
                   </div>
 
                   <span class="badge badge-neutral">Planlagt</span>
@@ -286,30 +266,31 @@
                   <div>
                     <dt>Start</dt>
 
-                    <dd>Fre. 31. okt. kl. 20.25</dd>
+                    <dd id="next-start"></dd>
                   </div>
 
                   <div>
                     <dt>Varighed</dt>
 
-                    <dd>3 min.</dd>
+                    <dd id="next-duration"></dd>
                   </div>
                 </dl>
 
-                <a class="button button-secondary" href="konkurrencer.html">Se konkurrence</a>
+                <div id="next-action"></div>
               </section>
 
 
               <!-- SENESTE RESULTAT -->
-              <section class="panel side-card" aria-labelledby="latest-title">
+              <section class="panel side-card" id="no-latest" hidden><h2>Ingen afsluttede konkurrencer</h2></section>
+              <section class="panel side-card" aria-labelledby="latest-title" id="latest-card" hidden>
                 <div class="panel-heading">
                   <div>
                     <p class="eyebrow">SENESTE RESULTAT</p>
 
-                    <h2 id="latest-title" class="section-title">Bulldogs mod Esbjerg, 2. pause</h2>
+                    <h2 id="latest-title" class="section-title">Seneste afsluttede konkurrence</h2>
                   </div>
 
-                  <span class="badge badge-neutral">Afsluttet</span>
+                  <span class="badge badge-neutral" id="latest-source"></span>
                 </div>
 
                 <div class="winner">
@@ -318,11 +299,11 @@
                   </svg>
 
                   <div>
-                    <p class="info-label">Vinder</p>
+                    <p class="info-label" id="latest-label"></p>
 
-                    <strong>BulldogsFan78</strong>
+                    <strong id="latest-value">Henter score…</strong>
 
-                    <span>41,26 point</span>
+
                   </div>
                 </div>
 
@@ -330,54 +311,22 @@
                   <div>
                     <dt>Dato</dt>
 
-                    <dd>24. okt. 2026</dd>
+                    <dd id="latest-date"></dd>
                   </div>
 
                   <div>
                     <dt>Deltagere</dt>
 
-                    <dd>212</dd>
+                    <dd id="latest-players">Henter forsøg…</dd>
                   </div>
                 </dl>
 
-                <a class="button button-secondary" href="resultat.html">Se resultat</a>
+                <div id="latest-action"></div>
               </section>
             </div>
           </div>
 
 
-          <!-- TOMME TILSTANDE: vises, når der ikke er en aktuel eller planlagt konkurrence. -->
-          <section class="empty-states" aria-labelledby="empty-title">
-            <h2 id="empty-title" class="empty-states-title">Når der ikke er noget at vise</h2>
-
-            <div class="empty-grid">
-              <div class="panel empty-card">
-                <span class="dialog-icon">
-                  <svg class="icon" aria-hidden="true">
-                    <use href="assets/icons.svg#play"></use>
-                  </svg>
-                </span>
-
-                <h3>Klar til næste pause?</h3>
-
-                <p>Opret en konkurrence, vælg et spil og gør storskærmen klar.</p>
-
-                <a class="button button-primary" href="vaelg-spil.html">Start konkurrence</a>
-              </div>
-
-              <div class="panel empty-card">
-                <span class="dialog-icon">
-                  <svg class="icon" aria-hidden="true">
-                    <use href="assets/icons.svg#calendar"></use>
-                  </svg>
-                </span>
-
-                <h3>Ingen planlagte</h3>
-
-                <p>Der er ingen kommende konkurrencer.</p>
-              </div>
-            </div>
-          </section>
         </main>
 
 

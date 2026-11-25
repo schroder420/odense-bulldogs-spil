@@ -21,12 +21,11 @@
     <link rel="stylesheet" href="css/afvikling.css">
 
     <!-- Gemmefunktionerne indlæses før menu og formularer. defer venter, til HTML er læst. -->
-    <script src="js/data.js" defer></script>
 
-    <script src="js/app.js" defer></script>
 
     <!-- JavaScript, som kun bruges på denne side. -->
-    <script src="js/afvikling.js" defer></script>
+
+  <script type="module" src="js/afvikling.js"></script>
   </head>
 
   <body data-page="run">
@@ -159,28 +158,29 @@
             </nav>
           </div>
 
-          <span class="environment-badge"><span></span>Eksempeldata</span>
+          <span class="environment-badge"><span></span>Firebase</span>
         </header>
 
 
-        <!-- Statisk eksempel på afvikling med de gemte konkurrenceoplysninger. -->
-        <main id="main" class="page-content" tabindex="-1">
+        <!-- Afvikling for den valgte konkurrence. -->
+        <main id="main" class="page-content" tabindex="-1" data-checking-access>
+          <p id="access-status" class="panel firebase-status" role="status">Kontrollerer personaleadgang…</p>
           <header class="page-heading run-heading">
             <div>
               <p class="eyebrow">KAMPKONTROL · AFVIKLING</p>
 
-              <h1 id="run-title">Bulldogs mod Herning, 1. pause</h1>
+              <h1 id="run-title">Afvikling</h1>
 
               <p class="lead">
-                <span>Hold pucken i live</span><span class="meta-divider">·</span><span id="run-teams">Odense Bulldogs mod Herning Blue Fox</span>
+                <span>Hold pucken i live</span><span class="meta-divider">·</span><span id="run-teams"></span>
               </p>
             </div>
 
-            <span id="run-status" class="badge badge-neutral">Eksempelvisning</span>
+            <span id="run-status" class="badge badge-neutral"></span>
           </header>
 
 
-          <!-- Konkurrencefaner. Kun Afvikling er bygget her; Deltagere og Resultat åbner pladsholdere. -->
+          <!-- Konkurrencefaner -->
           <nav class="competition-tabs" aria-label="Konkurrence">
             <a class="is-active" href="afvikling.html" aria-current="page">
               <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#monitor"></use></svg> Afvikling
@@ -195,27 +195,26 @@
             </a>
           </nav>
 
-          <div class="run-layout">
+          <p id="run-load" class="panel firebase-status" role="status">Henter konkurrence…</p>
+          <div class="run-layout" hidden>
             <div class="run-main">
 
-              <!-- Eksempel på statusområdet. Tallene tæller ikke ned i denne prototype. -->
               <section class="countdown-panel" aria-label="Konkurrencens status">
                 <div class="countdown-heading">
                   <span class="live-dot"></span>
 
-                  <p id="countdown-label">Eksempel på nedtælling</p>
+                  <p id="countdown-label">Konkurrencens tid</p>
 
                   <span class="countdown-game">HOLD PUCKEN I LIVE</span>
                 </div>
 
                 <div
                   id="countdown-value"
-                  class="countdown-value"
-                  aria-label="Eksempel på nedtælling">03:00</div>
-                <p id="countdown-description">Nedtælling og resultater vises her under en konkurrence.</p>
+                  class="countdown-value"></div>
+                <p id="countdown-description"></p>
 
                 <div class="progress-track">
-                  <div id="competition-progress" class="progress-fill"></div>
+                  <div id="competition-progress" class="progress-fill" style="width: 0"></div>
                 </div>
 
                 <div class="countdown-footer">
@@ -224,10 +223,10 @@
                       <use href="assets/icons.svg#clock"></use>
                     </svg>
 
-                    <span>Alle forsøg stopper ved slutfløjt</span>
+                    <span>Spilletid i kampkontrol</span>
                   </span>
 
-                  <span>TOP 5 VINDER</span>
+                  <span></span>
                 </div>
               </section>
 
@@ -237,7 +236,7 @@
                 <article class="stat">
                   <span class="stat-label">Deltagere med resultat</span>
 
-                  <strong id="stat-players" class="stat-value">248</strong>
+                  <strong id="stat-players" class="stat-value">Henter…</strong>
 
                   <span class="stat-note">Unikke deltagere</span>
                 </article>
@@ -245,7 +244,7 @@
                 <article class="stat">
                   <span class="stat-label">Godkendte forsøg</span>
 
-                  <strong id="stat-attempts" class="stat-value">1.164</strong>
+                  <strong id="stat-attempts" class="stat-value">Henter…</strong>
 
                   <span class="stat-note">I denne konkurrence</span>
                 </article>
@@ -253,7 +252,7 @@
                 <article class="stat">
                   <span class="stat-label">Varighed</span>
 
-                  <strong id="stat-duration" class="stat-value">3 min.</strong>
+                  <strong id="stat-duration" class="stat-value"></strong>
 
                   <span class="stat-note">Valgt spilletid</span>
                 </article>
@@ -261,466 +260,30 @@
                 <article class="stat stat-prize">
                   <span class="stat-label">Præmie</span>
 
-                  <strong id="stat-prize" class="stat-value">Fadøl eller sodavand</strong>
+                  <strong id="stat-prize" class="stat-value"></strong>
 
-                  <span class="stat-note">Til hver af de fem vindere</span>
+                  <span class="stat-note">Valgt præmietekst</span>
                 </article>
               </section>
 
 
-              <!-- Statisk skærmforhåndsvisning med deaktiverede eksempler på betjeningen. -->
+              <p id="run-stats-status" class="firebase-status" role="status" hidden></p>
               <section class="panel audience-panel">
-                <div class="panel-heading screen-panel-heading">
-                  <div>
-                    <p class="eyebrow">SKÆRMSTYRING</p>
-
-                    <h2>Det ser publikum</h2>
-                  </div>
-
-                  <span class="preview-status">
-                    <span></span>
-
-                    <span id="preview-status-label">Leaderboard</span>
-                  </span>
+                <div class="panel-heading"><h2>Konkurrencens top 5</h2></div>
+                <div class="screen-preview">
+                  <p id="run-preview-status" class="firebase-status" role="status">Henter scorer…</p>
+                  <ol id="run-scores" class="mini-leaderboard"></ol>
                 </div>
-
-
-                <!-- Leaderboardet er et fast eksempel. Skærmstyringen tilsluttes senere. -->
-                <div id="screen-preview" class="screen-preview">
-
-
-                  <!-- Leaderboard med de fem eksempelspillere og plads til spillets QR-kode. -->
-                  <div class="preview-screen" data-screen="leaderboard">
-                    <div class="preview-brand">
-                      <img src="assets/bulldogs-logo.png" alt="" width="30" height="35">
-
-                      <span>ODENSE BULLDOGS<span>KAMPENS PAUSE</span></span>
-                    </div>
-
-                    <div class="preview-layout">
-                      <div class="preview-ranking">
-                        <p class="preview-eyebrow">DER ER NOGET AT SPILLE FOR</p>
-
-                        <h3>KAMPENS TOP 5</h3>
-
-                        <ol class="mini-leaderboard">
-                          <li>
-                            <span>1</span>
-
-                            <strong>BulldogsFan78</strong>
-
-                            <b>41,26</b>
-                          </li>
-
-                          <li>
-                            <span>2</span>
-
-                            <strong>IsHjerte</strong>
-
-                            <b>38,90</b>
-                          </li>
-
-                          <li>
-                            <span>3</span>
-
-                            <strong>Puckmaster</strong>
-
-                            <b>35,82</b>
-                          </li>
-
-                          <li>
-                            <span>4</span>
-
-                            <strong>Fynboen</strong>
-
-                            <b>31,04</b>
-                          </li>
-
-                          <li>
-                            <span>5</span>
-
-                            <strong>HvidOgGrøn</strong>
-
-                            <b>29,58</b>
-                          </li>
-                        </ol>
-                      </div>
-
-                      <div class="preview-join">
-                        <div class="qr-placeholder" aria-label="Plads til spillets QR-kode">
-                          <svg class="icon" aria-hidden="true">
-                            <use href="assets/icons.svg#qr"></use>
-                          </svg>
-                        </div>
-
-                        <strong>SCAN OG SPIL MED</strong>
-
-                        <span>Hold pucken i live</span>
-
-                        <small>QR-kode vises her</small>
-                      </div>
-                    </div>
-
-                    <div class="preview-bottom">
-                      <span id="preview-title">Bulldogs mod Herning, 1. pause</span>
-
-                      <span>1 FADØL ELLER SODAVAND TIL TOP 5</span>
-                    </div>
-                  </div>
-
-
-                  <!-- Kort vejledning i det valgte spil. -->
-                  <div class="preview-screen" data-screen="instructions" hidden>
-                    <div class="preview-instruction">
-                      <p class="preview-eyebrow">SÅDAN SPILLER DU</p>
-
-                      <h3>HOLD PUCKEN I LIVE.</h3>
-
-                      <div class="preview-demo">
-                        <div
-                          class="game-art compact"
-                          aria-label="Hold pucken i live: Bulldogs-spillere på isen"
-                          role="img">
-
-                          <div class="rink">
-                            <div class="rink-line rink-line-red"></div>
-
-                            <div class="rink-line rink-line-blue"></div>
-
-                            <div class="rink-circle"></div>
-
-                            <img
-                              class="skater skater-away"
-                              src="assets/opponent-receive-v6.webp"
-                              alt=""
-                              width="96"
-                              height="96">
-                            <img
-                              class="skater skater-home"
-                              src="assets/bulldogs-receive-v6.webp"
-                              alt=""
-                              width="96"
-                              height="96">
-                            <div class="active-ring"></div>
-
-                            <img
-                              class="skater skater-active"
-                              src="assets/bulldogs-glide-v6.webp"
-                              alt=""
-                              width="96"
-                              height="96">
-                            <span class="puck"></span>
-
-                            <span class="pass-trail"></span>
-                          </div>
-
-                          <span class="art-label">HOLD PUCKEN I LIVE</span>
-
-                          <span class="art-score">24<span>,82</span></span>
-                        </div>
-                      </div>
-
-                      <p>
-                        Aflever til dine medspillere. Undgå modstanderne.<br>Hold pucken i live så længe som muligt.
-                      </p>
-                    </div>
-                  </div>
-
-
-                  <!-- Forhåndsvisning af visningen med stor QR-kode. -->
-                  <div class="preview-screen" data-screen="qr" hidden>
-                    <div class="preview-qr">
-                      <p class="preview-eyebrow">DIN TUR PÅ ISEN</p>
-
-                      <h3>SCAN. SPIL. VIND.</h3>
-
-                      <div class="qr-placeholder">
-                        <svg class="icon" aria-hidden="true">
-                          <use href="assets/icons.svg#qr"></use>
-                        </svg>
-                      </div>
-
-                      <p>QR-kode til spillet vises her</p>
-                    </div>
-                  </div>
-
-
-                  <!-- Skjult eksempel på en publikumsbesked til senere tilslutning. -->
-                  <div class="preview-screen" data-screen="message" hidden>
-                    <div class="preview-message">
-                      <p class="preview-eyebrow">BESKED TIL PUBLIKUM</p>
-
-                      <h3 id="preview-message-title">Klar til næste pause?</h3>
-
-                      <p id="preview-message-copy">Find telefonen frem, og spil med.</p>
-                    </div>
-                  </div>
-
-
-                  <!-- Skjult eksempel på vinderafsløring til senere tilslutning. -->
-                  <div class="preview-screen" data-screen="winners" hidden>
-                    <div class="preview-winners">
-                      <p class="preview-eyebrow">TAK FOR KAMPEN</p>
-
-                      <svg class="icon" aria-hidden="true">
-                        <use href="assets/icons.svg#trophy"></use>
-                      </svg>
-
-                      <h3>KAMPENS VINDERE</h3>
-
-                      <ol class="mini-leaderboard">
-                        <li>
-                          <span>1</span>
-
-                          <strong>BulldogsFan78</strong>
-
-                          <b>41,26</b>
-                        </li>
-
-                        <li>
-                          <span>2</span>
-
-                          <strong>IsHjerte</strong>
-
-                          <b>38,90</b>
-                        </li>
-
-                        <li>
-                          <span>3</span>
-
-                          <strong>Puckmaster</strong>
-
-                          <b>35,82</b>
-                        </li>
-
-                        <li>
-                          <span>4</span>
-
-                          <strong>Fynboen</strong>
-
-                          <b>31,04</b>
-                        </li>
-
-                        <li>
-                          <span>5</span>
-
-                          <strong>HvidOgGrøn</strong>
-
-                          <b>29,58</b>
-                        </li>
-                      </ol>
-
-                      <p>Top 5 er fundet. Hent præmien i Viggos Bar.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <p class="demo-caption">Forhåndsvisning med eksempeldata</p>
-
-                <!-- Knapperne viser den kommende skærmstyring og er deaktiveret her. -->
-                <div class="screen-controls" role="group" aria-label="Vælg storskærmsvisning">
-                  <button
-                    type="button"
-                    class="is-selected"
-                    data-screen-choice="leaderboard"
-                    aria-pressed="true" disabled>
-
-                    <svg class="icon" aria-hidden="true">
-                      <use href="assets/icons.svg#chart"></use>
-                    </svg>
-
-                    <span>Leaderboard</span>
-                  </button>
-
-                  <button type="button" data-screen-choice="instructions" aria-pressed="false" disabled>
-                    <svg class="icon" aria-hidden="true">
-                      <use href="assets/icons.svg#play"></use>
-                    </svg>
-
-                    <span>Sådan spiller du</span>
-                  </button>
-
-                  <button type="button" data-screen-choice="qr" aria-pressed="false" disabled>
-                    <svg class="icon" aria-hidden="true">
-                      <use href="assets/icons.svg#qr"></use>
-                    </svg>
-
-                    <span>Stor QR-kode</span>
-                  </button>
-
-                  <button type="button" data-screen-choice="message" aria-pressed="false" disabled>
-                    <svg class="icon" aria-hidden="true">
-                      <use href="assets/icons.svg#message"></use>
-                    </svg>
-
-                    <span>Besked</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    id="show-winners"
-                    data-screen-choice="winners"
-                    aria-pressed="false"
-                    disabled>
-
-                    <svg class="icon" aria-hidden="true">
-                      <use href="assets/icons.svg#trophy"></use>
-                    </svg>
-
-                    <span>Vindere</span>
-                  </button>
-                </div>
-
-                <p id="winners-help" class="field-help">
-                  Skærmstyringen er vist som eksempel og tilsluttes senere.
-                </p>
-
-
-                <!-- Deaktiveret eksempel på kontakten til automatisk skærmrotation. -->
-                <div class="rotation-control">
-                  <div>
-                    <strong>Automatisk rotation</strong>
-
-                    <span id="rotation-status">Eksempel på skærmrotation</span>
-                  </div>
-
-                  <label class="switch">
-                    <input
-                      id="auto-rotation"
-                      type="checkbox"
-                      checked
-                      aria-label="Automatisk rotation" disabled>
-                    <span class="switch-track"></span>
-                  </label>
-                </div>
-
-                <div class="rotation-help">
-                  <p>36 sekunder leaderboard, 15 sekunder sådan spiller du og 9 sekunder stor QR.</p>
-
-                  <p>
-                    Et manuelt skærmvalg sætter rotationen på pause. Slutnedtælling og vinderafsløring vises automatisk.
-                  </p>
-                </div>
+                <p class="field-help">Storskærm, QR-kode og skærmstyring afventer tilkobling af spillet.</p>
               </section>
             </div>
-
             <aside class="run-aside">
-
-              <!-- Storskærmslinket åbner pladsholderen. Kopiering tilsluttes senere. -->
               <section class="panel screen-link-card">
-                <span class="panel-icon">
-                  <svg class="icon" aria-hidden="true">
-                    <use href="assets/icons.svg#monitor"></use>
-                  </svg>
-                </span>
-
-                <h2>Konkurrencens storskærm</h2>
-
-                <p id="screen-competition-name">Bulldogs mod Herning, 1. pause</p>
-
-                <a
-                  id="open-screen"
-                  class="button button-primary"
-                  href="afvikling.html?visning=storskaerm"
-                  target="_blank"
-                  rel="noopener">
-                  Åbn storskærm <img class="icon" src="assets/arrow-up-right.svg" width="22" height="22" alt="">
-                </a>
-
-                <label class="field-label" for="screen-url">Delbart link</label>
-
-                <div class="copy-field">
-                  <input
-                    id="screen-url"
-                    type="text"
-                    readonly
-                    value=""
-                    aria-label="Storskærmens delbare link">
-                  <button
-                    id="copy-screen-link"
-                    type="button"
-                    class="icon-button"
-                    aria-label="Kopiér storskærmslink" disabled>
-
-                    <svg class="icon" aria-hidden="true">
-                      <use href="assets/icons.svg#copy"></use>
-                    </svg>
-                  </button>
-                </div>
-
-                <p class="field-help">
-                  Åbn på denne enhed, eller send linket videre. Modtageren behøver ikke personalelogin.
-                </p>
-
-                <div class="link-note">
-                  <svg class="icon" aria-hidden="true">
-                    <use href="assets/icons.svg#info"></use>
-                  </svg>
-
-                  <p>Linket viser kun denne konkurrence og virker også før start.</p>
-                </div>
+                <h2>Konkurrencehandlinger</h2>
+                <p>Start og afslut ændrer konkurrencens status i kampkontrol. Forsøg og præmier håndteres af spillets server.</p>
+                <div id="run-actions" class="data-actions"></div>
+                <p id="run-action-status" class="firebase-status" role="status" hidden></p>
               </section>
-
-
-              <!-- Deaktiveret eksempel på formularen til en publikumsbesked. -->
-              <section class="panel message-panel">
-                <div class="panel-heading">
-                  <h2>Besked til publikum</h2>
-
-                  <svg class="icon" aria-hidden="true">
-                    <use href="assets/icons.svg#message"></use>
-                  </svg>
-                </div>
-
-                <p class="field-help">Skriv en kort besked til storskærmen.</p>
-
-                <form id="message-form">
-                  <div class="field">
-                    <label class="field-label" for="message-title">Overskrift</label>
-
-                    <input
-                      id="message-title"
-                      type="text"
-                      maxlength="80"
-                      value="Klar til næste pause?"
-                      required disabled>
-                  </div>
-
-                  <div class="field">
-                    <label class="field-label" for="message-body">Besked til publikum</label>
-
-                    <textarea id="message-body" rows="3" maxlength="240" required disabled>Find telefonen frem, og spil med.</textarea>
-                  </div>
-
-                  <button id="show-message" class="button button-secondary" type="submit" disabled>
-                    Gem og vis besked <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chevron-right"></use></svg>
-                  </button>
-                </form>
-              </section>
-
-
-              <!-- Eksempler på konkurrencehandlinger. Betjeningen tilsluttes senere. -->
-              <details class="panel management-actions">
-                <summary>
-                  <span>Andre handlinger</span>
-
-                  <svg class="icon" aria-hidden="true">
-                    <use href="assets/icons.svg#chevron-down"></use>
-                  </svg>
-                </summary>
-
-                <div class="management-content">
-                  <button id="close-attempts" type="button" class="button button-secondary" disabled>
-                    Luk for nye forsøg
-                  </button>
-
-                  <button id="manual-finalize" type="button" class="button button-text" disabled>
-                    Fastlås resultat manuelt
-                  </button>
-
-                  <p class="field-help">Manuel fastlåsning er tilgængelig, når resultatfristen er udløbet.</p>
-                </div>
-              </details>
             </aside>
           </div>
         </main>
@@ -764,17 +327,5 @@
 
 
 
-    <!-- Vises i stedet for adminpanelet, når adressen indeholder visning=storskaerm. -->
-    <main id="screen-placeholder" class="screen-placeholder" hidden>
-      <img src="assets/bulldogs-logo.png" width="64" height="74" alt="Odense Bulldogs">
-
-      <p class="eyebrow">KONKURRENCENS STORSKÆRM</p>
-
-      <h1 id="screen-placeholder-title">Storskærm</h1>
-
-      <p>Storskærmsvisningen bliver tilgængelig her.</p>
-
-      <a class="button button-secondary" href="afvikling.html">Tilbage til afvikling</a>
-    </main>
   </body>
 </html>

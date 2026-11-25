@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="css/login.css">
 
     <!-- Loginsiden har ingen menu, så den bruger kun sin egen JavaScript. -->
-    <script src="js/login.js" defer></script>
+
+  <script type="module" src="js/login.js"></script>
   </head>
 
   <body class="login" data-page="login">
@@ -37,9 +38,13 @@
 
         <h1 id="login-title">Velkommen til kampkontrol</h1>
 
-        <p class="lead">Log ind for at oprette konkurrencer, styre storskærmen og følge resultaterne.</p>
+        <p class="lead">Log ind for at oprette konkurrencer og følge resultaterne.</p>
 
-        <form id="login-form" class="login-form" novalidate>
+        <form id="login-form" class="login-form">
+          <div class="field">
+            <label class="field-label" for="email">E-mail</label>
+            <input id="email" name="email" type="email" autocomplete="username" required>
+          </div>
           <div class="field">
             <label class="field-label" for="password">Adgangskode</label>
 
@@ -62,7 +67,6 @@
           <button id="login-button" class="button button-primary" type="submit">Log ind</button>
         </form>
 
-        <p class="field-help login-demo">Eksempeldata: brug adgangskoden <strong>bulldogs</strong>.</p>
       </section>
 
       <p class="login-motto">ÉT HOLD. ÉN BY. ODENSE.</p>

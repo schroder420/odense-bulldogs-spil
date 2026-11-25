@@ -12,11 +12,10 @@
   <link rel="icon" type="image/png" href="assets/bulldogs-logo.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="css/resultat.css">
-  <!-- Fælles JavaScript til mobilnavigation. -->
-  <script src="js/app.js" defer></script>
+  <script type="module" src="js/round-details.js"></script>
 </head>
 
-<body class="resultat">
+<body data-details="results" class="resultat">
 
   <a class="skip-link" href="#main">Spring til indhold</a>
 
@@ -87,6 +86,7 @@
           </span>
         </div>
 
+        <a class="button button-text" aria-label="Log ud" href="login.html">Log ud</a>
         <p class="sidebar-motto">ÉT HOLD. ÉN BY. ODENSE.</p>
       </div>
     </aside>
@@ -125,24 +125,20 @@
         </div>
 
         <span class="environment-badge">
-          <span></span>Eksempeldata
+          <span></span>Firebase
         </span>
       </header>
 
       <!-- Sidens indhold -->
-      <main id="main" class="page-content" tabindex="-1">
-
+      <main id="main" class="page-content" tabindex="-1" data-checking-access>
+          <p id="access-status" class="panel firebase-status" role="status">Kontrollerer personaleadgang…</p>
         <header class="page-heading">
           <div>
-            <p class="eyebrow">KAMPKONTROL · RESULTATER</p>
+            <p class="eyebrow">KAMPKONTROL · KONKURRENCER</p>
             <h1>Resultat</h1>
-            <p class="lead">Bulldogs mod Herning, 1. pause</p>
+            <p class="lead" id="detail-title"></p>
           </div>
-
-          <span class="badge badge-neutral">Foreløbigt resultat</span>
         </header>
-
-        <!-- Konkurrencefaner -->
         <nav class="competition-tabs" aria-label="Konkurrence">
           <a href="afvikling.html">
             <svg class="icon" aria-hidden="true">
@@ -165,239 +161,17 @@
             Resultat
           </a>
         </nav>
-
-        <!-- Konkurrenceoversigt -->
-        <section class="panel">
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">KONKURRENCEOVERSIGT</p>
-              <h2>Fredagskampen</h2>
-            </div>
-            <span class="badge badge-neutral">Foreløbig</span>
-          </div>
-
-          <div class="result-overview">
-            <div>
-              <span class="stat-label">Spil</span>
-              <strong>Quiz</strong>
-            </div>
-
-            <div>
-              <span class="stat-label">Hold</span>
-              <strong>Odense Bulldogs</strong>
-            </div>
-
-            <div>
-              <span class="stat-label">Dato</span>
-              <strong>25. oktober 2026</strong>
-            </div>
-
-            <div>
-              <span class="stat-label">Deltagere</span>
-              <strong>24</strong>
-            </div>
-          </div>
-
-          <div class="result-message">
-            <strong>Konkurrencen er ikke afsluttet.</strong>
-            <p>Placeringerne kan stadig ændre sig, indtil resultatet er endeligt.</p>
-          </div>
-        </section>
-
-        <!-- Top 5 -->
-        <section class="panel">
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">VINDERE</p>
-              <h2>Top 5</h2>
-            </div>
-            <span class="badge badge-neutral">5 deltagere</span>
-          </div>
-
-          <div class="result-table-wrapper">
+        <section class="panel data-panel">
+          <h2>Godkendte resultater</h2>
+          <p id="details-status" class="firebase-status" role="status">Henter konkurrence…</p>
+          <div id="details-table" class="data-table-wrapper" hidden>
             <table class="result-table">
-              <thead>
-                <tr>
-                  <th>Placering</th>
-                  <th>Spillernavn</th>
-                  <th>Score</th>
-                  <th>Præmie</th>
-                  <th>Voucherstatus</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td><span class="result-rank rank-first">1</span></td>
-                  <td><strong>Anders Nielsen</strong></td>
-                  <td>950</td>
-                  <td>Gavekort</td>
-                  <td><span class="result-voucher">Ikke indløst</span></td>
-                </tr>
-
-                <tr>
-                  <td><span class="result-rank rank-second">2</span></td>
-                  <td>Emil Hansen</td>
-                  <td>870</td>
-                  <td>Gavekort</td>
-                  <td><span class="result-voucher">Ikke indløst</span></td>
-                </tr>
-
-                <tr>
-                  <td><span class="result-rank rank-third">3</span></td>
-                  <td>Oliver Jensen</td>
-                  <td>820</td>
-                  <td>Goodiebag</td>
-                  <td><span class="result-voucher is-redeemed">Indløst</span></td>
-                </tr>
-
-                <tr>
-                  <td><span class="result-rank">4</span></td>
-                  <td>Frederik Larsen</td>
-                  <td>760</td>
-                  <td>Goodiebag</td>
-                  <td><span class="result-voucher">Ikke indløst</span></td>
-                </tr>
-
-                <tr>
-                  <td><span class="result-rank">5</span></td>
-                  <td>Magnus Pedersen</td>
-                  <td>710</td>
-                  <td>Goodiebag</td>
-                  <td><span class="result-voucher">Ikke indløst</span></td>
-                </tr>
-              </tbody>
+              <thead><tr><th scope="col">Placering</th><th scope="col">Deltager</th><th scope="col">Score</th><th scope="col">Spilletid</th><th scope="col">Afleveringer</th></tr></thead>
+              <tbody id="details-rows"></tbody>
             </table>
           </div>
-
-          <p class="field-help result-help">
-            Ved samme score vinder den deltager, der opnåede scoren først.
-          </p>
+          <div id="details-actions" class="data-actions"></div>
         </section>
-
-        <!-- Samlet resultatliste -->
-        <section class="panel">
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">ALLE DELTAGERE</p>
-              <h2>Samlet resultatliste</h2>
-            </div>
-          </div>
-
-          <div class="field result-search">
-            <label class="field-label" for="player-search">Søg på spillernavn</label>
-            <input
-              class="field-input"
-              type="search"
-              id="player-search"
-              placeholder="Søg efter en deltager...">
-          </div>
-
-          <div class="result-table-wrapper">
-            <table class="result-table">
-              <thead>
-                <tr>
-                  <th>Placering</th>
-                  <th>Navn</th>
-                  <th>Score</th>
-                  <th>Resultatdetaljer</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Anders Nielsen</td>
-                  <td>950</td>
-                  <td>9 rigtige svar</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Emil Hansen</td>
-                  <td>870</td>
-                  <td>8 rigtige svar</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Oliver Jensen</td>
-                  <td>820</td>
-                  <td>8 rigtige svar</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Frederik Larsen</td>
-                  <td>760</td>
-                  <td>7 rigtige svar</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Magnus Pedersen</td>
-                  <td>710</td>
-                  <td>7 rigtige svar</td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>Mikkel Sørensen</td>
-                  <td>650</td>
-                  <td>6 rigtige svar</td>
-                </tr>
-                <tr>
-                  <td>7</td>
-                  <td>Jonas Christensen</td>
-                  <td>590</td>
-                  <td>6 rigtige svar</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <!-- Handlinger -->
-        <section class="panel">
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">KONKURRENCE</p>
-              <h2>Handlinger</h2>
-            </div>
-          </div>
-
-          <div class="result-actions">
-            <a class="button button-primary" href="afvikling.html">
-              <svg class="icon" aria-hidden="true">
-                <use href="assets/icons.svg#monitor"></use>
-              </svg>
-              Åbn vinderne på storskærmen
-            </a>
-
-            <a class="button button-secondary" href="statistik.html">
-              <svg class="icon" aria-hidden="true">
-                <use href="assets/icons.svg#chart"></use>
-              </svg>
-              Se statistik
-            </a>
-
-            <a class="button button-secondary" href="praemier.html">
-              <svg class="icon" aria-hidden="true">
-                <use href="assets/icons.svg#flag"></use>
-              </svg>
-              Gå til præmier
-            </a>
-          </div>
-
-          <p class="field-help">
-            Statistik og præmieadministration er ikke tilsluttet endnu.
-          </p>
-        </section>
-
-        <!-- Eksempel på tom tilstand -->
-        <section class="panel result-empty">
-          <span class="result-empty-icon">i</span>
-          <div>
-            <h2>Ingen godkendte resultater</h2>
-            <p>Der er ikke udstedt vouchers til denne konkurrence.</p>
-          </div>
-        </section>
-
       </main>
 
       <footer class="workspace-footer">
