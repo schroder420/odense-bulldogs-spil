@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b241a">
+  <meta name="description" content="En statisk mobilvisning af Odense Bulldogs' pausespil Hold pucken i live.">
+
+  <title>Hold pucken i live | Odense Bulldogs</title>
+
+  <link rel="icon" type="image/png" href="assets/bulldogs-logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/spil.css">
+  <script src="js/spil.js" defer></script>
+</head>
+
+<body class="game-demo">
+  <a class="skip-link" href="#main">Spring til spilvisningen</a>
+
+  <div class="game-page">
+
+    <!-- Kompakt mobilheader med en rigtig vej tilbage til fansiden. -->
+    <header class="game-header">
+      <a class="game-brand" href="spiller.html" aria-label="Odense Bulldogs' forside">
+        <img src="assets/bulldogs-logo.png" alt="" width="32" height="38">
+        <span>ODENSE BULLDOGS</span>
+      </a>
+
+      <a class="game-back" href="spiller.html">Forside</a>
+    </header>
+
+    <main id="main" class="game-main">
+
+      <!-- Spillets navn og demomarkering står uden for selve spilleområdet. -->
+      <div class="game-heading">
+        <h1>Hold pucken i live</h1>
+        <span class="game-demo-label">Spildemo</span>
+      </div>
+
+      <section class="game-frame" aria-label="Eksempel på spilgrænsefladen">
+
+        <div id="game-preview" class="game-preview">
+
+          <!-- Score og tid er faste eksempelværdier. -->
+          <div class="game-scoreboard">
+            <div class="game-score">
+              <span class="game-metric-label">Din score</span>
+              <p><strong>38<span>,40</span></strong><span class="game-unit">point</span></p>
+            </div>
+
+            <div class="game-time">
+              <span class="game-metric-label">Slutfløjt om</span>
+              <p>01<span>:</span>42</p>
+            </div>
+          </div>
+
+          <!-- Her kan det rigtige spil senere indsættes. Alt nedenfor er statisk HTML. -->
+          <div id="game-window" class="game-window">
+            <div
+              class="demo-rink"
+              role="img"
+              aria-label="Statisk ishockeybane med tre hvide Bulldogs-spillere, to mørke modspillere og en puck. En orange ring markerer spilleren med pucken.">
+
+              <!-- Banens streger og cirkler tegnes med CSS. -->
+              <div class="rink-edge rink-edge-left"></div>
+              <div class="rink-edge rink-edge-right"></div>
+              <div class="rink-line rink-line-top"></div>
+              <div class="rink-line rink-line-center"></div>
+              <div class="rink-line rink-line-bottom"></div>
+              <div class="rink-circle rink-circle-center"></div>
+              <div class="rink-circle rink-circle-left"></div>
+              <div class="rink-circle rink-circle-right"></div>
+
+              <!-- Spillerfigurerne kommer fra projektets eksisterende assets. -->
+              <img
+                class="demo-player player-home-left"
+                src="assets/bulldogs-receive-v6.webp"
+                alt="" width="384" height="384">
+
+              <img
+                class="demo-player player-home-right"
+                src="assets/bulldogs-receive-v6.webp"
+                alt="" width="384" height="384">
+
+              <img
+                class="demo-player player-away-left"
+                src="assets/opponent-glide.webp"
+                alt="" width="384" height="384">
+
+              <img
+                class="demo-player player-away-right"
+                src="assets/opponent-receive-v6.webp"
+                alt="" width="384" height="384">
+
+              <!-- Ringen, pucken og afleveringsbanen er kun illustrationer. -->
+              <div class="demo-pass"></div>
+              <div class="demo-player-ring"></div>
+
+              <img
+                class="demo-player player-active"
+                src="assets/bulldogs-glide-v6.webp"
+                alt="" width="384" height="384">
+
+              <div class="demo-puck"></div>
+            </div>
+          </div>
+
+          <!-- Vejledningen har sin egen plads, så den aldrig dækker spillet. -->
+          <div class="game-instruction">
+            <span class="instruction-shirt" aria-hidden="true"></span>
+            <p>Tryk på en <strong>hvid medspiller</strong> for at aflevere.</p>
+          </div>
+        </div>
+
+        <!-- Startvisningen viser kun et eksempelnavn. Knappen viser den statiske bane. -->
+        <section class="game-overlay" data-game-overlay="start" aria-labelledby="start-title" tabindex="0" hidden>
+          <div class="overlay-card">
+            <div class="overlay-top">
+              <p class="overlay-kicker">Din tur på isen</p>
+              <button class="overlay-close" type="button" data-demo-view="play" aria-label="Luk startvisningen">Luk</button>
+            </div>
+
+            <h2 id="start-title">Hvor længe holder du?</h2>
+            <p class="overlay-copy">Aflevér til en hvid medspiller, og kæmp dig ind i top 5.</p>
+
+            <label class="overlay-name" for="demo-nickname">Dit navn på storskærmen</label>
+            <input id="demo-nickname" class="overlay-input" type="text" value="BulldogsFan78" readonly>
+
+            <button class="overlay-primary" type="button" data-demo-view="play">Spil nu</button>
+            <p class="overlay-hint">1 point pr. sekund og pr. aflevering.</p>
+          </div>
+        </section>
+
+        <!-- Et afsluttet forsøg, mens konkurrencen stadig er i gang. -->
+        <section class="game-overlay" data-game-overlay="result" aria-labelledby="result-title" tabindex="0" hidden>
+          <div class="overlay-card">
+            <div class="overlay-top">
+              <p class="overlay-kicker">Forsøget er slut</p>
+              <button class="overlay-close" type="button" data-demo-view="play" aria-label="Luk resultatvisningen">Luk</button>
+            </div>
+
+            <h2 id="result-title">Godt spillet!</h2>
+            <p class="overlay-points">38,40 <span>point</span></p>
+
+            <dl class="overlay-stats">
+              <div><dt>Din bedste score</dt><dd>42,10 point</dd></div>
+              <div><dt>Din placering lige nu</dt><dd>Nr. 8</dd></div>
+            </dl>
+
+            <button class="overlay-primary" type="button" data-demo-view="play">Spil igen</button>
+            <p class="overlay-hint">Dit bedste forsøg tæller.</p>
+            <a class="overlay-guide-link" href="kampguide.html">Se kampguiden</a>
+          </div>
+        </section>
+
+        <!-- Et eksempel på slutvisningen for en af de fem vindere. -->
+        <section class="game-overlay" data-game-overlay="won" aria-labelledby="won-title" tabindex="0" hidden>
+          <div class="overlay-card">
+            <div class="overlay-top">
+              <p class="overlay-kicker">Konkurrencen er slut</p>
+              <button class="overlay-close" type="button" data-demo-view="play" aria-label="Luk vindervisningen">Luk</button>
+            </div>
+
+            <h2 id="won-title">Du er i top 5!</h2>
+            <p class="overlay-copy">Tillykke! Du sluttede på en 3. plads med 42,10 point.</p>
+
+            <div class="overlay-prize">
+              <span>Din præmie</span>
+              <strong>1 fadøl eller sodavand</strong>
+              <p>Hentes i Viggos Bar.</p>
+            </div>
+
+            <p class="overlay-hint">Tak, fordi du spillede med Bulldogs!</p>
+          </div>
+        </section>
+
+        <!-- Et eksempel på slutvisningen for en deltager uden for top 5. -->
+        <section class="game-overlay" data-game-overlay="lost" aria-labelledby="lost-title" tabindex="0" hidden>
+          <div class="overlay-card">
+            <div class="overlay-top">
+              <p class="overlay-kicker">Konkurrencen er slut</p>
+              <button class="overlay-close" type="button" data-demo-view="play" aria-label="Luk slutvisningen">Luk</button>
+            </div>
+
+            <h2 id="lost-title">Tak for spillet!</h2>
+            <p class="overlay-copy">Du kom desværre ikke i top 5 denne gang. Vi håber, du spiller med til næste kamp.</p>
+
+            <dl class="overlay-stats">
+              <div><dt>Din bedste score</dt><dd>42,10 point</dd></div>
+              <div><dt>Din endelige placering</dt><dd>Nr. 12</dd></div>
+            </dl>
+
+            <a class="overlay-guide-link" href="kampguide.html">Se kampguiden</a>
+          </div>
+        </section>
+      </section>
+
+      <!-- Diskrete demoknapper viser overlays uden at starte et spil. -->
+      <div class="demo-footer">
+        <div class="demo-controls" role="group" aria-label="Vælg demovisning">
+          <button type="button" data-demo-view="start" aria-pressed="false">Start</button>
+          <button type="button" data-demo-view="play" aria-pressed="true">Spil</button>
+          <button type="button" data-demo-view="result" aria-pressed="false">Resultat</button>
+          <button type="button" data-demo-view="won" aria-pressed="false">Vundet</button>
+          <button type="button" data-demo-view="lost" aria-pressed="false">Tabt</button>
+        </div>
+        <p class="game-demo-note">Statisk demo. Spil, score og tid er eksempler.</p>
+      </div>
+    </main>
+
+  </div>
+</body>
+</html>

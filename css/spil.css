@@ -1,0 +1,794 @@
+/* Spildemo til tilskuere. Fælles farver og skrifter ligger i styles.css. */
+
+.game-demo {
+  background: #0b241a;
+}
+
+/* Hele visningen følger mobilens ledige højde, også når adresselinjen ændres. */
+
+.game-page {
+  width: 100%;
+  max-width: 480px;
+  height: 100svh;
+  height: 100dvh;
+  margin: 0 auto;
+  padding:
+    max(8px, env(safe-area-inset-top))
+    max(16px, env(safe-area-inset-right))
+    max(12px, env(safe-area-inset-bottom))
+    max(16px, env(safe-area-inset-left));
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* Logo og navigation er små nok til at give banen plads. */
+
+.game-header {
+  min-height: 54px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.game-brand {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.game-brand img {
+  width: 28px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.game-brand span {
+  font-family: var(--heading);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: .3px;
+}
+
+.game-back {
+  min-width: 52px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  color: #b4c8bb;
+  font-size: 14px;
+}
+
+.game-back:hover {
+  color: white;
+}
+
+/* Kun spillevinduet vokser. Overskrift og hjælpetekster beholder deres plads. */
+
+.game-main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.game-heading {
+  min-height: 64px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.game-heading h1 {
+  font-family: var(--heading);
+  font-size: clamp(26px, 7vw, 34px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .2px;
+}
+
+.game-demo-label {
+  flex-shrink: 0;
+  padding: 5px 8px;
+  border: 1px solid #3d5948;
+  border-radius: 4px;
+  color: #c4d4c8;
+  font-size: 12px;
+}
+
+.game-frame {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #42624e;
+  border-radius: 10px;
+  background: #153b29;
+  position: relative;
+}
+
+.game-preview {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Den samlede score og konkurrencens sluttid har hver sin tydelige label. */
+
+.game-scoreboard {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 15px 18px 17px;
+  border-bottom: 1px solid #44614d;
+  background: #153b29;
+}
+
+.game-metric-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #c0d1c5;
+  font-size: 14px;
+}
+
+.game-score p {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.game-score strong,
+.game-time p {
+  font-family: var(--heading);
+  font-size: 43px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.game-score strong {
+  color: #f1a25d;
+}
+
+.game-score strong span {
+  font-size: 32px;
+}
+
+.game-unit {
+  color: #c0d1c5;
+  font-size: 12px;
+}
+
+.game-time {
+  text-align: right;
+}
+
+.game-time p span {
+  padding: 0 2px;
+  color: #829d8c;
+}
+
+/* Selve spillet kan senere overtage dette vindue. Demoen har ingen input. */
+
+.game-window {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #e6efeb;
+}
+
+.demo-rink {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(115deg, transparent 0 60px, #ffffff35 61px 62px, transparent 63px 120px),
+    linear-gradient(145deg, #f0f5f2, #dde8e3);
+}
+
+/* Banestregerne er placeret i procent, så de følger vinduets størrelse. */
+
+.rink-edge {
+  position: absolute;
+  top: -20px;
+  bottom: -20px;
+  width: 11px;
+  background: #f9fcfa;
+  border: 1px solid #cbd9d1;
+}
+
+.rink-edge-left {
+  left: 0;
+  border-right: 3px solid #d69358;
+}
+
+.rink-edge-right {
+  right: 0;
+  border-left: 3px solid #d69358;
+}
+
+.game-demo .rink-line {
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  top: auto;
+  bottom: auto;
+  height: 6px;
+  border: 0;
+  transform: none;
+  background: #7893b34a;
+}
+
+.game-demo .rink-line-top {
+  top: 19%;
+}
+
+.game-demo .rink-line-center {
+  top: 48%;
+  height: 3px;
+  background: #b951514d;
+}
+
+.game-demo .rink-line-bottom {
+  top: 77%;
+}
+
+.game-demo .rink-circle {
+  position: absolute;
+  width: 42%;
+  height: auto;
+  aspect-ratio: 1;
+  border: 2px solid #b951512b;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.game-demo .rink-circle::after {
+  width: 5px;
+  height: 5px;
+  transform: translate(-50%, -50%);
+  background: #b951514a;
+}
+
+.game-demo .rink-circle-center {
+  left: 50%;
+  top: 48%;
+}
+
+.game-demo .rink-circle-left,
+.game-demo .rink-circle-right {
+  top: 103%;
+  width: 34%;
+}
+
+.game-demo .rink-circle-left {
+  left: 24%;
+}
+
+.game-demo .rink-circle-right {
+  left: 76%;
+}
+
+/* Figurerne er billeder, så demoen kan vises helt uden JavaScript. */
+
+.demo-player {
+  position: absolute;
+  z-index: 2;
+  width: 31%;
+  height: auto;
+  max-height: 36%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 4px #244b3620);
+}
+
+.player-home-left {
+  left: 8%;
+  top: 9%;
+  transform: rotate(14deg);
+}
+
+.player-home-right {
+  right: 7%;
+  top: 22%;
+  transform: rotate(-14deg);
+}
+
+.player-away-left,
+.player-away-right {
+  width: 29%;
+  filter: grayscale(1) brightness(.7) drop-shadow(0 8px 4px #244b3620);
+}
+
+.player-away-left {
+  left: 15%;
+  top: 39%;
+  transform: rotate(18deg);
+}
+
+.player-away-right {
+  right: 7%;
+  top: 52%;
+  transform: rotate(-25deg);
+}
+
+.player-active {
+  left: 49%;
+  top: 74%;
+  width: 37%;
+  transform: translate(-50%, -50%);
+}
+
+.demo-player-ring {
+  position: absolute;
+  z-index: 1;
+  left: 49%;
+  top: 74%;
+  height: 24%;
+  max-height: 84px;
+  min-height: 38px;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border: 3px solid #e48331;
+  border-radius: 50%;
+  background: #e4833112;
+  box-shadow: 0 0 0 6px #e4833114;
+}
+
+.demo-puck {
+  position: absolute;
+  z-index: 3;
+  left: 59%;
+  top: 70%;
+  width: 10px;
+  height: 6px;
+  border-radius: 50%;
+  transform: rotate(-25deg);
+  background: #172b22;
+  box-shadow: 0 2px 2px #172b2240;
+}
+
+.demo-pass {
+  position: absolute;
+  z-index: 1;
+  left: 53%;
+  top: 43%;
+  height: 27%;
+  border-left: 2px dashed #466f5a55;
+  transform: rotate(26deg);
+  transform-origin: bottom;
+}
+
+/* Vejledningen ligger under isen og beholder pladsen på korte skærme. */
+
+.game-instruction {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px;
+  border-top: 1px solid #c9d9cf;
+  background: #f9fcf9;
+  color: #375742;
+}
+
+.game-instruction p {
+  max-width: 260px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.game-instruction strong {
+  color: #193b27;
+  font-weight: 700;
+}
+
+.instruction-shirt {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  border: 1px solid #81988b;
+  border-radius: 50%;
+  background: white;
+}
+
+.game-demo-note {
+  flex-shrink: 0;
+  text-align: center;
+  color: #a7beb0;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* Demoknapperne ligger uden for overlays og er altid tilgængelige. */
+
+.demo-footer {
+  flex-shrink: 0;
+  display: grid;
+  gap: 7px;
+}
+
+.demo-controls {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.demo-controls button {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 6px;
+  border: 1px solid #34513f;
+  border-radius: 4px;
+  background: transparent;
+  color: #a7beb0;
+  font-size: 12px;
+}
+
+.demo-controls button:hover,
+.demo-controls button[aria-pressed="true"] {
+  border-color: #7c9686;
+  background: #183b29;
+  color: #f7f8f2;
+}
+
+/* Visningspanelerne ligger over hele spilrammen og kan scrolles på små skærme. */
+
+.game-overlay {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #0b241ac7;
+  backdrop-filter: blur(4px);
+  outline-offset: -4px;
+}
+
+.overlay-card {
+  width: 100%;
+  max-width: 340px;
+  flex-shrink: 0;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #496b53;
+  border-radius: 8px;
+  background: #143a28;
+}
+
+.overlay-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.overlay-kicker {
+  color: #e8a068;
+  font-size: 12px;
+}
+
+.overlay-close {
+  min-width: 44px;
+  min-height: 44px;
+  margin: -8px -8px -8px 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #c4d4c8;
+  font-size: 14px;
+}
+
+.overlay-close:hover {
+  background: #214632;
+  color: white;
+}
+
+.overlay-card h2 {
+  margin-bottom: 12px;
+  font-size: 34px;
+  line-height: 1.05;
+}
+
+.overlay-copy {
+  margin-bottom: 20px;
+  color: #c4d4c8;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.overlay-name {
+  display: block;
+  margin-bottom: 8px;
+  color: #c4d4c8;
+  font-size: 14px;
+}
+
+.game-demo .overlay-input {
+  min-height: 44px;
+  padding: 10px 12px;
+  font-size: 16px;
+}
+
+.overlay-primary {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 18px;
+  padding: 12px;
+  border: 0;
+  border-radius: 4px;
+  background: #e48331;
+  color: #102c20;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.overlay-primary:hover {
+  background: #f0a05b;
+}
+
+.overlay-hint {
+  margin-top: 14px;
+  color: #b3c9bb;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Kampguiden åbnes som almindelig navigation fra resultat- og slutvisningen. */
+
+.overlay-guide-link {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  color: #c4d4c8;
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.overlay-guide-link:hover {
+  color: #f1a25d;
+  text-decoration: underline;
+}
+
+.overlay-points {
+  margin: 16px 0 20px;
+  color: #f1a25d;
+  font-family: var(--heading);
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.overlay-points span {
+  color: #c4d4c8;
+  font-family: var(--body);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.overlay-stats {
+  margin: 16px 0 0;
+}
+
+.overlay-stats > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.overlay-stats dt {
+  color: #b3c9bb;
+}
+
+.overlay-stats dd {
+  flex-shrink: 0;
+  margin: 0;
+  font-weight: 700;
+}
+
+.overlay-prize {
+  padding: 16px;
+  border: 1px solid #e4833159;
+  border-radius: 6px;
+  background: #e4833110;
+}
+
+.overlay-prize > span {
+  display: block;
+  margin-bottom: 6px;
+  color: #c4d4c8;
+  font-size: 14px;
+}
+
+.overlay-prize strong {
+  font-family: var(--heading);
+  font-size: 26px;
+  line-height: 1.1;
+}
+
+.overlay-prize p {
+  margin-top: 10px;
+  color: #c4d4c8;
+  font-size: 14px;
+}
+
+/* Små telefoner får mere plads til selve banen. */
+
+@media (max-width: 360px) {
+  .game-page {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .game-main {
+    gap: 8px;
+  }
+
+  .game-scoreboard {
+    padding: 12px;
+  }
+
+  .game-instruction {
+    gap: 8px;
+    padding: 10px;
+  }
+}
+
+/* En kort skærm beholder navigation og nøgletal i kompakt form. */
+
+@media (max-height: 650px) {
+  .game-heading {
+    min-height: 44px;
+  }
+
+  .game-main {
+    gap: 8px;
+  }
+
+  .game-scoreboard {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .game-score strong,
+  .game-time p {
+    font-size: 36px;
+  }
+
+  .overlay-card {
+    padding: 14px;
+  }
+
+  .overlay-top {
+    margin-bottom: 6px;
+  }
+
+  .overlay-card h2 {
+    margin-bottom: 10px;
+    font-size: 28px;
+  }
+
+  .overlay-copy {
+    margin-bottom: 14px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .overlay-primary {
+    min-height: 44px;
+    margin-top: 12px;
+  }
+
+  .overlay-points {
+    margin: 12px 0 14px;
+    font-size: 48px;
+  }
+
+  .overlay-hint {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+}
+
+/* I liggende mobilvisning fordeles overskrift og bane i to kolonner. */
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .game-page {
+    max-width: 740px;
+    padding:
+      max(8px, env(safe-area-inset-top))
+      max(16px, env(safe-area-inset-right))
+      max(8px, env(safe-area-inset-bottom))
+      max(16px, env(safe-area-inset-left));
+  }
+
+  .game-header {
+    min-height: 44px;
+  }
+
+  .game-main {
+    display: grid;
+    grid-template-columns: 170px minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) auto;
+    column-gap: 20px;
+    padding-top: 8px;
+  }
+
+  .game-heading {
+    align-self: center;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .game-heading h1 {
+    font-size: 36px;
+    line-height: 1.05;
+  }
+
+  .game-frame {
+    grid-column: 2;
+    grid-row: 1 / 3;
+  }
+
+  .game-scoreboard {
+    padding: 8px 12px;
+  }
+
+  .game-score strong,
+  .game-time p {
+    font-size: 30px;
+  }
+
+  .game-score strong span {
+    font-size: 24px;
+  }
+
+  .game-metric-label {
+    margin-bottom: 3px;
+  }
+
+  .game-instruction {
+    padding: 7px;
+  }
+
+  .demo-footer {
+    align-self: end;
+  }
+
+  .demo-controls {
+    flex-wrap: wrap;
+  }
+
+  .demo-controls button {
+    flex-basis: 45px;
+  }
+
+  .game-demo-note {
+    text-align: left;
+  }
+}
