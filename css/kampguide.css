@@ -612,3 +612,8 @@
     gap: 16px;
   }
 }
+
+/* Kampens forløb: luft mellem urreglerne og forløbet ved uafgjort. */
+.kampguide .kg-clock-rules + .kg-tag-plain {
+  margin-top: 28px;
+}
